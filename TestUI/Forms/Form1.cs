@@ -252,6 +252,11 @@ namespace TestUI // Made by DMONSKULL
             SettingsPage settingsPage = new SettingsPage();
             settingsPage.Show();
         }
+        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ScreenshotPage screenshotPage = new ScreenshotPage();
+            screenshotPage.Show();
+        }
         //Launching Games
         private void tileItem3_RightItemClick(object sender, TileItemEventArgs e)
         {

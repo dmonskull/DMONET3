@@ -121,6 +121,12 @@
     <Compile Include="Forms\ResidentEvil4.Designer.cs">
       <DependentUpon>ResidentEvil4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ScreenshotPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ScreenshotPage.Designer.cs">
+      <DependentUpon>ScreenshotPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SettingsPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ResidentEvil4.resx">
       <DependentUpon>ResidentEvil4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ScreenshotPage.resx">
+      <DependentUpon>ScreenshotPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SettingsPage.resx">
       <DependentUpon>SettingsPage.cs</DependentUpon>
