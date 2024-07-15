@@ -1,0 +1,240 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B565D5F8-1EEA-4B9E-BD53-F40511F2249E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DMONET3</RootNamespace>
+    <AssemblyName>DMONET3</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v21.2" />
+    <Reference Include="DevExpress.Data.Desktop.v21.2" />
+    <Reference Include="DevExpress.Data.v21.2" />
+    <Reference Include="DevExpress.Printing.v21.2.Core" />
+    <Reference Include="DevExpress.Utils.v21.2" />
+    <Reference Include="DevExpress.XtraBars.v21.2" />
+    <Reference Include="DevExpress.Sparkline.v21.2.Core" />
+    <Reference Include="DevExpress.XtraEditors.v21.2" />
+    <Reference Include="DevExpress.XtraLayout.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="INIFileParser, Version=2.5.2.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
+      <HintPath>..\packages\ini-parser.2.5.2\lib\net20\INIFileParser.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="xdevkit">
+      <HintPath>..\..\..\..\..\..\repos\DMONETXDKv2\DMONETXDKv2\bin\Debug\xdevkit.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="xdrpc">
+      <HintPath>..\..\..\..\..\..\repos\DMONETXDKv2\DMONETXDKv2\bin\Debug\xdrpc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\ConsoleInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConsoleInfo.Designer.cs">
+      <DependentUpon>ConsoleInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Crackdown.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Crackdown.Designer.cs">
+      <DependentUpon>Crackdown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DeadRising2OTF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DeadRising2OTF.Designer.cs">
+      <DependentUpon>DeadRising2OTF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\INIEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\INIEditor.Designer.cs">
+      <DependentUpon>INIEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Neighborhood.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Neighborhood.Designer.cs">
+      <DependentUpon>Neighborhood.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ResidentEvil4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ResidentEvil4.Designer.cs">
+      <DependentUpon>ResidentEvil4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Skate3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Skate3.Designer.cs">
+      <DependentUpon>Skate3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="XDRPCPlusPlus.cs" />
+    <EmbeddedResource Include="Forms\ConsoleInfo.resx">
+      <DependentUpon>ConsoleInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Crackdown.resx">
+      <DependentUpon>Crackdown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DeadRising2OTF.resx">
+      <DependentUpon>DeadRising2OTF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\INIEditor.resx">
+      <DependentUpon>INIEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Neighborhood.resx">
+      <DependentUpon>Neighborhood.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ResidentEvil4.resx">
+      <DependentUpon>ResidentEvil4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Skate3.resx">
+      <DependentUpon>Skate3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\crackdown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\re4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skate3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inifile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Xbox_360_Models.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deadrising2otf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inject.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inject1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inject2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inieditor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\neighborhoodchanger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\neighborhoodchanger2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\consoleinfo2.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
