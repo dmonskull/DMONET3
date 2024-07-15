@@ -32,26 +32,33 @@ namespace TestUI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            DevExpress.XtraEditors.TileItemElement tileItemElement49 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement50 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement51 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement52 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement53 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement54 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement55 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement56 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement57 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement58 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement59 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement60 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement6 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement7 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement8 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement9 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement10 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement11 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement12 = new DevExpress.XtraEditors.TileItemElement();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem3 = new DevExpress.XtraBars.BarStaticItem();
+            this.barStaticItem4 = new DevExpress.XtraBars.BarStaticItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
@@ -71,7 +78,6 @@ namespace TestUI
             this.tileItem6 = new DevExpress.XtraEditors.TileItem();
             this.tileItem7 = new DevExpress.XtraEditors.TileItem();
             this.tileItem8 = new DevExpress.XtraEditors.TileItem();
-            this.barStaticItem4 = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -90,9 +96,13 @@ namespace TestUI
             this.barStaticItem1,
             this.barStaticItem2,
             this.barStaticItem3,
-            this.barStaticItem4});
+            this.barStaticItem4,
+            this.barButtonItem3,
+            this.barButtonItem4,
+            this.barButtonItem5,
+            this.barButtonItem6});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 7;
+            this.ribbonControl1.MaxItemId = 12;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -136,10 +146,50 @@ namespace TestUI
             this.barStaticItem3.Name = "barStaticItem3";
             this.barStaticItem3.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu;
             // 
+            // barStaticItem4
+            // 
+            this.barStaticItem4.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.barStaticItem4.Caption = "Copy Info";
+            this.barStaticItem4.Id = 6;
+            this.barStaticItem4.Name = "barStaticItem4";
+            // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "Open QuickLaunch";
+            this.barButtonItem3.Id = 7;
+            this.barButtonItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
+            this.barButtonItem3.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
+            this.barButtonItem3.Name = "barButtonItem3";
+            // 
+            // barButtonItem4
+            // 
+            this.barButtonItem4.Caption = "Take Screenshot";
+            this.barButtonItem4.Id = 9;
+            this.barButtonItem4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem4.ImageOptions.SvgImage")));
+            this.barButtonItem4.Name = "barButtonItem4";
+            // 
+            // barButtonItem5
+            // 
+            this.barButtonItem5.Caption = "barButtonItem5";
+            this.barButtonItem5.Id = 10;
+            this.barButtonItem5.Name = "barButtonItem5";
+            // 
+            // barButtonItem6
+            // 
+            this.barButtonItem6.Caption = "Settings";
+            this.barButtonItem6.Id = 11;
+            this.barButtonItem6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.Image")));
+            this.barButtonItem6.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.LargeImage")));
+            this.barButtonItem6.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S));
+            this.barButtonItem6.Name = "barButtonItem6";
+            this.barButtonItem6.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem6_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
+            this.ribbonPageGroup1,
+            this.ribbonPageGroup2,
+            this.ribbonPageGroup3});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Console Tools";
             // 
@@ -149,6 +199,20 @@ namespace TestUI
             this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem2);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "ribbonPageGroup1";
+            // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem3);
+            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem4);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "ribbonPageGroup2";
+            // 
+            // ribbonPageGroup3
+            // 
+            this.ribbonPageGroup3.Alignment = DevExpress.XtraBars.Ribbon.RibbonPageGroupAlignment.Far;
+            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem6);
+            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            this.ribbonPageGroup3.Text = "ribbonPageGroup3";
             // 
             // ribbonStatusBar1
             // 
@@ -211,8 +275,8 @@ namespace TestUI
             this.tileItem16.BackgroundImage = global::DMONET3.Properties.Resources.consoleinfo2;
             this.tileItem16.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.tileItem16.Checked = true;
-            tileItemElement49.Text = "";
-            this.tileItem16.Elements.Add(tileItemElement49);
+            tileItemElement1.Text = "";
+            this.tileItem16.Elements.Add(tileItemElement1);
             this.tileItem16.Id = 12;
             this.tileItem16.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem16.Name = "tileItem16";
@@ -226,8 +290,8 @@ namespace TestUI
             this.tileItem9.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.tileItem9.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
             this.tileItem9.Checked = true;
-            tileItemElement50.Text = "";
-            this.tileItem9.Elements.Add(tileItemElement50);
+            tileItemElement2.Text = "";
+            this.tileItem9.Elements.Add(tileItemElement2);
             this.tileItem9.Id = 1;
             this.tileItem9.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem9.Name = "tileItem9";
@@ -240,8 +304,8 @@ namespace TestUI
             this.tileItem14.BackgroundImage = global::DMONET3.Properties.Resources._3;
             this.tileItem14.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.tileItem14.Checked = true;
-            tileItemElement51.Text = "";
-            this.tileItem14.Elements.Add(tileItemElement51);
+            tileItemElement3.Text = "";
+            this.tileItem14.Elements.Add(tileItemElement3);
             this.tileItem14.Id = 10;
             this.tileItem14.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem14.Name = "tileItem14";
@@ -254,8 +318,8 @@ namespace TestUI
             this.tileItem10.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.tileItem10.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
             this.tileItem10.Checked = true;
-            tileItemElement52.Text = "";
-            this.tileItem10.Elements.Add(tileItemElement52);
+            tileItemElement4.Text = "";
+            this.tileItem10.Elements.Add(tileItemElement4);
             this.tileItem10.Id = 2;
             this.tileItem10.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem10.Name = "tileItem10";
@@ -298,8 +362,8 @@ namespace TestUI
             this.tileItem3.BackgroundImage = global::DMONET3.Properties.Resources.crackdown;
             this.tileItem3.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.tileItem3.Checked = true;
-            tileItemElement53.Text = "";
-            this.tileItem3.Elements.Add(tileItemElement53);
+            tileItemElement5.Text = "";
+            this.tileItem3.Elements.Add(tileItemElement5);
             this.tileItem3.Id = 2;
             this.tileItem3.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem3.Name = "tileItem3";
@@ -311,8 +375,8 @@ namespace TestUI
             this.tileItem2.BackgroundImage = global::DMONET3.Properties.Resources.re4;
             this.tileItem2.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.tileItem2.Checked = true;
-            tileItemElement54.Text = "";
-            this.tileItem2.Elements.Add(tileItemElement54);
+            tileItemElement6.Text = "";
+            this.tileItem2.Elements.Add(tileItemElement6);
             this.tileItem2.Id = 1;
             this.tileItem2.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem2.Name = "tileItem2";
@@ -322,8 +386,8 @@ namespace TestUI
             // tileItem5
             // 
             this.tileItem5.Checked = true;
-            tileItemElement55.Text = "tileItem5";
-            this.tileItem5.Elements.Add(tileItemElement55);
+            tileItemElement7.Text = "tileItem5";
+            this.tileItem5.Elements.Add(tileItemElement7);
             this.tileItem5.Id = 4;
             this.tileItem5.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem5.Name = "tileItem5";
@@ -331,8 +395,8 @@ namespace TestUI
             // tileItem1
             // 
             this.tileItem1.Checked = true;
-            tileItemElement56.Text = "tileItem1";
-            this.tileItem1.Elements.Add(tileItemElement56);
+            tileItemElement8.Text = "tileItem1";
+            this.tileItem1.Elements.Add(tileItemElement8);
             this.tileItem1.Id = 9;
             this.tileItem1.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem1.Name = "tileItem1";
@@ -342,8 +406,8 @@ namespace TestUI
             this.tileItem4.BackgroundImage = global::DMONET3.Properties.Resources.skate3;
             this.tileItem4.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.tileItem4.Checked = true;
-            tileItemElement57.Text = "";
-            this.tileItem4.Elements.Add(tileItemElement57);
+            tileItemElement9.Text = "";
+            this.tileItem4.Elements.Add(tileItemElement9);
             this.tileItem4.Id = 3;
             this.tileItem4.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem4.Name = "tileItem4";
@@ -355,8 +419,8 @@ namespace TestUI
             this.tileItem6.BackgroundImage = global::DMONET3.Properties.Resources.deadrising2otf;
             this.tileItem6.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.tileItem6.Checked = true;
-            tileItemElement58.Text = "";
-            this.tileItem6.Elements.Add(tileItemElement58);
+            tileItemElement10.Text = "";
+            this.tileItem6.Elements.Add(tileItemElement10);
             this.tileItem6.Id = 10;
             this.tileItem6.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem6.Name = "tileItem6";
@@ -366,8 +430,8 @@ namespace TestUI
             // tileItem7
             // 
             this.tileItem7.Checked = true;
-            tileItemElement59.Text = "tileItem7";
-            this.tileItem7.Elements.Add(tileItemElement59);
+            tileItemElement11.Text = "tileItem7";
+            this.tileItem7.Elements.Add(tileItemElement11);
             this.tileItem7.Id = 11;
             this.tileItem7.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem7.Name = "tileItem7";
@@ -375,21 +439,15 @@ namespace TestUI
             // tileItem8
             // 
             this.tileItem8.Checked = true;
-            tileItemElement60.Text = "tileItem8";
-            this.tileItem8.Elements.Add(tileItemElement60);
+            tileItemElement12.Text = "tileItem8";
+            this.tileItem8.Elements.Add(tileItemElement12);
             this.tileItem8.Id = 12;
             this.tileItem8.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem8.Name = "tileItem8";
             // 
-            // barStaticItem4
-            // 
-            this.barStaticItem4.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.barStaticItem4.Caption = "Copy Info";
-            this.barStaticItem4.Id = 6;
-            this.barStaticItem4.Name = "barStaticItem4";
-            // 
             // Form1
             // 
+            this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.True;
             this.Appearance.BorderColor = System.Drawing.Color.Lime;
             this.Appearance.Options.UseBorderColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -402,6 +460,7 @@ namespace TestUI
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Ribbon = this.ribbonControl1;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar1;
             this.Text = "DMONET 3.0";
@@ -445,6 +504,12 @@ namespace TestUI
         private DevExpress.XtraBars.BarStaticItem barStaticItem3;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
         private DevExpress.XtraBars.BarStaticItem barStaticItem4;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem5;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem6;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
     }
 }
 

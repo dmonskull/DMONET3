@@ -247,6 +247,11 @@ namespace TestUI // Made by DMONSKULL
             Neighborhood neighborhood = new Neighborhood();
             neighborhood.Show();
         }
+        private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SettingsPage settingsPage = new SettingsPage();
+            settingsPage.Show();
+        }
         //Launching Games
         private void tileItem3_RightItemClick(object sender, TileItemEventArgs e)
         {
@@ -265,6 +270,5 @@ namespace TestUI // Made by DMONSKULL
             LaunchGameFromIni("DeadRising2OTF", "Games");
         }
         #endregion
-
     }
 }
