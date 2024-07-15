@@ -88,7 +88,7 @@
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(118, 66);
+            this.labelControl4.Location = new System.Drawing.Point(118, 56);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(208, 13);
             this.labelControl4.TabIndex = 2;
@@ -98,7 +98,7 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(118, 42);
+            this.labelControl3.Location = new System.Drawing.Point(118, 32);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(62, 18);
             this.labelControl3.TabIndex = 1;

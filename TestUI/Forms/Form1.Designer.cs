@@ -152,6 +152,7 @@ namespace TestUI
             this.barStaticItem4.Caption = "Copy Info";
             this.barStaticItem4.Id = 6;
             this.barStaticItem4.Name = "barStaticItem4";
+            this.barStaticItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barStaticItem4_ItemClick);
             // 
             // barButtonItem3
             // 
@@ -160,6 +161,7 @@ namespace TestUI
             this.barButtonItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
             this.barButtonItem3.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
             this.barButtonItem3.Name = "barButtonItem3";
+            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
             // 
             // barButtonItem4
             // 

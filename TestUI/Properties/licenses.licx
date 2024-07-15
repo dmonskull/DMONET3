@@ -1,7 +1,8 @@
 DevExpress.XtraEditors.PictureEdit, DevExpress.XtraEditors.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraEditors.TileControl, DevExpress.XtraEditors.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraEditors.ComboBoxEdit, DevExpress.XtraEditors.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.XtraGrid.GridControl, DevExpress.XtraGrid.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraLayout.LayoutControl, DevExpress.XtraLayout.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
-DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraNavBar.NavBarControl, DevExpress.XtraNavBar.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraBars.Ribbon.RibbonControl, DevExpress.XtraBars.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a

@@ -19,6 +19,7 @@ using IniParser;
 using IniParser.Model;
 using TestUI.Forms;
 using DMONET3.Forms;
+using System.Threading.Tasks;
 
 namespace TestUI // Made by DMONSKULL
 {
@@ -208,6 +209,19 @@ namespace TestUI // Made by DMONSKULL
                 XtraMessageBox.Show("Unable to reach console");
             }
         }
+        private async void barStaticItem4_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Clipboard.SetText(barStaticItem3.Caption.Replace("\t", "\n"));
+            string originalText = barStaticItem4.Caption;
+            barStaticItem4.Caption = "Copied";
+            await Task.Delay(1000);
+            barStaticItem4.Caption = originalText;
+        }
+        private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            QuickLaunchEditor quickLaunchEditor = new QuickLaunchEditor();
+            quickLaunchEditor.Show();
+        }
         #endregion
 
         #region TileStuffandGameLaunching
@@ -275,5 +289,6 @@ namespace TestUI // Made by DMONSKULL
             LaunchGameFromIni("DeadRising2OTF", "Games");
         }
         #endregion
+
     }
 }
