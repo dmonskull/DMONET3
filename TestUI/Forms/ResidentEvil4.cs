@@ -86,6 +86,33 @@ namespace TestUI.Forms
             activeConnection = false;
             return ConnectToConsole2();
         }
+        private void RandomizeFirstByteAtItemOffsets(Dictionary<string, uint> itemSlotOffsets)
+        {
+            Random random = new Random();
+
+            foreach (var entry in itemSlotOffsets)
+            {
+                byte randomByte = (byte)random.Next(256);
+                xbCon.WriteBytes(entry.Value, new byte[] { randomByte });
+            }
+        }
+        private void CheckHeldWeapons()
+        {
+            StringBuilder heldWeapons = new StringBuilder();
+            foreach (var entry in itemSlotOffsets)
+            {
+                byte[] slotValue = xbCon.ReadBytes(entry.Value, 4);
+
+                foreach (var weaponEntry in itemDictionary)
+                {
+                    if (weaponEntry.Value == slotValue[0])
+                    {
+                        heldWeapons.AppendLine($"Slot: {entry.Key}, Weapon: {weaponEntry.Key}");
+                    }
+                }
+            }
+            MessageBox.Show(heldWeapons.ToString());
+        }
 
         #region DictionaryStuff
         private void PopulateComboBoxEdit(ComboBoxEdit comboBoxEdit, IEnumerable<string> items)
@@ -98,8 +125,8 @@ namespace TestUI.Forms
             PopulateComboBoxEdit(comboBoxEdit1, itemDictionary.Keys);
             PopulateComboBoxEdit(comboBoxEdit2, itemSlotOffsets.Keys);
             PopulateComboBoxEdit(comboBoxEdit3, ammoAndSmallItems.Keys);
-            PopulateComboBoxEdit(comboBoxEdit4, itemAmountOffsets.Keys);
-            PopulateComboBoxEdit(comboBoxEdit5, giveItemSlots.Keys);
+            PopulateComboBoxEdit(comboBoxEdit4, giveItemSlots.Keys);
+            PopulateComboBoxEdit(comboBoxEdit5, itemAmountOffsets.Keys);
         }
 
         Dictionary<string, uint> itemSlotOffsets = new Dictionary<string, uint>
@@ -267,33 +294,6 @@ namespace TestUI.Forms
             {"Plaga Sample", 0x0C}
         };
         #endregion
-        private void RandomizeFirstByteAtItemOffsets(Dictionary<string, uint> itemSlotOffsets)
-        {
-            Random random = new Random();
-
-            foreach (var entry in itemSlotOffsets)
-            {
-                byte randomByte = (byte)random.Next(256);
-                xbCon.WriteBytes(entry.Value, new byte[] { randomByte });
-            }
-        }
-        private void CheckHeldWeapons()
-        {
-            StringBuilder heldWeapons = new StringBuilder();
-            foreach (var entry in itemSlotOffsets)
-            {
-                byte[] slotValue = xbCon.ReadBytes(entry.Value, 4);
-
-                foreach (var weaponEntry in itemDictionary)
-                {
-                    if (weaponEntry.Value == slotValue[0])
-                    {
-                        heldWeapons.AppendLine($"Slot: {entry.Key}, Weapon: {weaponEntry.Key}");
-                    }
-                }
-            }
-            MessageBox.Show(heldWeapons.ToString());
-        }
 
         #region ButtonClicks
         private void simpleButton1_Click(object sender, EventArgs e)

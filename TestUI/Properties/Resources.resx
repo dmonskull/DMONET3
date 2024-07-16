@@ -133,9 +133,6 @@
   <data name="skate3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\skate3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="inifile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\inifile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Xbox_360_Models" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Xbox_360_Models.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,20 +148,11 @@
   <data name="3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="inject2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\inject2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="inject" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\inject.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="re4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\re4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tool-box-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tool-box-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="inject1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\inject1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="67849229" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\67849229.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
