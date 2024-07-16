@@ -312,6 +312,7 @@ namespace TestUI
             this.tileItem14.Id = 10;
             this.tileItem14.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem14.Name = "tileItem14";
+            this.tileItem14.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.tileItem14_ItemClick);
             // 
             // tileItem10
             // 
@@ -408,6 +409,7 @@ namespace TestUI
             this.tileItem1.Id = 9;
             this.tileItem1.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem1.Name = "tileItem1";
+            this.tileItem1.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.tileItem1_ItemClick);
             // 
             // tileItem4
             // 

@@ -114,6 +114,12 @@
     <Compile Include="Forms\ConsoleInfo.Designer.cs">
       <DependentUpon>ConsoleInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ContentInject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ContentInject.Designer.cs">
+      <DependentUpon>ContentInject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Crackdown.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,13 @@
     <Compile Include="Forms\Skate3.Designer.cs">
       <DependentUpon>Skate3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SwapProfileID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SwapProfileID.Designer.cs">
+      <DependentUpon>SwapProfileID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Globals.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -196,6 +209,9 @@
     <Compile Include="XDRPCPlusPlus.cs" />
     <EmbeddedResource Include="Forms\ConsoleInfo.resx">
       <DependentUpon>ConsoleInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ContentInject.resx">
+      <DependentUpon>ContentInject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Crackdown.resx">
       <DependentUpon>Crackdown.cs</DependentUpon>
@@ -232,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Skate3.resx">
       <DependentUpon>Skate3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SwapProfileID.resx">
+      <DependentUpon>SwapProfileID.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

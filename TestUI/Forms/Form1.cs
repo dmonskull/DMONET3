@@ -222,10 +222,20 @@ namespace TestUI // Made by DMONSKULL
             QuickLaunchEditor quickLaunchEditor = new QuickLaunchEditor();
             quickLaunchEditor.Show();
         }
+        private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SettingsPage settingsPage = new SettingsPage();
+            settingsPage.Show();
+        }
+        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ScreenshotPage screenshotPage = new ScreenshotPage();
+            screenshotPage.Show();
+        }
         #endregion
 
         #region TileStuffandGameLaunching
-        // Game and Other Tools
+        // Game Tools
         private void tileItem3_ItemClick(object sender, TileItemEventArgs e)
         {
             Crackdown crackdown = new Crackdown();
@@ -251,10 +261,21 @@ namespace TestUI // Made by DMONSKULL
             DarkSouls2 darkSouls2 = new DarkSouls2();
             darkSouls2.Show();
         }
+        private void tileItem1_ItemClick(object sender, TileItemEventArgs e)
+        {
+            Halo3 halo3 = new Halo3();
+            halo3.Show();
+        }
+        // Other Tools
         private void tileItem16_ItemClick(object sender, TileItemEventArgs e)
         {
             ConsoleInfo consoleinfo = new ConsoleInfo();
             consoleinfo.Show();
+        }
+        private void tileItem14_ItemClick(object sender, TileItemEventArgs e)
+        {
+            ContentInject contentInject = new ContentInject();
+            contentInject.Show();
         }
         private void tileItem9_ItemClick(object sender, TileItemEventArgs e)
         {
@@ -265,16 +286,6 @@ namespace TestUI // Made by DMONSKULL
         {
             Neighborhood neighborhood = new Neighborhood();
             neighborhood.Show();
-        }
-        private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            SettingsPage settingsPage = new SettingsPage();
-            settingsPage.Show();
-        }
-        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            ScreenshotPage screenshotPage = new ScreenshotPage();
-            screenshotPage.Show();
         }
         //Launching Games
         private void tileItem3_RightItemClick(object sender, TileItemEventArgs e)
@@ -294,7 +305,6 @@ namespace TestUI // Made by DMONSKULL
             LaunchGameFromIni("DeadRising2OTF", "Games");
         }
         #endregion
-
     }
 
 }

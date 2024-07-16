@@ -91,16 +91,15 @@ namespace DMONET3.Forms
 
         private void simpleButton6_Click(object sender, EventArgs e)
         {
+            simpleButton6.ForeColor = timergodmode ? Color.Red : Color.Green;
             if (!timergodmode)
             {
-                simpleButton6.ForeColor = Color.Green;
                 xbCon.WriteBytes(0xC7D398EF, new byte[] { 0x0D });
                 xbCon.WriteBytes(0xC7D398BC, new byte[] { 0x44, 0xBB, 0x80 });
                 timer1.Start();
             }
             else
             {
-                simpleButton6.ForeColor = Color.Red;
                 timer1.Stop();
             }
             timergodmode = !timergodmode;
@@ -108,61 +107,33 @@ namespace DMONET3.Forms
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            if (!level)
-            {
-                simpleButton2.ForeColor = Color.Green;
-                xbCon.WriteBytes(0xC7D398B0, new byte[] { 0x0F, 0xFF, 0xFF, 0xFF });
-            }
-            else
-            {
-                simpleButton2.ForeColor = Color.Red;
-                xbCon.WriteBytes(0xC7D398B0, new byte[] { 0x00, 0x00, 0x00, 0x0A });
-            }
+            simpleButton2.ForeColor = level ? Color.Red : Color.Green;
+            byte[] levelData = level ? new byte[] { 0x00, 0x00, 0x00, 0x0A } : new byte[] { 0x0F, 0xFF, 0xFF, 0xFF };
+            xbCon.WriteBytes(0xC7D398B0, levelData);
             level = !level;
         }
 
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            if (!money)
-            {
-                simpleButton3.ForeColor = Color.Green;
-                xbCon.WriteBytes(money2, new byte[] { 0x0F, 0xFF, 0xFF, 0xFF });
-            }
-            else
-            {
-                simpleButton3.ForeColor = Color.Red;
-                xbCon.WriteBytes(money2, new byte[] { 0x00, 0x00, 0x00, 0x01 });
-            }
+            simpleButton3.ForeColor = money ? Color.Red : Color.Green;
+            byte[] moneyData = money ? new byte[] { 0x00, 0x00, 0x00, 0x01 } : new byte[] { 0x0F, 0xFF, 0xFF, 0xFF };
+            xbCon.WriteBytes(money2, moneyData);
             money = !money;
         }
 
         private void simpleButton4_Click(object sender, EventArgs e)
         {
-            if (!health)
-            {
-                simpleButton4.ForeColor = Color.Green;
-                xbCon.WriteBytes(0xC7D398BC, new byte[] { 0x44, 0xBB, 0x80 });
-            }
-            else
-            {
-                simpleButton4.ForeColor = Color.Red;
-                xbCon.WriteBytes(0xC7D398BC, new byte[] { 0x42, 0x67, 0x00 });
-            }
+            simpleButton4.ForeColor = health ? Color.Red : Color.Green;
+            byte[] healthData = health ? new byte[] { 0x42, 0x67, 0x00 } : new byte[] { 0x44, 0xBB, 0x80 };
+            xbCon.WriteBytes(0xC7D398BC, healthData);
             health = !health;
         }
 
         private void simpleButton5_Click(object sender, EventArgs e)
         {
-            if (!healthbars)
-            {
-                simpleButton5.ForeColor = Color.Green;
-                xbCon.WriteBytes(0xC7D398EF, new byte[] { 0x0D });
-            }
-            else
-            {
-                simpleButton5.ForeColor = Color.Red;
-                xbCon.WriteBytes(0xC7D398EF, new byte[] { 0x04 });
-            }
+            simpleButton5.ForeColor = healthbars ? Color.Red : Color.Green;
+            byte[] healthBarsData = healthbars ? new byte[] { 0x04 } : new byte[] { 0x0D };
+            xbCon.WriteBytes(0xC7D398EF, healthBarsData);
             healthbars = !healthbars;
         }
     }

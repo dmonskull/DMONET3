@@ -113,6 +113,20 @@ namespace TestUI.Forms
             }
             MessageBox.Show(heldWeapons.ToString());
         }
+        private void ToggleFeature(ref bool featureFlag, SimpleButton button, string onText, string offText, uint address, byte[] onBytes, byte[] offBytes)
+        {
+            try
+            {
+                button.Text = featureFlag ? offText : onText;
+                byte[] data = featureFlag ? offBytes : onBytes;
+                xbCon.WriteBytes(address, data);
+                featureFlag = !featureFlag;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("An error occurred", "Error");
+            }
+        }
 
         #region DictionaryStuff
         private void PopulateComboBoxEdit(ComboBoxEdit comboBoxEdit, IEnumerable<string> items)
@@ -391,90 +405,54 @@ namespace TestUI.Forms
 
         private void simpleButton8_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (!extrahealthleon)
-                {
-                    simpleButton8.Text = "Extra Health Leon: ON";
-                    xbCon.WriteBytes(3261454420U, new byte[] { 0x7F });
-                }
-                else
-                {
-                    simpleButton8.Text = "Extra Health Leon: OFF";
-                    xbCon.WriteBytes(3261454420U, new byte[] { 0x6 });
-                }
-                extrahealthleon = !extrahealthleon;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("An error occurred", "Error");
-            }
+            ToggleFeature(
+                ref extrahealthleon,
+                simpleButton8,
+                "Extra Health Leon: ON",
+                "Extra Health Leon: OFF",
+                3261454420U,
+                new byte[] { 0x7F },
+                new byte[] { 0x06 }
+            );
         }
 
         private void simpleButton9_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (!extrahealthashley)
-                {
-                    simpleButton9.Text = "Extra Health Ashley: ON";
-                    xbCon.WriteBytes(3261454424U, new byte[] { 0x7F });
-                }
-                else
-                {
-                    simpleButton9.Text = "Extra Health Ashley: OFF";
-                    xbCon.WriteBytes(3261454424U, new byte[] { 0x5 });
-                }
-                extrahealthashley = !extrahealthashley;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("An error occurred", "Error");
-            }
+            ToggleFeature(
+                ref extrahealthashley,
+                simpleButton9,
+                "Extra Health Ashley: ON",
+                "Extra Health Ashley: OFF",
+                3261454424U,
+                new byte[] { 0x7F },
+                new byte[] { 0x05 }
+            );
         }
 
         private void simpleButton10_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (!ShrinkEnemies)
-                {
-                    simpleButton10.Text = "Shrink Enemies: ON";
-                    xbCon.WriteBytes(0x82000A08, new byte[] { 0x3F, 0x19, 0x99, 0x9A });
-                }
-                else
-                {
-                    simpleButton10.Text = "Shrink Enemies: OFF";
-                    xbCon.WriteBytes(0x82000A08, new byte[] { 0x3F, 0x66, 0x66, 0x66 });
-                }
-                ShrinkEnemies = !ShrinkEnemies;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("An error occurred", "Error");
-            }
+            ToggleFeature(
+                ref ShrinkEnemies,
+                simpleButton10,
+                "Shrink Enemies: ON",
+                "Shrink Enemies: OFF",
+                0x82000A08,
+                new byte[] { 0x3F, 0x19, 0x99, 0x9A },
+                new byte[] { 0x3F, 0x66, 0x66, 0x66 }
+            );
         }
 
         private void simpleButton12_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (!HugeEnemies)
-                {
-                    simpleButton12.Text = "Huge Enemies: ON";
-                    xbCon.WriteBytes(0x82000A08, new byte[] { 0x3F, 0x7D, 0x70, 0xA4 });
-                }
-                else
-                {
-                    simpleButton12.Text = "Huge Enemies: OFF";
-                    xbCon.WriteBytes(0x82000A08, new byte[] { 0x3F, 0x66, 0x66, 0x66 });
-                }
-                HugeEnemies = !HugeEnemies;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("An error occurred", "Error");
-            }
+            ToggleFeature(
+                ref HugeEnemies,
+                simpleButton12,
+                "Huge Enemies: ON",
+                "Huge Enemies: OFF",
+                0x82000A08,
+                new byte[] { 0x3F, 0x7D, 0x70, 0xA4 },
+                new byte[] { 0x3F, 0x66, 0x66, 0x66 }
+            );
         }
 
         private void simpleButton11_Click(object sender, EventArgs e)
@@ -508,24 +486,15 @@ namespace TestUI.Forms
 
         private void simpleButton13_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (!camerafollow)
-                {
-                    simpleButton13.Text = "Camera Follow: OFF";
-                    xbCon.WriteBytes(3261454526U, new byte[] { 0x02 });
-                }
-                else
-                {
-                    simpleButton13.Text = "Camera Follow: ON";
-                    xbCon.WriteBytes(3261454526U, new byte[] { 0x01 });
-                }
-                camerafollow = !camerafollow;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("An error occurred", "Error");
-            }
+            ToggleFeature(
+                ref camerafollow,
+                simpleButton13,
+                "Camera Follow: ON",
+                "Camera Follow: OFF",
+                3261454526U,
+                new byte[] { 0x01 },
+                new byte[] { 0x02 }
+            );
         }
 
         #endregion
