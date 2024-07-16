@@ -76,43 +76,32 @@ namespace TestUI // Made by DMONSKULL
         #region XboxHelperStuff
         public bool ConnectToConsole()
         {
-            if (!activeConnection)
-            {
-                xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
-                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
-                ConnectionCode = xbCon.OpenConnection(null);
-                try
-                {
-                    xboxConnection = xbCon.OpenConnection(null);
-                }
-                catch (Exception)
-                {
-                    XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
-                    return false;
-                }
-                if (xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
-                {
-                    activeConnection = true;
-                    XtraMessageBox.Show("Connection to " + xbCon.Name + " established!");
-                    return true;
-                }
-                xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
-                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
-                {
-                    XtraMessageBox.Show("Attempted to connect to console: " + xbCon.Name + " but failed");
-                    return false;
-                }
-                activeConnection = true;
-                XtraMessageBox.Show("Connection to " + xbCon.Name + " established!");
-                return true;
-            }
-            if (xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
             {
                 XtraMessageBox.Show("Connection to " + xbCon.Name + " already established!");
                 return true;
             }
-            activeConnection = false;
-            return ConnectToConsole();
+            try
+            {
+                xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
+                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
+                ConnectionCode = xbCon.OpenConnection(null);
+                xboxConnection = xbCon.OpenConnection(null);
+
+                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+                {
+                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                }
+
+                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                XtraMessageBox.Show(activeConnection ? "Connection to " + xbCon.Name + " established!" : "Attempted to connect to console: " + xbCon.Name + " but failed");
+                return activeConnection;
+            }
+            catch (Exception)
+            {
+                XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
+                return false;
+            }
         }
         public string GetCurrentTitleId()
         {
@@ -234,6 +223,26 @@ namespace TestUI // Made by DMONSKULL
             ScreenshotPage screenshotPage = new ScreenshotPage();
             screenshotPage.Show();
         }
+        private void barButtonItem7_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                string gamesFolderName = new FileIniDataParser().ReadFile("settings.ini")["game folder"]["Games"]; // this could be done better and will soon
+                string Dir = xbCon.DebugTarget.RunningProcessInfo.ProgramName;
+                int index = Dir.IndexOf(@"\" + gamesFolderName, StringComparison.OrdinalIgnoreCase);
+                if (index >= 0)
+                {
+                    string xexPath = @"Hdd:\" + Dir.Substring(index + 1);
+                    xbCon.Reboot(xexPath, xexPath.Substring(0, xexPath.LastIndexOf(@"\", StringComparison.Ordinal)), null, XboxRebootFlags.Title);
+                }
+                else
+                {
+                    MessageBox.Show($"Directory does not contain '{gamesFolderName}'.");
+                }
+            }
+
+            catch (Exception) { MessageBox.Show("please connect to console first"); }
+        }
         #endregion
 
         #region TileStuffandGameLaunching
@@ -329,7 +338,6 @@ namespace TestUI // Made by DMONSKULL
             LaunchGameFromIni("SaintsRow", "Games");
         }
         #endregion
-
     }
 
 }

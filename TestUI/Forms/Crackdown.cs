@@ -51,40 +51,30 @@ namespace TestUI.Forms
         }
         public bool ConnectToConsole2()
         {
-            if (!activeConnection)
+            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            {
+                return true;
+            }
+            try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
                 xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
                 ConnectionCode = xbCon.OpenConnection(null);
-                try
-                {
-                    xboxConnection = xbCon.OpenConnection(null);
-                }
-                catch (Exception)
-                {
-                    XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
-                    return false;
-                }
-                if (xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
-                {
-                    activeConnection = true;
-                    return true;
-                }
-                xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                xboxConnection = xbCon.OpenConnection(null);
+
                 if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
                 {
-                    XtraMessageBox.Show("Attempted to connect to console: " + xbCon.Name + " but failed");
-                    return false;
+                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
                 }
-                activeConnection = true;
-                return true;
+
+                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                return activeConnection;
             }
-            if (xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            catch (Exception)
             {
-                return true;
+                XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
+                return false;
             }
-            activeConnection = false;
-            return ConnectToConsole2();
         }
 
         #region ButtonClicks
@@ -92,200 +82,119 @@ namespace TestUI.Forms
         {
             try
             {
-                if (!godmode)
-                {
-                    xbCon.CallString(0x825D4548, "god");
-                    simpleButton1.Text = "Godmode: ON";
-                }
-                else
-                {
-                    xbCon.CallString(0x825D4548, "god");
-                    simpleButton1.Text = "Godmode: OFF";
-                }
+                xbCon.CallString(0x825D4548, "god");
                 godmode = !godmode;
+                simpleButton1.Text = godmode ? "Godmode: ON" : "Godmode: OFF";
             }
             catch (Exception)
             {
                 MessageBox.Show("An error occurred", "Error");
             }
         }
-
         private void simpleButton3_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!infiniteammo)
-                {
-                    xbCon.CallString(0x825D4548, "infiniteammo");
-                    simpleButton3.Text = "Infinite Ammo: ON";
-                }
-                else
-                {
-                    xbCon.CallString(0x825D4548, "infiniteammo");
-                    simpleButton3.Text = "Infinite Ammo: OFF";
-                }
+                xbCon.CallString(0x825D4548, "infiniteammo");
                 infiniteammo = !infiniteammo;
+                simpleButton3.Text = infiniteammo ? "Infinite Ammo: ON" : "Infinite Ammo: OFF";
             }
             catch (Exception)
             {
                 MessageBox.Show("An error occurred", "Error");
             }
         }
-
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!fly)
-                {
-                    xbCon.CallString(0x825D4548, "fly");
-                    simpleButton2.Text = "Fly: ON";
-                }
-                else
-                {
-                    xbCon.CallString(0x825D4548, "fly");
-                    simpleButton2.Text = "Fly: OFF";
-                }
+                xbCon.CallString(0x825D4548, "fly");
                 fly = !fly;
+                simpleButton2.Text = fly ? "Fly: ON" : "Fly: OFF";
             }
             catch (Exception)
             {
                 MessageBox.Show("An error occurred", "Error");
             }
         }
-
         private void simpleButton4_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!fps)
-                {
-                    xbCon.CallString(0x825D4548, "fps");
-                    simpleButton4.Text = "FPS: ON";
-                }
-                else
-                {
-                    xbCon.CallString(0x825D4548, "fps");
-                    simpleButton4.Text = "FPS: OFF";
-                }
+                xbCon.CallString(0x825D4548, "fps");
                 fps = !fps;
+                simpleButton4.Text = fps ? "FPS: ON" : "FPS: OFF";
             }
             catch (Exception)
             {
                 MessageBox.Show("An error occurred", "Error");
             }
         }
-
         private void simpleButton6_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!speedycars)
-                {
-                    simpleButton6.Text = "Speedy Cars: ON";
-                    xbCon.WriteBytes(0x820F634C, new byte[] { 0x42, 0xC6, 0x00, 0x00 });
-                }
-                else
-                {
-                    simpleButton6.Text = "Speedy Cars: OFF";
-                    xbCon.WriteBytes(0x820F634C, new byte[] { 0xC2, 0x48, 0x00, 0x00 });
-                }
+                xbCon.WriteBytes(0x820F634C, speedycars ? new byte[] { 0xC2, 0x48, 0x00, 0x00 } : new byte[] { 0x42, 0xC6, 0x00, 0x00 });
                 speedycars = !speedycars;
+                simpleButton6.Text = speedycars ? "Speedy Cars: ON" : "Speedy Cars: OFF";
             }
             catch (Exception)
             {
                 MessageBox.Show("An error occurred", "Error");
             }
         }
-
         private void simpleButton9_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!superrun)
-                {
-                    simpleButton9.Text = "Super Run: ON";
-                    xbCon.WriteBytes(0x820F55F8, new byte[] { 0x3A });
-                }
-                else
-                {
-                    simpleButton9.Text = "Super Run: OFF";
-                    xbCon.WriteBytes(0x820F55F8, new byte[] { 0x38 });
-                }
+                xbCon.WriteBytes(0x820F55F8, superrun ? new byte[] { 0x38 } : new byte[] { 0x3A });
                 superrun = !superrun;
+                simpleButton9.Text = superrun ? "Super Run: ON" : "Super Run: OFF";
             }
             catch (Exception)
             {
                 MessageBox.Show("An error occurred", "Error");
             }
         }
-
         private void simpleButton8_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!disablebullets)
-                {
-                    simpleButton8.Text = "Disable Bullets: ON";
-                    xbCon.WriteBytes(0x82053B44, new byte[] { 0x3F, 0x80, 0x00, 0x00 });
-                }
-                else
-                {
-                    simpleButton8.Text = "Disable Bullets: OFF";
-                    xbCon.WriteBytes(0x82053B44, new byte[] { 0x34, 0x00, 0x00, 0x00 });
-                }
+                xbCon.WriteBytes(0x82053B44, disablebullets ? new byte[] { 0x34, 0x00, 0x00, 0x00 } : new byte[] { 0x3F, 0x80, 0x00, 0x00 });
                 disablebullets = !disablebullets;
+                simpleButton8.Text = disablebullets ? "Disable Bullets: ON" : "Disable Bullets: OFF";
             }
             catch (Exception)
             {
                 MessageBox.Show("An error occurred", "Error");
             }
         }
-
         private void simpleButton7_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!widefov)
-                {
-                    simpleButton7.Text = "Wide FOV: ON";
-                    xbCon.WriteBytes(0x82070A64, new byte[] { 0x40, 0x40, 0x00, 0x00 });
-                }
-                else
-                {
-                    simpleButton7.Text = "Wide FOV: OFF";
-                    xbCon.WriteBytes(0x82070A64, new byte[] { 0x3F, 0x40, 0x00, 0x00 });
-                }
+                xbCon.WriteBytes(0x82070A64, widefov ? new byte[] { 0x3F, 0x40, 0x00, 0x00 } : new byte[] { 0x40, 0x40, 0x00, 0x00 });
                 widefov = !widefov;
+                simpleButton7.Text = widefov ? "Wide FOV: ON" : "Wide FOV: OFF";
             }
             catch (Exception)
             {
                 MessageBox.Show("An error occurred", "Error");
             }
         }
-
         private void simpleButton10_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!orbsize)
-                {
-                    simpleButton10.Text = "XXL Orb Size: ON";
-                    xbCon.WriteBytes(0x820F6380, new byte[] { 0x42, 0xC6, 0x00, 0x00 });
-                }
-                else
-                {
-                    simpleButton10.Text = "XXL Orb Size: OFF";
-                    xbCon.WriteBytes(0x820F6380, new byte[] { 0x41, 0x7F, 0x00, 0x00 });
-                }
+                xbCon.WriteBytes(0x820F6380, orbsize ? new byte[] { 0x41, 0x7F, 0x00, 0x00 } : new byte[] { 0x42, 0xC6, 0x00, 0x00 });
                 orbsize = !orbsize;
+                simpleButton10.Text = orbsize ? "XXL Orb Size: ON" : "XXL Orb Size: OFF";
             }
             catch (Exception)
             {
                 MessageBox.Show("An error occurred", "Error");
             }
         }
-
         private void simpleButton5_Click(object sender, EventArgs e)
         {
             try
@@ -297,7 +206,6 @@ namespace TestUI.Forms
                 MessageBox.Show("An error occurred", "Error");
             }
         }
-
         private void hyperlinkLabelControl1_Click(object sender, EventArgs e)
         {
             // my post with list of console commands and standalone crackdown tool

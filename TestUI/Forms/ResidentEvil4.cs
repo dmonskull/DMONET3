@@ -51,40 +51,30 @@ namespace TestUI.Forms
         }
         public bool ConnectToConsole2()
         {
-            if (!activeConnection)
+            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            {
+                return true;
+            }
+            try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
                 xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
                 ConnectionCode = xbCon.OpenConnection(null);
-                try
-                {
-                    xboxConnection = xbCon.OpenConnection(null);
-                }
-                catch (Exception)
-                {
-                    XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
-                    return false;
-                }
-                if (xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
-                {
-                    activeConnection = true;
-                    return true;
-                }
-                xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                xboxConnection = xbCon.OpenConnection(null);
+
                 if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
                 {
-                    XtraMessageBox.Show("Attempted to connect to console: " + xbCon.Name + " but failed");
-                    return false;
+                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
                 }
-                activeConnection = true;
-                return true;
+
+                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                return activeConnection;
             }
-            if (xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            catch (Exception)
             {
-                return true;
+                XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
+                return false;
             }
-            activeConnection = false;
-            return ConnectToConsole2();
         }
         private void RandomizeFirstByteAtItemOffsets(Dictionary<string, uint> itemSlotOffsets)
         {
@@ -112,20 +102,6 @@ namespace TestUI.Forms
                 }
             }
             MessageBox.Show(heldWeapons.ToString());
-        }
-        private void ToggleFeature(ref bool featureFlag, SimpleButton button, string onText, string offText, uint address, byte[] onBytes, byte[] offBytes)
-        {
-            try
-            {
-                button.Text = featureFlag ? offText : onText;
-                byte[] data = featureFlag ? offBytes : onBytes;
-                xbCon.WriteBytes(address, data);
-                featureFlag = !featureFlag;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("An error occurred", "Error");
-            }
         }
 
         #region DictionaryStuff
@@ -359,13 +335,11 @@ namespace TestUI.Forms
                 // Handle the case when the selected slot is not found
             }
         }
-
         private void simpleButton4_Click(object sender, EventArgs e)
         {
             string message = "Replace: replaces any gun currently in your inventory in the selected item slot.\n\nGive: gives you any small item listed, puts it in the discarded items inventory, have to move it into inventory from discarded side.\n\nSet: sets the amount you want for the selected item slot (max 999)\n\nPlease use 'Weapon Check' to see what guns are currently in which item slot.";
             XtraMessageBox.Show(message, "RE4 Modding Tool Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
         private void simpleButton5_Click(object sender, EventArgs e)
         {
             foreach (var amountOffsets in itemAmountOffsets.Values)
@@ -378,7 +352,6 @@ namespace TestUI.Forms
             }
             MessageBox.Show("Max Amount for ALL slots has been set!", ":)");
         }
-
         private void simpleButton6_Click(object sender, EventArgs e)
         {
             try
@@ -390,7 +363,6 @@ namespace TestUI.Forms
                 MessageBox.Show("An error occurred", "Error");
             }
         }
-
         private void simpleButton7_Click(object sender, EventArgs e)
         {
             try
@@ -402,57 +374,57 @@ namespace TestUI.Forms
                 MessageBox.Show("An error occurred", "Error");
             }
         }
-
         private void simpleButton8_Click(object sender, EventArgs e)
         {
-            ToggleFeature(
-                ref extrahealthleon,
-                simpleButton8,
-                "Extra Health Leon: ON",
-                "Extra Health Leon: OFF",
-                3261454420U,
-                new byte[] { 0x7F },
-                new byte[] { 0x06 }
-            );
+            try
+            {
+                xbCon.WriteBytes(3261454420U, extrahealthleon ? new byte[] { 0x06 } : new byte[] { 0x7F });
+                extrahealthleon = !extrahealthleon;
+                simpleButton8.Text = extrahealthleon ? "Extra Health Leon: ON" : "Extra Health Leon: OFF";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("An error occurred", "Error");
+            }
         }
-
         private void simpleButton9_Click(object sender, EventArgs e)
         {
-            ToggleFeature(
-                ref extrahealthashley,
-                simpleButton9,
-                "Extra Health Ashley: ON",
-                "Extra Health Ashley: OFF",
-                3261454424U,
-                new byte[] { 0x7F },
-                new byte[] { 0x05 }
-            );
+            try
+            {
+                xbCon.WriteBytes(3261454424U, extrahealthashley ? new byte[] { 0x05 } : new byte[] { 0x7F });
+                extrahealthashley = !extrahealthashley;
+                simpleButton9.Text = extrahealthashley ? "Extra Health Ashley: ON" : "Extra Health Ashley: OFF";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("An error occurred", "Error");
+            }
         }
-
         private void simpleButton10_Click(object sender, EventArgs e)
         {
-            ToggleFeature(
-                ref ShrinkEnemies,
-                simpleButton10,
-                "Shrink Enemies: ON",
-                "Shrink Enemies: OFF",
-                0x82000A08,
-                new byte[] { 0x3F, 0x19, 0x99, 0x9A },
-                new byte[] { 0x3F, 0x66, 0x66, 0x66 }
-            );
+            try
+            {
+                xbCon.WriteBytes(0x82000A08, ShrinkEnemies ? new byte[] { 0x3F, 0x66, 0x66, 0x66 } : new byte[] { 0x3F, 0x19, 0x99, 0x9A });
+                ShrinkEnemies = !ShrinkEnemies;
+                simpleButton10.Text = ShrinkEnemies ? "Shrink Enemies: ON" : "Shrink Enemies: OFF";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("An error occurred", "Error");
+            }
         }
-
         private void simpleButton12_Click(object sender, EventArgs e)
         {
-            ToggleFeature(
-                ref HugeEnemies,
-                simpleButton12,
-                "Huge Enemies: ON",
-                "Huge Enemies: OFF",
-                0x82000A08,
-                new byte[] { 0x3F, 0x7D, 0x70, 0xA4 },
-                new byte[] { 0x3F, 0x66, 0x66, 0x66 }
-            );
+            try
+            {
+                xbCon.WriteBytes(0x82000A08, HugeEnemies ? new byte[] { 0x3F, 0x66, 0x66, 0x66 } : new byte[] { 0x3F, 0x7D, 0x70, 0xA4 });
+                HugeEnemies = !HugeEnemies;
+                simpleButton12.Text = HugeEnemies ? "Huge Enemies: ON" : "Huge Enemies: OFF";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("An error occurred", "Error");
+            }
         }
 
         private void simpleButton11_Click(object sender, EventArgs e)
@@ -483,18 +455,18 @@ namespace TestUI.Forms
                 MessageBox.Show("An error occurred", "Error");
             }
         }
-
         private void simpleButton13_Click(object sender, EventArgs e)
         {
-            ToggleFeature(
-                ref camerafollow,
-                simpleButton13,
-                "Camera Follow: ON",
-                "Camera Follow: OFF",
-                3261454526U,
-                new byte[] { 0x01 },
-                new byte[] { 0x02 }
-            );
+            try
+            {
+                xbCon.WriteBytes(3261454526U, camerafollow ? new byte[] { 0x02 } : new byte[] { 0x01 });
+                camerafollow = !camerafollow;
+                simpleButton13.Text = camerafollow ? "Camera Follow: ON" : "Camera Follow: OFF";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("An error occurred", "Error");
+            }
         }
 
         #endregion

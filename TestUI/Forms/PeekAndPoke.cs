@@ -46,48 +46,38 @@ namespace DMONET3.Forms
             catch { }
             ipAddressTextBox.Text = ReverseIP(xbCon.GetConsoleIP());
         }
+        public bool ConnectToConsole2()
+        {
+            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            {
+                return true;
+            }
+            try
+            {
+                xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
+                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
+                ConnectionCode = xbCon.OpenConnection(null);
+                xboxConnection = xbCon.OpenConnection(null);
+
+                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+                {
+                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                }
+
+                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                return activeConnection;
+            }
+            catch (Exception)
+            {
+                XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
+                return false;
+            }
+        }
         static string ReverseIP(string ip)
         {
             string[] parts = ip.Split('.');
             Array.Reverse(parts);
             return string.Join(".", parts);
-        }
-        public bool ConnectToConsole2()
-        {
-            if (!activeConnection)
-            {
-                xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
-                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
-                ConnectionCode = xbCon.OpenConnection(null);
-                try
-                {
-                    xboxConnection = xbCon.OpenConnection(null);
-                }
-                catch (Exception)
-                {
-                    XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
-                    return false;
-                }
-                if (xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
-                {
-                    activeConnection = true;
-                    return true;
-                }
-                xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
-                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
-                {
-                    XtraMessageBox.Show("Attempted to connect to console: " + xbCon.Name + " but failed");
-                    return false;
-                }
-                activeConnection = true;
-                return true;
-            }
-            if (xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
-            {
-                return true;
-            }
-            activeConnection = false;
-            return ConnectToConsole2();
         }
         private void Connect(object a)
         {

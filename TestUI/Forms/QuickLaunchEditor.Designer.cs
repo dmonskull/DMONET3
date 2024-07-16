@@ -70,6 +70,7 @@
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.simpleButton1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("QuickLaunchEditor.IconOptions.LargeImage")));
             this.MaximizeBox = false;
             this.Name = "QuickLaunchEditor";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;

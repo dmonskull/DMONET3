@@ -336,6 +336,7 @@
             this.Controls.Add(this.navBarControl1);
             this.Controls.Add(this.groupControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("SettingsPage.IconOptions.LargeImage")));
             this.MaximizeBox = false;
             this.Name = "SettingsPage";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

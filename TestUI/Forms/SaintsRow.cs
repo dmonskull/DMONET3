@@ -45,40 +45,30 @@ namespace DMONET3.Forms
         }
         public bool ConnectToConsole2()
         {
-            if (!activeConnection)
+            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            {
+                return true;
+            }
+            try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
                 xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
                 ConnectionCode = xbCon.OpenConnection(null);
-                try
-                {
-                    xboxConnection = xbCon.OpenConnection(null);
-                }
-                catch (Exception)
-                {
-                    XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
-                    return false;
-                }
-                if (xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
-                {
-                    activeConnection = true;
-                    return true;
-                }
-                xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                xboxConnection = xbCon.OpenConnection(null);
+
                 if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
                 {
-                    XtraMessageBox.Show("Attempted to connect to console: " + xbCon.Name + " but failed");
-                    return false;
+                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
                 }
-                activeConnection = true;
-                return true;
+
+                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                return activeConnection;
             }
-            if (xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            catch (Exception)
             {
-                return true;
+                XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
+                return false;
             }
-            activeConnection = false;
-            return ConnectToConsole2();
         }
         private void timer1_Tick(object sender, EventArgs e)
         {

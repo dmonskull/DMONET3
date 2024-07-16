@@ -47,40 +47,30 @@ namespace TestUI.Forms
         }
         public bool ConnectToConsole2()
         {
-            if (!activeConnection)
+            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            {
+                return true;
+            }
+            try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
                 xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
                 ConnectionCode = xbCon.OpenConnection(null);
-                try
-                {
-                    xboxConnection = xbCon.OpenConnection(null);
-                }
-                catch (Exception)
-                {
-                    XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
-                    return false;
-                }
-                if (xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
-                {
-                    activeConnection = true;
-                    return true;
-                }
-                xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                xboxConnection = xbCon.OpenConnection(null);
+
                 if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
                 {
-                    XtraMessageBox.Show("Attempted to connect to console: " + xbCon.Name + " but failed");
-                    return false;
+                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
                 }
-                activeConnection = true;
-                return true;
+
+                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                return activeConnection;
             }
-            if (xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            catch (Exception)
             {
-                return true;
+                XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
+                return false;
             }
-            activeConnection = false;
-            return ConnectToConsole2();
         }
         public void WriteFloat4(uint Address, float Value)
         {
@@ -92,36 +82,43 @@ namespace TestUI.Forms
         #region BasicMods
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            if (!backt)
+            try
             {
-                simpleButton1.ForeColor = Color.Green;
-                xbCon.WriteBytes(0x822F8B40, new byte[] { 0xF1 });
+                xbCon.WriteBytes(0x822F8B40, backt ? new byte[] { 0xA2 } : new byte[] { 0xF1 });
+                if (backt)
+                {
+                    Thread.Sleep(500);
+                    xbCon.WriteBytes(0x822F8B40, new byte[] { 0xC1 });
+                }
+                backt = !backt;
+                simpleButton1.ForeColor = backt ? Color.Green : Color.Red;
             }
-            else
+            catch (Exception)
             {
-                simpleButton1.ForeColor = Color.Red;
-                xbCon.WriteBytes(0x822F8B40, new byte[] { 0xA2 });
-                Thread.Sleep(500);
-                xbCon.WriteBytes(0x822F8B40, new byte[] { 0xC1 });
+                MessageBox.Show("An error occurred", "Error");
             }
-            backt = !backt;
         }
-
         private void simpleButton9_Click(object sender, EventArgs e)
         {
-            if (!FLIP)
+            try
             {
-                simpleButton9.ForeColor = Color.Green;
-                WriteFloat4(2184153920U, -90f);
-                WriteFloat4(2182565592U, 1250f);
+                if (!FLIP)
+                {
+                    WriteFloat4(2184153920U, -90f);
+                    WriteFloat4(2182565592U, 1250f);
+                }
+                else
+                {
+                    WriteFloat4(2184153920U, -9.8f);
+                    WriteFloat4(2182565592U, 1456.35f);
+                }
+                FLIP = !FLIP;
+                simpleButton9.ForeColor = FLIP ? Color.Green : Color.Red;
             }
-            else
+            catch (Exception)
             {
-                simpleButton9.ForeColor = Color.Red;
-                WriteFloat4(2184153920U, -9.8f);
-                WriteFloat4(2182565592U, 1456.35f);
+                MessageBox.Show("An error occurred", "Error");
             }
-            FLIP = !FLIP;
         }
         #endregion
 

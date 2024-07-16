@@ -70,10 +70,6 @@ namespace DMONET3.Forms
             toolStripMenuItem.BackColor = Color.FromArgb(90, 90, 90);
             menuStrip1.Items.Insert(0, toolStripMenuItem);
         }
-        private void Neighborhood_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void buttonNoSidecar_Click(object sender, EventArgs e)
         {
