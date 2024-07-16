@@ -138,6 +138,12 @@
     <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Halo3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Halo3.Designer.cs">
+      <DependentUpon>Halo3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\INIEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Halo3.resx">
+      <DependentUpon>Halo3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\INIEditor.resx">
       <DependentUpon>INIEditor.cs</DependentUpon>
@@ -304,6 +313,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\67849229.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\darksouls2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\darksouls22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Halo3_1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

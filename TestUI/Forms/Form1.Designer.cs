@@ -388,17 +388,22 @@ namespace TestUI
             // 
             // tileItem5
             // 
+            this.tileItem5.BackgroundImage = global::DMONET3.Properties.Resources.darksouls22;
+            this.tileItem5.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.tileItem5.Checked = true;
-            tileItemElement7.Text = "tileItem5";
+            tileItemElement7.Text = "";
             this.tileItem5.Elements.Add(tileItemElement7);
             this.tileItem5.Id = 4;
             this.tileItem5.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem5.Name = "tileItem5";
+            this.tileItem5.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.tileItem5_ItemClick);
             // 
             // tileItem1
             // 
+            this.tileItem1.BackgroundImage = global::DMONET3.Properties.Resources.Halo3_1;
+            this.tileItem1.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.tileItem1.Checked = true;
-            tileItemElement8.Text = "tileItem1";
+            tileItemElement8.Text = "";
             this.tileItem1.Elements.Add(tileItemElement8);
             this.tileItem1.Id = 9;
             this.tileItem1.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;

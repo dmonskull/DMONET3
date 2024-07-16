@@ -246,6 +246,11 @@ namespace TestUI // Made by DMONSKULL
             DeadRising2OTF deadrising2otf = new DeadRising2OTF();
             deadrising2otf.Show();
         }
+        private void tileItem5_ItemClick(object sender, TileItemEventArgs e)
+        {
+            DarkSouls2 darkSouls2 = new DarkSouls2();
+            darkSouls2.Show();
+        }
         private void tileItem16_ItemClick(object sender, TileItemEventArgs e)
         {
             ConsoleInfo consoleinfo = new ConsoleInfo();
