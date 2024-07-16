@@ -120,6 +120,12 @@
     <Compile Include="Forms\Crackdown.Designer.cs">
       <DependentUpon>Crackdown.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DarkSouls2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DarkSouls2.Designer.cs">
+      <DependentUpon>DarkSouls2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DeadRising2OTF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +194,9 @@
     <EmbeddedResource Include="Forms\Crackdown.resx">
       <DependentUpon>Crackdown.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DarkSouls2.resx">
+      <DependentUpon>DarkSouls2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DeadRising2OTF.resx">
       <DependentUpon>DeadRising2OTF.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,7 +241,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="TestUI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
