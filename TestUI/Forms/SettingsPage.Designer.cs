@@ -272,7 +272,7 @@
             this.groupControl2.Controls.Add(this.simpleButton4);
             this.groupControl2.Controls.Add(this.simpleButton3);
             this.groupControl2.Controls.Add(this.simpleButton2);
-            this.groupControl2.Location = new System.Drawing.Point(170, 5);
+            this.groupControl2.Location = new System.Drawing.Point(173, 15);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(265, 133);
             this.groupControl2.TabIndex = 2;
@@ -305,7 +305,7 @@
             // pictureEdit2
             // 
             this.pictureEdit2.EditValue = global::DMONET3.Properties.Resources._67849229;
-            this.pictureEdit2.Location = new System.Drawing.Point(5, 5);
+            this.pictureEdit2.Location = new System.Drawing.Point(8, 6);
             this.pictureEdit2.Name = "pictureEdit2";
             this.pictureEdit2.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pictureEdit2.Properties.Appearance.Options.UseBackColor = true;
@@ -320,7 +320,7 @@
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(13, 159);
+            this.labelControl2.Location = new System.Drawing.Point(16, 159);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(134, 16);
             this.labelControl2.TabIndex = 0;

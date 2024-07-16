@@ -28,7 +28,7 @@ namespace DMONET3.Forms
         public string debuggerName = null;
         public string userName = null;
         // Saints Row stuff
-        private bool god, walk, cash, uammo, jump, weapon, recoil, invis, turret, fps;
+        private bool god, cash, uammo, jump, weapon, recoil, invis, turret, fps;
         private bool rlevel, rsky, rshadows, ritems, rchar, rfog, gdebug, ldebug, pPOVdebug;
         private bool occludersdebug, occludersdebug2, fperson, freeze, timerbool, glow;
         public SaintsRow()

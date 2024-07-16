@@ -196,6 +196,8 @@ namespace TestUI // Made by DMONSKULL
             {
                 barButtonItem1.Caption = "Reconnect";
                 barStaticItem1.Caption = "Playing: " + GetCurrentTitleName() + "\tTitle ID: " + GetCurrentTitleId() + "\tRunning Path: " + xbCon.RunningProcessInfo.ProgramName.ToString();
+                ribbonControl1.ApplicationButtonText = Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U))
+    .All(b => b == 0) ? "unknown" : Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).Trim().Trim(new char[1]);
             }
         }
         private void barButtonItem2_ItemClick_1(object sender, ItemClickEventArgs e)
@@ -309,8 +311,19 @@ namespace TestUI // Made by DMONSKULL
         {
             LaunchGameFromIni("DeadRising2OTF", "Games");
         }
+        private void tileItem5_RightItemClick(object sender, TileItemEventArgs e)
+        {
+            LaunchGameFromIni("DarkSouls2", "Games");
+        }
+        private void tileItem1_RightItemClick(object sender, TileItemEventArgs e)
+        {
+            LaunchGameFromIni("Halo3", "Games");
+        }
+        private void tileItem7_RightItemClick(object sender, TileItemEventArgs e)
+        {
+            LaunchGameFromIni("SaintsRow", "Games");
+        }
         #endregion
-
     }
 
 }

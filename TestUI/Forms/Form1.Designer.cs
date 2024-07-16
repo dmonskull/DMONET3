@@ -398,6 +398,7 @@ namespace TestUI
             this.tileItem5.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem5.Name = "tileItem5";
             this.tileItem5.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.tileItem5_ItemClick);
+            this.tileItem5.RightItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.tileItem5_RightItemClick);
             // 
             // tileItem1
             // 
@@ -410,6 +411,7 @@ namespace TestUI
             this.tileItem1.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem1.Name = "tileItem1";
             this.tileItem1.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.tileItem1_ItemClick);
+            this.tileItem1.RightItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.tileItem1_RightItemClick);
             // 
             // tileItem4
             // 
@@ -448,6 +450,7 @@ namespace TestUI
             this.tileItem7.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem7.Name = "tileItem7";
             this.tileItem7.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.tileItem7_ItemClick);
+            this.tileItem7.RightItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.tileItem7_RightItemClick);
             // 
             // tileItem8
             // 
