@@ -294,6 +294,11 @@ namespace TestUI // Made by DMONSKULL
             Neighborhood neighborhood = new Neighborhood();
             neighborhood.Show();
         }
+        private void tileItem11_ItemClick(object sender, TileItemEventArgs e)
+        {
+            PeekAndPoke peekAndPoke = new PeekAndPoke();
+            peekAndPoke.Show();
+        }
         //Launching Games
         private void tileItem3_RightItemClick(object sender, TileItemEventArgs e)
         {
@@ -324,6 +329,7 @@ namespace TestUI // Made by DMONSKULL
             LaunchGameFromIni("SaintsRow", "Games");
         }
         #endregion
+
     }
 
 }

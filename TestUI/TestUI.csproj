@@ -94,6 +94,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Be.Windows.Forms.HexBox">
+      <HintPath>..\..\..\..\..\..\.MODDING\DMONET\DMONET\bin\Debug\Be.Windows.Forms.HexBox.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.BonusSkins.v21.2" />
     <Reference Include="DevExpress.Data.Desktop.v21.2" />
     <Reference Include="DevExpress.Data.v21.2" />
@@ -128,6 +131,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\DelegateClass.cs" />
+    <Compile Include="Classes\Functions.cs" />
+    <Compile Include="Classes\RealTimeMemory.cs" />
+    <Compile Include="Classes\RWStream.cs" />
+    <Compile Include="Classes\Types.cs" />
     <Compile Include="Forms\ConsoleInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +189,12 @@
     </Compile>
     <Compile Include="Forms\Neighborhood.Designer.cs">
       <DependentUpon>Neighborhood.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PeekAndPoke.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PeekAndPoke.Designer.cs">
+      <DependentUpon>PeekAndPoke.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\QuickLaunchEditor.cs">
       <SubType>Form</SubType>
@@ -259,6 +273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Neighborhood.resx">
       <DependentUpon>Neighborhood.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PeekAndPoke.resx">
+      <DependentUpon>PeekAndPoke.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\QuickLaunchEditor.resx">
       <DependentUpon>QuickLaunchEditor.cs</DependentUpon>
@@ -373,6 +390,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\saintsrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\peekandpoke.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
