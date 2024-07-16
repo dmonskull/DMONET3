@@ -439,12 +439,15 @@ namespace TestUI
             // 
             // tileItem7
             // 
+            this.tileItem7.BackgroundImage = global::DMONET3.Properties.Resources.saintsrow;
+            this.tileItem7.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.tileItem7.Checked = true;
-            tileItemElement11.Text = "tileItem7";
+            tileItemElement11.Text = "";
             this.tileItem7.Elements.Add(tileItemElement11);
             this.tileItem7.Id = 11;
             this.tileItem7.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem7.Name = "tileItem7";
+            this.tileItem7.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.tileItem7_ItemClick);
             // 
             // tileItem8
             // 

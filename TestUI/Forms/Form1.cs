@@ -266,6 +266,11 @@ namespace TestUI // Made by DMONSKULL
             Halo3 halo3 = new Halo3();
             halo3.Show();
         }
+        private void tileItem7_ItemClick(object sender, TileItemEventArgs e)
+        {
+            SaintsRow saintsRow = new SaintsRow();
+            saintsRow.Show();
+        }
         // Other Tools
         private void tileItem16_ItemClick(object sender, TileItemEventArgs e)
         {
@@ -305,6 +310,7 @@ namespace TestUI // Made by DMONSKULL
             LaunchGameFromIni("DeadRising2OTF", "Games");
         }
         #endregion
+
     }
 
 }

@@ -174,6 +174,12 @@
     <Compile Include="Forms\ResidentEvil4.Designer.cs">
       <DependentUpon>ResidentEvil4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SaintsRow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SaintsRow.Designer.cs">
+      <DependentUpon>SaintsRow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ScreenshotPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,7 +204,7 @@
     <Compile Include="Forms\SwapProfileID.Designer.cs">
       <DependentUpon>SwapProfileID.cs</DependentUpon>
     </Compile>
-    <Compile Include="Globals.cs" />
+    <Compile Include="Classes\Globals.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -206,7 +212,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="XDRPCPlusPlus.cs" />
+    <Compile Include="Classes\XDRPCPlusPlus.cs" />
     <EmbeddedResource Include="Forms\ConsoleInfo.resx">
       <DependentUpon>ConsoleInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -239,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ResidentEvil4.resx">
       <DependentUpon>ResidentEvil4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SaintsRow.resx">
+      <DependentUpon>SaintsRow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ScreenshotPage.resx">
       <DependentUpon>ScreenshotPage.cs</DependentUpon>
@@ -341,6 +350,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Halo3_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saintsrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

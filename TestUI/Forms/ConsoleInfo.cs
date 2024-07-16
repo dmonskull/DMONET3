@@ -33,7 +33,7 @@ namespace DMONET3.Forms
         {
             try
             {
-                if (ConnectToConsole2());
+                if (ConnectToConsole2())
                 {
                     PullInfo();
                 }
