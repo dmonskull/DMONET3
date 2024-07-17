@@ -308,6 +308,11 @@ namespace TestUI // Made by DMONSKULL
             PeekAndPoke peekAndPoke = new PeekAndPoke();
             peekAndPoke.Show();
         }
+        private void tileItem12_ItemClick(object sender, TileItemEventArgs e)
+        {
+            DashLaunchEditor editor = new DashLaunchEditor();
+            editor.Show();
+        }
         //Launching Games
         private void tileItem3_RightItemClick(object sender, TileItemEventArgs e)
         {
@@ -338,6 +343,7 @@ namespace TestUI // Made by DMONSKULL
             LaunchGameFromIni("SaintsRow", "Games");
         }
         #endregion
+
     }
 
 }

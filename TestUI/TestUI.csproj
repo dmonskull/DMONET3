@@ -165,6 +165,12 @@
     <Compile Include="Forms\DarkSouls2.Designer.cs">
       <DependentUpon>DarkSouls2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DashLaunchEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DashLaunchEditor.Designer.cs">
+      <DependentUpon>DashLaunchEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DeadRising2OTF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DarkSouls2.resx">
       <DependentUpon>DarkSouls2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DashLaunchEditor.resx">
+      <DependentUpon>DashLaunchEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DeadRising2OTF.resx">
       <DependentUpon>DeadRising2OTF.cs</DependentUpon>
@@ -398,6 +407,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\peekandpoke.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dashlaunch.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
