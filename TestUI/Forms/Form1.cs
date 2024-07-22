@@ -115,9 +115,13 @@ namespace TestUI // Made by DMONSKULL
             {
                 {0xFFFE07D1, "Xbox 360 Dashboard"},
                 {0x4D5307DC, "Crackdown"},
+                {0x4D5308BC, "Crackdown 2"},
                 {0x4343081C, "Resident Evil 4"},
                 {0x454108E6, "Skate 3"},
                 {0x4343081F, "Dead Rising 2: OTR"},
+                {0x465307E4, "Dark Souls 2"},
+                {0x4D5307E6, "Halo 3"},
+                {0x545107D1, "Saints Row"}
             };
             uint currentTitleIdNumeric = xbCon.GetCurrentTitleId();
             if (gameDictionary.ContainsKey(currentTitleIdNumeric))
@@ -282,6 +286,11 @@ namespace TestUI // Made by DMONSKULL
             SaintsRow saintsRow = new SaintsRow();
             saintsRow.Show();
         }
+        private void tileItem8_ItemClick(object sender, TileItemEventArgs e)
+        {
+            Crackdown2 crackdown2 = new Crackdown2();
+            crackdown2.Show();
+        }
         // Other Tools
         private void tileItem16_ItemClick(object sender, TileItemEventArgs e)
         {
@@ -342,8 +351,11 @@ namespace TestUI // Made by DMONSKULL
         {
             LaunchGameFromIni("SaintsRow", "Games");
         }
+        private void tileItem8_RightItemClick(object sender, TileItemEventArgs e)
+        {
+            LaunchGameFromIni("Crackdown2", "Games");
+        }
         #endregion
-
     }
 
 }

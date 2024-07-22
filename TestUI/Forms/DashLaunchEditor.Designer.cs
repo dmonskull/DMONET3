@@ -40,7 +40,7 @@
             this.Name = "DashLaunchEditor";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DashLaunch Editor";
+            this.Text = "Dashlaunch Editor";
             this.Load += new System.EventHandler(this.DashLaunchEditor_Load);
             this.ResumeLayout(false);
 

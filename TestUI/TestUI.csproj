@@ -159,6 +159,12 @@
     <Compile Include="Forms\Crackdown.Designer.cs">
       <DependentUpon>Crackdown.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Crackdown2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Crackdown2.Designer.cs">
+      <DependentUpon>Crackdown2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DarkSouls2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Crackdown.resx">
       <DependentUpon>Crackdown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Crackdown2.resx">
+      <DependentUpon>Crackdown2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DarkSouls2.resx">
       <DependentUpon>DarkSouls2.cs</DependentUpon>
@@ -410,6 +419,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dashlaunch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crackdown2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\crackdown1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

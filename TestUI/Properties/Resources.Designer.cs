@@ -103,6 +103,26 @@ namespace DMONET3.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap crackdown1 {
+            get {
+                object obj = ResourceManager.GetObject("crackdown1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Crackdown2 {
+            get {
+                object obj = ResourceManager.GetObject("Crackdown2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap darksouls2 {
             get {
                 object obj = ResourceManager.GetObject("darksouls2", resourceCulture);

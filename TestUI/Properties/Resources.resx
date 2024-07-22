@@ -166,13 +166,19 @@
   <data name="inieditor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\inieditor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="dashlaunch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dashlaunch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Crackdown2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Crackdown2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="re4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\re4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tool-box-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tool-box-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dashlaunch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dashlaunch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="crackdown1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\crackdown1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
