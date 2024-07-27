@@ -56,6 +56,9 @@
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.navBarItem7 = new DevExpress.XtraNavBar.NavBarItem();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.AutoConnectCheckBox = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).BeginInit();
@@ -70,6 +73,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AutoConnectCheckBox.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -120,19 +126,22 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup1;
+            this.navBarControl1.ActiveGroup = this.navBarGroup2;
+            this.navBarControl1.AllowDrop = false;
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.navBarControl1.DragDropFlags = DevExpress.XtraNavBar.NavBarDragDrop.None;
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup2});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem1,
             this.navBarItem3,
             this.navBarItem2,
-            this.navBarItem4});
+            this.navBarItem4,
+            this.navBarItem7});
             this.navBarControl1.Location = new System.Drawing.Point(0, 100);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 150;
-            this.navBarControl1.Size = new System.Drawing.Size(150, 253);
+            this.navBarControl1.Size = new System.Drawing.Size(150, 252);
             this.navBarControl1.TabIndex = 1;
             // 
             // navBarGroup1
@@ -162,6 +171,7 @@
             this.navBarGroup2.Expanded = true;
             this.navBarGroup2.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsText;
             this.navBarGroup2.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem7),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem4)});
             this.navBarGroup2.Name = "navBarGroup2";
@@ -326,11 +336,41 @@
             this.labelControl2.TabIndex = 0;
             this.labelControl2.Text = "Made by DMONSKULL";
             // 
+            // navBarItem7
+            // 
+            this.navBarItem7.Caption = "Settings";
+            this.navBarItem7.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItem7.ImageOptions.LargeImage")));
+            this.navBarItem7.ImageOptions.LargeImageIndex = 1000;
+            this.navBarItem7.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem7.ImageOptions.SmallImage")));
+            this.navBarItem7.ImageOptions.SmallImageIndex = 100000;
+            this.navBarItem7.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.None;
+            this.navBarItem7.Name = "navBarItem7";
+            this.navBarItem7.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem7_LinkClicked);
+            // 
+            // panelControl3
+            // 
+            this.panelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl3.Controls.Add(this.AutoConnectCheckBox);
+            this.panelControl3.Location = new System.Drawing.Point(156, 100);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(447, 253);
+            this.panelControl3.TabIndex = 5;
+            // 
+            // AutoConnectCheckBox
+            // 
+            this.AutoConnectCheckBox.Location = new System.Drawing.Point(16, 12);
+            this.AutoConnectCheckBox.Name = "AutoConnectCheckBox";
+            this.AutoConnectCheckBox.Properties.Caption = "Auto Connect to Console";
+            this.AutoConnectCheckBox.Size = new System.Drawing.Size(151, 19);
+            this.AutoConnectCheckBox.TabIndex = 0;
+            this.AutoConnectCheckBox.CheckedChanged += new System.EventHandler(this.AutoConnectCheckBox_CheckedChanged);
+            // 
             // SettingsPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 353);
+            this.ClientSize = new System.Drawing.Size(603, 352);
+            this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.navBarControl1);
@@ -360,6 +400,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AutoConnectCheckBox.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -392,5 +435,8 @@
         private DevExpress.XtraEditors.PictureEdit pictureEdit3;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem7;
+        private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraEditors.CheckEdit AutoConnectCheckBox;
     }
 }

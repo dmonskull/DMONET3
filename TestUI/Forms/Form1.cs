@@ -20,6 +20,7 @@ using IniParser.Model;
 using TestUI.Forms;
 using DMONET3.Forms;
 using System.Threading.Tasks;
+using DevExpress.ClipboardSource.SpreadsheetML;
 
 namespace TestUI // Made by DMONSKULL
 {
@@ -33,28 +34,20 @@ namespace TestUI // Made by DMONSKULL
         public string debuggerName = null;
         public string userName = null;
         public Timer timer;
+        private readonly string iniFilePath = AppDomain.CurrentDomain.BaseDirectory + "settings.ini";
+        private IniData data;
         public Form1()
         {
             InitializeComponent();
+            LoadUserSettings();
         }
         #region FormStuff
         private void Form1_Load(object sender, EventArgs e)
         {
-            DialogResult result = XtraMessageBox.Show("Do you want to connect to the console?", "Connect to Console", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                if (ConnectToConsole())
-                {
-                    barButtonItem1.Caption = "Reconnect";
-                    barStaticItem3.Caption = "Playing: " + GetCurrentTitleName() + "\tTitle ID: " + GetCurrentTitleId() + "\tRunning Path: " + xbCon.RunningProcessInfo.ProgramName.ToString();
-                    ribbonControl1.ApplicationButtonText = Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).All(b => b == 0) || Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).Any(c => c > 127) ? "unknown" : Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).Trim().Trim(new char[1]);
-                    InfoUpdater();
-                }
-            }
-            else
-            {
-
-            }
+            barButtonItem1.Caption = "Reconnect";
+            barStaticItem3.Caption = "Playing: " + GetCurrentTitleName() + "\tTitle ID: " + GetCurrentTitleId() + "\tRunning Path: " + xbCon.RunningProcessInfo.ProgramName.ToString();
+            ribbonControl1.ApplicationButtonText = Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).All(b => b == 0) || Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).Any(c => c > 127) ? "unknown" : Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).Trim().Trim(new char[1]);
+            InfoUpdater();
         }
         public void InfoUpdater()
         {
@@ -70,6 +63,27 @@ namespace TestUI // Made by DMONSKULL
             barStaticItem3.Caption = "Playing: " + GetCurrentTitleName() + "\tTitle ID: " + GetCurrentTitleId() + "\tRunning Path: " + xbCon.RunningProcessInfo.ProgramName.ToString();
             ribbonControl1.ApplicationButtonText = Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U))
                 .All(b => b == 0) ? "unknown" : Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).Trim().Trim(new char[1]);
+        }
+        private void LoadUserSettings()
+        {
+            var parser = new FileIniDataParser();
+            data = parser.ReadFile(iniFilePath);
+
+            if (!data["DMONSETTINGS"].ContainsKey("AutoConnect") || string.IsNullOrWhiteSpace(data["DMONSETTINGS"]["AutoConnect"]))
+            {
+                var result = MessageBox.Show("Do you want to enable Auto Connect?", "Auto Connect", MessageBoxButtons.YesNo);
+                data["DMONSETTINGS"]["AutoConnect"] = result == DialogResult.Yes ? "True" : "False";
+                SaveSettings();
+            }
+
+            if (bool.TryParse(data["DMONSETTINGS"]["AutoConnect"], out bool autoConnect) && autoConnect)
+            {
+                ConnectToConsole();
+            }
+        }
+        private void SaveSettings()
+        {
+            new FileIniDataParser().WriteFile(iniFilePath, data);
         }
         #endregion
 
@@ -268,8 +282,8 @@ namespace TestUI // Made by DMONSKULL
         }
         private void tileItem6_ItemClick(object sender, TileItemEventArgs e)
         {
-            DeadRising2OTF deadrising2otf = new DeadRising2OTF();
-            deadrising2otf.Show();
+            DeadRising2OTF deadrising2otr = new DeadRising2OTF();
+            deadrising2otr.Show();
         }
         private void tileItem5_ItemClick(object sender, TileItemEventArgs e)
         {

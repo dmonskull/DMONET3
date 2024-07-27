@@ -39,14 +39,11 @@
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
-            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton8 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton9 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -71,7 +68,7 @@
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.OfficeUniversal;
-            this.ribbonControl1.Size = new System.Drawing.Size(490, 52);
+            this.ribbonControl1.Size = new System.Drawing.Size(381, 52);
             // 
             // barButtonItem1
             // 
@@ -114,14 +111,14 @@
             this.textEdit1.Location = new System.Drawing.Point(11, 24);
             this.textEdit1.MenuManager = this.ribbonControl1;
             this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(446, 20);
+            this.textEdit1.Size = new System.Drawing.Size(336, 20);
             this.textEdit1.TabIndex = 2;
             // 
             // simpleButton1
             // 
             this.simpleButton1.Location = new System.Drawing.Point(11, 50);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(446, 40);
+            this.simpleButton1.Size = new System.Drawing.Size(336, 40);
             this.simpleButton1.TabIndex = 3;
             this.simpleButton1.Text = "Send Console Command";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
@@ -137,9 +134,6 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.simpleButton9);
-            this.groupControl1.Controls.Add(this.simpleButton8);
-            this.groupControl1.Controls.Add(this.simpleButton7);
             this.groupControl1.Controls.Add(this.simpleButton6);
             this.groupControl1.Controls.Add(this.simpleButton5);
             this.groupControl1.Controls.Add(this.simpleButton3);
@@ -147,37 +141,18 @@
             this.groupControl1.Controls.Add(this.simpleButton2);
             this.groupControl1.Location = new System.Drawing.Point(12, 58);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(469, 283);
+            this.groupControl1.Size = new System.Drawing.Size(358, 283);
             this.groupControl1.TabIndex = 5;
             this.groupControl1.Text = "Main Mods";
             // 
-            // groupControl3
+            // simpleButton6
             // 
-            this.groupControl3.Controls.Add(this.simpleButton1);
-            this.groupControl3.Controls.Add(this.textEdit1);
-            this.groupControl3.Location = new System.Drawing.Point(12, 348);
-            this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(469, 105);
-            this.groupControl3.TabIndex = 7;
-            this.groupControl3.Text = "Console Command";
-            // 
-            // simpleButton4
-            // 
-            this.simpleButton4.Location = new System.Drawing.Point(11, 63);
-            this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(108, 33);
-            this.simpleButton4.TabIndex = 6;
-            this.simpleButton4.Text = "Infinite Ammo";
-            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
-            // 
-            // simpleButton3
-            // 
-            this.simpleButton3.Location = new System.Drawing.Point(125, 24);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(108, 33);
-            this.simpleButton3.TabIndex = 7;
-            this.simpleButton3.Text = "God";
-            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            this.simpleButton6.Location = new System.Drawing.Point(239, 24);
+            this.simpleButton6.Name = "simpleButton6";
+            this.simpleButton6.Size = new System.Drawing.Size(108, 33);
+            this.simpleButton6.TabIndex = 9;
+            this.simpleButton6.Text = "Toggle Outlines";
+            this.simpleButton6.Click += new System.EventHandler(this.simpleButton6_Click);
             // 
             // simpleButton5
             // 
@@ -188,44 +163,39 @@
             this.simpleButton5.Text = "FPS";
             this.simpleButton5.Click += new System.EventHandler(this.simpleButton5_Click);
             // 
-            // simpleButton6
+            // simpleButton3
             // 
-            this.simpleButton6.Location = new System.Drawing.Point(11, 102);
-            this.simpleButton6.Name = "simpleButton6";
-            this.simpleButton6.Size = new System.Drawing.Size(108, 33);
-            this.simpleButton6.TabIndex = 9;
-            this.simpleButton6.Text = "Toggle Outlines";
-            this.simpleButton6.Click += new System.EventHandler(this.simpleButton6_Click);
+            this.simpleButton3.Location = new System.Drawing.Point(125, 24);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(108, 33);
+            this.simpleButton3.TabIndex = 7;
+            this.simpleButton3.Text = "God";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
-            // simpleButton7
+            // simpleButton4
             // 
-            this.simpleButton7.Location = new System.Drawing.Point(125, 102);
-            this.simpleButton7.Name = "simpleButton7";
-            this.simpleButton7.Size = new System.Drawing.Size(108, 33);
-            this.simpleButton7.TabIndex = 10;
-            this.simpleButton7.Text = "Fly";
+            this.simpleButton4.Location = new System.Drawing.Point(11, 63);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(108, 33);
+            this.simpleButton4.TabIndex = 6;
+            this.simpleButton4.Text = "Infinite Ammo";
+            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
             // 
-            // simpleButton8
+            // groupControl3
             // 
-            this.simpleButton8.Location = new System.Drawing.Point(11, 141);
-            this.simpleButton8.Name = "simpleButton8";
-            this.simpleButton8.Size = new System.Drawing.Size(108, 33);
-            this.simpleButton8.TabIndex = 11;
-            this.simpleButton8.Text = "Fly";
-            // 
-            // simpleButton9
-            // 
-            this.simpleButton9.Location = new System.Drawing.Point(125, 141);
-            this.simpleButton9.Name = "simpleButton9";
-            this.simpleButton9.Size = new System.Drawing.Size(108, 33);
-            this.simpleButton9.TabIndex = 12;
-            this.simpleButton9.Text = "Fly";
+            this.groupControl3.Controls.Add(this.simpleButton1);
+            this.groupControl3.Controls.Add(this.textEdit1);
+            this.groupControl3.Location = new System.Drawing.Point(12, 348);
+            this.groupControl3.Name = "groupControl3";
+            this.groupControl3.Size = new System.Drawing.Size(358, 105);
+            this.groupControl3.TabIndex = 7;
+            this.groupControl3.Text = "Console Command";
             // 
             // Crackdown2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 465);
+            this.ClientSize = new System.Drawing.Size(381, 465);
             this.Controls.Add(this.groupControl3);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.ribbonControl1);
@@ -234,7 +204,7 @@
             this.Name = "Crackdown2";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Crackdown2";
+            this.Text = "Crackdown 2";
             this.Load += new System.EventHandler(this.Crackdown2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
@@ -261,9 +231,6 @@
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraEditors.SimpleButton simpleButton4;
-        private DevExpress.XtraEditors.SimpleButton simpleButton9;
-        private DevExpress.XtraEditors.SimpleButton simpleButton8;
-        private DevExpress.XtraEditors.SimpleButton simpleButton7;
         private DevExpress.XtraEditors.SimpleButton simpleButton6;
         private DevExpress.XtraEditors.SimpleButton simpleButton5;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;

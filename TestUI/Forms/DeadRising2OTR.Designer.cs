@@ -39,6 +39,7 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -46,6 +47,7 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.simpleButton7);
             this.groupControl1.Controls.Add(this.simpleButton6);
             this.groupControl1.Controls.Add(this.simpleButton3);
             this.groupControl1.Controls.Add(this.simpleButton5);
@@ -58,7 +60,7 @@
             // 
             // simpleButton6
             // 
-            this.simpleButton6.Location = new System.Drawing.Point(5, 24);
+            this.simpleButton6.Location = new System.Drawing.Point(12, 24);
             this.simpleButton6.Name = "simpleButton6";
             this.simpleButton6.Size = new System.Drawing.Size(106, 23);
             this.simpleButton6.TabIndex = 25;
@@ -67,7 +69,7 @@
             // 
             // simpleButton3
             // 
-            this.simpleButton3.Location = new System.Drawing.Point(5, 82);
+            this.simpleButton3.Location = new System.Drawing.Point(12, 82);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(106, 23);
             this.simpleButton3.TabIndex = 21;
@@ -76,7 +78,7 @@
             // 
             // simpleButton5
             // 
-            this.simpleButton5.Location = new System.Drawing.Point(117, 82);
+            this.simpleButton5.Location = new System.Drawing.Point(124, 82);
             this.simpleButton5.Name = "simpleButton5";
             this.simpleButton5.Size = new System.Drawing.Size(106, 23);
             this.simpleButton5.TabIndex = 24;
@@ -85,7 +87,7 @@
             // 
             // simpleButton2
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(5, 53);
+            this.simpleButton2.Location = new System.Drawing.Point(12, 53);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(106, 23);
             this.simpleButton2.TabIndex = 22;
@@ -94,7 +96,7 @@
             // 
             // simpleButton4
             // 
-            this.simpleButton4.Location = new System.Drawing.Point(117, 53);
+            this.simpleButton4.Location = new System.Drawing.Point(124, 53);
             this.simpleButton4.Name = "simpleButton4";
             this.simpleButton4.Size = new System.Drawing.Size(106, 23);
             this.simpleButton4.TabIndex = 23;
@@ -134,6 +136,15 @@
             // 
             this.timer1.Interval = 5000;
             // 
+            // simpleButton7
+            // 
+            this.simpleButton7.Location = new System.Drawing.Point(124, 24);
+            this.simpleButton7.Name = "simpleButton7";
+            this.simpleButton7.Size = new System.Drawing.Size(106, 23);
+            this.simpleButton7.TabIndex = 26;
+            this.simpleButton7.Text = "Fast Run";
+            this.simpleButton7.Click += new System.EventHandler(this.simpleButton7_Click);
+            // 
             // DeadRising2OTF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -148,7 +159,7 @@
             this.Name = "DeadRising2OTF";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Dead Rising 2: OTF";
+            this.Text = "Dead Rising 2: OTR";
             this.Load += new System.EventHandler(this.DeadRising2OTF_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
@@ -170,5 +181,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.Timer timer1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton7;
     }
 }

@@ -29,6 +29,7 @@ namespace DMONET3.Forms
         public bool level;
         public bool health;
         public bool healthbars;
+        public bool fastrun;
         public uint Levels = 3352533171U;
         public uint money2 = 3352533248U;
         public DeadRising2OTF()
@@ -125,6 +126,14 @@ namespace DMONET3.Forms
             byte[] healthBarsData = healthbars ? new byte[] { 0x04 } : new byte[] { 0x0D };
             xbCon.WriteBytes(0xC7D398EF, healthBarsData);
             healthbars = !healthbars;
+        }
+
+        private void simpleButton7_Click(object sender, EventArgs e)
+        {
+            simpleButton7.ForeColor = fastrun ? Color.Red : Color.Green;
+            byte[] fastRunData = fastrun ? new byte[] { 0x042 } : new byte[] { 0x52 };
+            xbCon.WriteBytes(0x82B388B0, fastRunData);
+            fastrun = !fastrun;
         }
     }
 }
