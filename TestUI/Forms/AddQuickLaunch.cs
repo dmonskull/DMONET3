@@ -24,7 +24,7 @@ namespace DMONET3.Forms
         {
             InitializeComponent();
             textEditLaunchPath.Text = launchPath;
-            iniFilePath = Path.Combine(Application.StartupPath, "quicklaunch.ini");
+            iniFilePath = Path.Combine(Application.StartupPath, "INIs/Quicklaunch/quicklaunch.ini");
         }
 
         private void AddQuickLaunch_Load(object sender, EventArgs e)

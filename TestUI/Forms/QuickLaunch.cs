@@ -31,10 +31,11 @@ namespace DMONET3.Forms
         private FileIniDataParser parser;
         private ImageList imageList;
         public Form1 form1;
+        private string gameId;
         public QuickLaunch()
         {
             InitializeComponent();
-            iniFilePath = Path.Combine(Application.StartupPath, "quicklaunch.ini");
+            iniFilePath = Path.Combine(Application.StartupPath, "INIs/Quicklaunch/quicklaunch.ini");
             parser = new FileIniDataParser();
             InitializeImageList();
             InitializeContextMenu();
@@ -235,7 +236,7 @@ namespace DMONET3.Forms
         }
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            using (FileExplorer fileExplorer = new FileExplorer(this))
+            using (FileExplorer fileExplorer = new FileExplorer(form1, this, gameId))
             {
                 fileExplorer.ShowDialog();
             }

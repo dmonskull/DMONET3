@@ -1,4 +1,6 @@
 ﻿using DevExpress.XtraEditors;
+using IniParser.Model;
+using IniParser;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,18 +22,22 @@ namespace DMONET3.Forms
     {
         public string currentPath = null;
         public string currentPathLabel = null;
-        private QuickLaunch quickLauncher;
         private readonly string baseTitle = "File Explorer";
         private Stack<string> navigationStack = new Stack<string>();
         private ImageList imageList;
         private Dictionary<string, string> fileExtensionToImageKeyMap;
-        public Form1 form1;
-        public FileExplorer(QuickLaunch quickLauncher)
+        private Form1 mainForm;
+        private QuickLaunch quickLauncher;
+        private string gameId;
+        public FileExplorer(Form1 mainForm, QuickLaunch quickLauncher, string gameId)
         {
             InitializeComponent();
             InitializeImageList();
             InitializeFileExtensionToImageKeyMap();
             this.quickLauncher = quickLauncher;
+            this.gameId = gameId;
+            this.mainForm = mainForm;
+            this.gameId = gameId;
         }
 
         private void FileExplorer_Load(object sender, EventArgs e)
@@ -259,6 +266,36 @@ namespace DMONET3.Forms
         {
             SendToQuicklaunchForm();
         }
+        private void barButtonItem13_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var selectedItem = listView1.FocusedItem;
+            if (selectedItem != null)
+            {
+                IXboxFile file = selectedItem.Tag as IXboxFile;
+                if (file != null && file.Name.EndsWith(".xex", StringComparison.OrdinalIgnoreCase))
+                {
+                    string fullPath = Path.Combine(file.Name).Replace("\\\\", "\\");
+
+                    // Save to quicklaunch.ini
+                    string filePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "INIs/Quicklaunch/quicklaunch.ini");
+                    var parser = new FileIniDataParser();
+                    IniData data = File.Exists(filePath) ? parser.ReadFile(filePath) : new IniData();
+
+                    if (!data.Sections.ContainsSection("Games"))
+                    {
+                        data.Sections.AddSection("Games");
+                    }
+
+                    data["Games"][gameId] = fullPath;
+                    parser.WriteFile(filePath, data);
+
+                    XtraMessageBox.Show($"Launch path for {gameId} has been set.");
+
+                    this.Close();
+                }
+            }
+        }
         #endregion
+
     }
 }

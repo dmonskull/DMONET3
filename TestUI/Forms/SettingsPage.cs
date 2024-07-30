@@ -17,7 +17,7 @@ namespace DMONET3.Forms
 {
     public partial class SettingsPage : DevExpress.XtraEditors.XtraForm
     {
-        private readonly string iniFilePath = AppDomain.CurrentDomain.BaseDirectory + "settings.ini";
+        private readonly string iniFilePath = AppDomain.CurrentDomain.BaseDirectory + "INIs/Settings/settings.ini";
         private IniData data;
         public SettingsPage()
         {

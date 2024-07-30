@@ -22,6 +22,7 @@ namespace DMONET3.Forms
         public string debuggerName = null;
         public string userName = null;
         public Form1 form1;
+        string iniFilePath = AppDomain.CurrentDomain.BaseDirectory + "INIs/Launch/launch.ini";
 
         private readonly Dictionary<string, ToggleSwitch> settingToToggleSwitchMap = new Dictionary<string, ToggleSwitch>();
         private IniData data;
@@ -64,7 +65,6 @@ namespace DMONET3.Forms
         }
         private void LoadSettings()
         {
-            string iniFilePath = AppDomain.CurrentDomain.BaseDirectory + "launch.ini";
             Form1.xbCon.ReceiveFile(iniFilePath, "Hdd:\\launch.ini");
 
             var parser = new FileIniDataParser();
@@ -116,7 +116,6 @@ namespace DMONET3.Forms
             foreach (var entry in settingToToggleSwitchMap)
                 data["Settings"][entry.Key] = entry.Value.IsOn ? "true" : "false";
 
-            string iniFilePath = AppDomain.CurrentDomain.BaseDirectory + "launch.ini";
             var parser = new FileIniDataParser();
             parser.WriteFile(iniFilePath, data);
 

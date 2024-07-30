@@ -27,6 +27,7 @@ namespace DMONET3.Forms
         public string debuggerName = null;
         public string userName = null;
         public Form1 form1;
+        string iniFilePath = AppDomain.CurrentDomain.BaseDirectory + "INIs/RecievedFromConsole/";
         public INIEditor()
         {
             InitializeComponent();
@@ -66,8 +67,8 @@ namespace DMONET3.Forms
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Form1.xbCon.ReceiveFile(AppDomain.CurrentDomain.BaseDirectory + this.textEdit1.Text, this.comboBoxEdit1.SelectedItem + this.textEdit1.Text);
-            this.richTextBox2.Text = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + this.textEdit1.Text);
+            Form1.xbCon.ReceiveFile(iniFilePath + this.textEdit1.Text, this.comboBoxEdit1.SelectedItem + this.textEdit1.Text);
+            this.richTextBox2.Text = File.ReadAllText(iniFilePath + this.textEdit1.Text);
             bool flag2 = this.richTextBox2.Text.Contains("plugin1");
             if (flag2)
             {
@@ -78,8 +79,8 @@ namespace DMONET3.Forms
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + this.textEdit1.Text, this.richTextBox2.Text);
-            Form1.xbCon.SendFile(AppDomain.CurrentDomain.BaseDirectory + this.textEdit1.Text, this.comboBoxEdit1.Text + this.textEdit1.Text);
+            File.WriteAllText(iniFilePath + this.textEdit1.Text, this.richTextBox2.Text);
+            Form1.xbCon.SendFile(iniFilePath + this.textEdit1.Text, this.comboBoxEdit1.Text + this.textEdit1.Text);
             bool flag2 = this.richTextBox2.Text.Contains("plugin1");
             if (flag2)
             {

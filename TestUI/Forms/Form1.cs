@@ -29,8 +29,9 @@ namespace TestUI // Made by DMONSKULL
         public string debuggerName = null;
         public string userName = null;
         public Timer timer;
-        private readonly string iniFilePath = AppDomain.CurrentDomain.BaseDirectory + "settings.ini";
+        private readonly string iniFilePath = AppDomain.CurrentDomain.BaseDirectory + "INIs/Settings/settings.ini";
         private IniData data;
+        private QuickLaunch quickLauncher;
 
         public Form1()
         {
@@ -86,7 +87,6 @@ namespace TestUI // Made by DMONSKULL
             new FileIniDataParser().WriteFile(iniFilePath, data);
         }
         #endregion
-
         #region XboxHelperStuff
         public static bool ConnectToConsole()
         {
@@ -117,14 +117,12 @@ namespace TestUI // Made by DMONSKULL
                 return false;
             }
         }
-
         public string GetCurrentTitleId()
         {
             uint currentTitleId = xbCon.GetCurrentTitleId();
             string hexTitleId = "0x" + currentTitleId.ToString("X8");
             return hexTitleId;
         }
-
         public string GetCurrentTitleName()
         {
             Dictionary<uint, string> gameDictionary = new Dictionary<uint, string>()
@@ -149,47 +147,50 @@ namespace TestUI // Made by DMONSKULL
                 return "Unknown Game";
             }
         }
-
         public void LaunchGameFromIni(string gameId, string gameFolder)
         {
-            string filePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "settings.ini");
+            string filePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "INIs/Quicklaunch/quicklaunch.ini");
             var parser = new FileIniDataParser();
             try
             {
                 IniData data = parser.ReadFile(filePath);
                 if (gameId != null && gameFolder != null)
                 {
-                    if (data.Sections.ContainsSection("games"))
+                    // Check for game-specific paths
+                    if (data["Games"].ContainsKey(gameId))
                     {
-                        foreach (KeyData key in data["games"])
+                        string launchPath = data["Games"][gameId];
+                        if (string.IsNullOrWhiteSpace(launchPath))
                         {
-                            if (key.KeyName.Equals(gameId, StringComparison.OrdinalIgnoreCase))
+                            DialogResult result = XtraMessageBox.Show("The launch path is not set. Would you like to set it up?", "Setup Launch Path", MessageBoxButtons.YesNo);
+                            if (result == DialogResult.Yes)
                             {
-                                string gameName = key.Value;
-                                try
-                                {
-                                    var xexPath = $@"Hdd:\{gameFolder}\{gameName}\default.xex";
-                                    var directoryPath = xexPath.Substring(0, xexPath.LastIndexOf(@"\", StringComparison.Ordinal));
-                                    xbCon.Reboot(xexPath, directoryPath, null, XboxRebootFlags.Title);
-                                    return;
-                                }
-                                catch (Exception)
-                                {
-                                    XtraMessageBox.Show("Please connect to the console first");
-                                    return;
-                                }
+                                FileExplorer fileExplorer = new FileExplorer(this, quickLauncher ,gameId);
+                                fileExplorer.Show();
                             }
+                            return;
                         }
-                        XtraMessageBox.Show($"Game ID '{gameId}' not found in the INI file.");
+
+                        try
+                        {
+                            string directoryPath = Path.GetDirectoryName(launchPath);
+                            xbCon.Reboot(launchPath, directoryPath, null, XboxRebootFlags.Title);
+                            return;
+                        }
+                        catch (Exception)
+                        {
+                            XtraMessageBox.Show("Please connect to the console first");
+                            return;
+                        }
                     }
                     else
                     {
-                        XtraMessageBox.Show("No games found in the INI file.");
+                        XtraMessageBox.Show($"Game ID '{gameId}' not found in the INI file.");
                     }
                 }
                 else
                 {
-                    XtraMessageBox.Show("Game ID or game folder is missing.");
+                    XtraMessageBox.Show("Game ID or Game Path is missing.");
                 }
             }
             catch (Exception ex)
@@ -197,7 +198,6 @@ namespace TestUI // Made by DMONSKULL
                 XtraMessageBox.Show($"An error occurred while reading the INI file: {ex.Message}");
             }
         }
-
         public void PullXboxUserInfo()
         {
             try
@@ -213,7 +213,6 @@ namespace TestUI // Made by DMONSKULL
             }
         }
         #endregion
-
         #region BarTools
         private void barButtonItem1_ItemClick_1(object sender, ItemClickEventArgs e)
         {
@@ -266,7 +265,7 @@ namespace TestUI // Made by DMONSKULL
         {
             try
             {
-                string gamesFolderName = new FileIniDataParser().ReadFile("settings.ini")["game folder"]["Games"];
+                string gamesFolderName = new FileIniDataParser().ReadFile("INIs/Settings/settings.ini")["game folder"]["Games"];
                 string Dir = xbCon.DebugTarget.RunningProcessInfo.ProgramName;
                 int index = Dir.IndexOf(@"\" + gamesFolderName, StringComparison.OrdinalIgnoreCase);
                 if (index >= 0)
@@ -285,7 +284,6 @@ namespace TestUI // Made by DMONSKULL
             }
         }
         #endregion
-
         #region TileStuffandGameLaunching
         // Game Tools
         private void tileItem3_ItemClick(object sender, TileItemEventArgs e)
