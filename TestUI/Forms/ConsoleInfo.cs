@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestUI;
 using XDevkit;
 using XDRPC;
 
@@ -16,14 +17,7 @@ namespace DMONET3.Forms
 {
     public partial class ConsoleInfo : DevExpress.XtraEditors.XtraForm
     {
-        // connection stuff
-        public IXboxManager xbManager = null;
-        public IXboxConsole xbCon = null;
-        public bool activeConnection = false;
-        private uint ConnectionCode;
-        public uint xboxConnection = 0;
-        public string debuggerName = null;
-        public string userName = null;
+        public Form1 form1;
         public ConsoleInfo()
         {
             InitializeComponent();
@@ -31,41 +25,7 @@ namespace DMONET3.Forms
 
         private void ConsoleInfo_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (ConnectToConsole2())
-                {
-                    PullInfo();
-                }
-            }
-            catch { }
-        }
-        public bool ConnectToConsole2()
-        {
-            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
-            {
-                return true;
-            }
-            try
-            {
-                xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
-                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
-                ConnectionCode = xbCon.OpenConnection(null);
-                xboxConnection = xbCon.OpenConnection(null);
-
-                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
-                {
-                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
-                }
-
-                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
-                return activeConnection;
-            }
-            catch (Exception)
-            {
-                XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
-                return false;
-            }
+            PullInfo();
         }
         static string ReverseIP(string ip)
         {
@@ -75,12 +35,12 @@ namespace DMONET3.Forms
         }
         public void PullInfo()
         {
-            string gamertag2 = Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).Trim().Trim(new char[1]);
-            gamertag.Text = Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).Trim().Trim(new char[1]);
-            CPUKeyText.Text = xbCon.GetCPUKey();
-            IPText.Text = ReverseIP(xbCon.GetConsoleIP());
+            string gamertag2 = Encoding.BigEndianUnicode.GetString(Form1.xbCon.ReadBytes(2175412476U, 30U)).Trim().Trim(new char[1]);
+            gamertag.Text = Encoding.BigEndianUnicode.GetString(Form1.xbCon.ReadBytes(2175412476U, 30U)).Trim().Trim(new char[1]);
+            CPUKeyText.Text = Form1.xbCon.GetCPUKey();
+            IPText.Text = ReverseIP(Form1.xbCon.GetConsoleIP());
             KernalVersion.Text = "";
-            ConsoleType.Text = xbCon.ConsoleType.ToString();
+            ConsoleType.Text = Form1.xbCon.ConsoleType.ToString();
             pictureBox1.ImageLocation = "https://mygamerprofile.net/card/nxe/" + gamertag2 + ".png";
             pictureBox2.ImageLocation = "http://avatar.xboxlive.com/avatar/" + gamertag2 + "/avatar-body.png";
         }

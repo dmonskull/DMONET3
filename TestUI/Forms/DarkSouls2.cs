@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestUI;
 using XDevkit;
 using XDRPC;
 
@@ -24,6 +25,7 @@ namespace DMONET3.Forms
         public uint xboxConnection = 0;
         public string debuggerName = null;
         public string userName = null;
+        public Form1 form1;
         // Dark Souls 2 stuff
         public uint PlayerLevel = 3324845279U;
         public uint Souls = 3324845307U;
@@ -43,31 +45,27 @@ namespace DMONET3.Forms
 
         private void DarkSouls2_Load(object sender, EventArgs e)
         {
-            try
-            {
-                ConnectToConsole2();
-            }
-            catch { }
+
         }
         public bool ConnectToConsole2()
         {
-            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            if (activeConnection && Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
             {
                 return true;
             }
             try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
-                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
-                ConnectionCode = xbCon.OpenConnection(null);
-                xboxConnection = xbCon.OpenConnection(null);
+                Form1.xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
+                ConnectionCode = Form1.xbCon.OpenConnection(null);
+                xboxConnection = Form1.xbCon.OpenConnection(null);
 
-                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+                if (!Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
                 {
-                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                    Form1.xbCon.DebugTarget.ConnectAsDebugger("DMONET", XboxDebugConnectFlags.Force);
                 }
 
-                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                activeConnection = Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
                 return activeConnection;
             }
             catch (Exception)
@@ -80,7 +78,7 @@ namespace DMONET3.Forms
         {
             byte value = Convert.ToByte(numericUpDown.Value);
             byte[] bytes = BitConverter.GetBytes(value);
-            xbCon.WriteBytes(address, bytes);
+            Form1.xbCon.WriteBytes(address, bytes);
         }
         private void simpleButton1_Click(object sender, EventArgs e)
         {
@@ -124,10 +122,10 @@ namespace DMONET3.Forms
         }
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            xbCon.WriteBytes(0xC62D1CDD, new byte[] { 0xFF, 0xFF, 0xFF });
-            xbCon.WriteBytes(0xC62D1CF8, new byte[] { 0x0F, 0xFF, 0xFF, 0xFF });
-            xbCon.WriteBytes(0xC62D1C15, new byte[] { 0x63, 0x63, 0x63, 0x63, 0x63, 0x63, 0x63, 0x63 });
-            xbCon.WriteBytes(0xC62D1C2B, new byte[] { 0x06, 0x63, 0x63, 0x63, 0x63, 0x63, 0x63, 0x63, 0x63, 0x63 });
+            Form1.xbCon.WriteBytes(0xC62D1CDD, new byte[] { 0xFF, 0xFF, 0xFF });
+            Form1.xbCon.WriteBytes(0xC62D1CF8, new byte[] { 0x0F, 0xFF, 0xFF, 0xFF });
+            Form1.xbCon.WriteBytes(0xC62D1C15, new byte[] { 0x63, 0x63, 0x63, 0x63, 0x63, 0x63, 0x63, 0x63 });
+            Form1.xbCon.WriteBytes(0xC62D1C2B, new byte[] { 0x06, 0x63, 0x63, 0x63, 0x63, 0x63, 0x63, 0x63, 0x63, 0x63 });
         }
     }
 }

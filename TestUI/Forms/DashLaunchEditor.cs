@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using TestUI;
 using XDevkit;
 
 namespace DMONET3.Forms
@@ -13,11 +14,14 @@ namespace DMONET3.Forms
     public partial class DashLaunchEditor : DevExpress.XtraEditors.XtraForm
     {
         // connection stuff
-        private IXboxManager xbManager = null;
-        private IXboxConsole xbCon = null;
-        private bool activeConnection = false;
-        private string debuggerName = null;
-        private string userName = null;
+        public IXboxManager xbManager = null;
+        public IXboxConsole xbCon = null;
+        public bool activeConnection = false;
+        private uint ConnectionCode;
+        public uint xboxConnection = 0;
+        public string debuggerName = null;
+        public string userName = null;
+        public Form1 form1;
 
         private readonly Dictionary<string, ToggleSwitch> settingToToggleSwitchMap = new Dictionary<string, ToggleSwitch>();
         private IniData data;
@@ -29,31 +33,30 @@ namespace DMONET3.Forms
 
         private void DashLaunchEditor_Load(object sender, EventArgs e)
         {
-            try
-            {
-                ConnectToConsole2();
-                LoadSettings();
-            }
-            catch { }
+            LoadSettings();
         }
-        private bool ConnectToConsole2()
+        public bool ConnectToConsole2()
         {
-            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            if (activeConnection && Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            {
                 return true;
-
+            }
             try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
-                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
-                xbCon.OpenConnection(null);
+                Form1.xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
+                ConnectionCode = Form1.xbCon.OpenConnection(null);
+                xboxConnection = Form1.xbCon.OpenConnection(null);
 
-                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
-                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                if (!Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+                {
+                    Form1.xbCon.DebugTarget.ConnectAsDebugger("DMONET", XboxDebugConnectFlags.Force);
+                }
 
-                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                activeConnection = Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
                 return activeConnection;
             }
-            catch
+            catch (Exception)
             {
                 XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
                 return false;
@@ -62,7 +65,7 @@ namespace DMONET3.Forms
         private void LoadSettings()
         {
             string iniFilePath = AppDomain.CurrentDomain.BaseDirectory + "launch.ini";
-            xbCon.ReceiveFile(iniFilePath, "Hdd:\\launch.ini");
+            Form1.xbCon.ReceiveFile(iniFilePath, "Hdd:\\launch.ini");
 
             var parser = new FileIniDataParser();
             data = parser.ReadFile(iniFilePath);
@@ -117,7 +120,7 @@ namespace DMONET3.Forms
             var parser = new FileIniDataParser();
             parser.WriteFile(iniFilePath, data);
 
-            xbCon.SendFile(iniFilePath, "Hdd:\\launch.ini");
+            Form1.xbCon.SendFile(iniFilePath, "Hdd:\\launch.ini");
         }
     }
 }

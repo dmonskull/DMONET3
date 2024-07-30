@@ -25,6 +25,7 @@ namespace TestUI.Forms
         public uint xboxConnection = 0;
         public string debuggerName = null;
         public string userName = null;
+        public Form1 form1;
 
         private bool backt;
         private bool FLIP;
@@ -36,34 +37,27 @@ namespace TestUI.Forms
 
         private void Skate3_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (ConnectToConsole2())
-                {
-                    barButtonItem1.Caption = "Reconnect";
-                }
-            }
-            catch { }
+
         }
         public bool ConnectToConsole2()
         {
-            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            if (activeConnection && Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
             {
                 return true;
             }
             try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
-                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
-                ConnectionCode = xbCon.OpenConnection(null);
-                xboxConnection = xbCon.OpenConnection(null);
+                Form1.xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
+                ConnectionCode = Form1.xbCon.OpenConnection(null);
+                xboxConnection = Form1.xbCon.OpenConnection(null);
 
-                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+                if (!Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
                 {
-                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                    Form1.xbCon.DebugTarget.ConnectAsDebugger("DMONET", XboxDebugConnectFlags.Force);
                 }
 
-                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                activeConnection = Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
                 return activeConnection;
             }
             catch (Exception)
@@ -76,7 +70,7 @@ namespace TestUI.Forms
         {
             byte[] bytes = BitConverter.GetBytes(Value);
             Array.Reverse(bytes);
-            xbCon.WriteBytes(Address, bytes);
+            Form1.xbCon.WriteBytes(Address, bytes);
         }
 
         #region BasicMods
@@ -84,11 +78,11 @@ namespace TestUI.Forms
         {
             try
             {
-                xbCon.WriteBytes(0x822F8B40, backt ? new byte[] { 0xA2 } : new byte[] { 0xF1 });
+                Form1.xbCon.WriteBytes(0x822F8B40, backt ? new byte[] { 0xA2 } : new byte[] { 0xF1 });
                 if (backt)
                 {
                     Thread.Sleep(500);
-                    xbCon.WriteBytes(0x822F8B40, new byte[] { 0xC1 });
+                    Form1.xbCon.WriteBytes(0x822F8B40, new byte[] { 0xC1 });
                 }
                 backt = !backt;
                 simpleButton1.ForeColor = backt ? Color.Green : Color.Red;

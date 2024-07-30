@@ -13,6 +13,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using XDevkit;
 using XDRPC;
 using System.IO;
+using TestUI;
 
 namespace DMONET3.Forms
 {
@@ -25,6 +26,7 @@ namespace DMONET3.Forms
         public uint xboxConnection = 0;
         public string debuggerName = null;
         public string userName = null;
+        public Form1 form1;
         public INIEditor()
         {
             InitializeComponent();
@@ -32,31 +34,27 @@ namespace DMONET3.Forms
 
         private void INIEditor_Load(object sender, EventArgs e)
         {
-            try
-            {
-                ConnectToConsole2();
-            }
-            catch { }
+
         }
         public bool ConnectToConsole2()
         {
-            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            if (activeConnection && Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
             {
                 return true;
             }
             try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
-                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
-                ConnectionCode = xbCon.OpenConnection(null);
-                xboxConnection = xbCon.OpenConnection(null);
+                Form1.xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
+                ConnectionCode = Form1.xbCon.OpenConnection(null);
+                xboxConnection = Form1.xbCon.OpenConnection(null);
 
-                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+                if (!Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
                 {
-                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                    Form1.xbCon.DebugTarget.ConnectAsDebugger("DMONET", XboxDebugConnectFlags.Force);
                 }
 
-                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                activeConnection = Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
                 return activeConnection;
             }
             catch (Exception)
@@ -68,7 +66,7 @@ namespace DMONET3.Forms
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            xbCon.ReceiveFile(AppDomain.CurrentDomain.BaseDirectory + this.textEdit1.Text, this.comboBoxEdit1.SelectedItem + this.textEdit1.Text);
+            Form1.xbCon.ReceiveFile(AppDomain.CurrentDomain.BaseDirectory + this.textEdit1.Text, this.comboBoxEdit1.SelectedItem + this.textEdit1.Text);
             this.richTextBox2.Text = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + this.textEdit1.Text);
             bool flag2 = this.richTextBox2.Text.Contains("plugin1");
             if (flag2)
@@ -81,7 +79,7 @@ namespace DMONET3.Forms
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + this.textEdit1.Text, this.richTextBox2.Text);
-            xbCon.SendFile(AppDomain.CurrentDomain.BaseDirectory + this.textEdit1.Text, this.comboBoxEdit1.Text + this.textEdit1.Text);
+            Form1.xbCon.SendFile(AppDomain.CurrentDomain.BaseDirectory + this.textEdit1.Text, this.comboBoxEdit1.Text + this.textEdit1.Text);
             bool flag2 = this.richTextBox2.Text.Contains("plugin1");
             if (flag2)
             {

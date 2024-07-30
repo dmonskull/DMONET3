@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestUI;
 using XDevkit;
 using XDRPC;
 
@@ -23,6 +24,7 @@ namespace DMONET3.Forms
         public uint xboxConnection = 0;
         public string debuggerName = null;
         public string userName = null;
+        public Form1 form1;
 
         public bool timergodmode;
         public bool money;
@@ -39,31 +41,27 @@ namespace DMONET3.Forms
 
         private void DeadRising2OTF_Load(object sender, EventArgs e)
         {
-            try
-            {
-                ConnectToConsole2();
-            }
-            catch { }
+
         }
         public bool ConnectToConsole2()
         {
-            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            if (activeConnection && Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
             {
                 return true;
             }
             try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
-                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
-                ConnectionCode = xbCon.OpenConnection(null);
-                xboxConnection = xbCon.OpenConnection(null);
+                Form1.xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
+                ConnectionCode = Form1.xbCon.OpenConnection(null);
+                xboxConnection = Form1.xbCon.OpenConnection(null);
 
-                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+                if (!Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
                 {
-                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                    Form1.xbCon.DebugTarget.ConnectAsDebugger("DMONET", XboxDebugConnectFlags.Force);
                 }
 
-                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                activeConnection = Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
                 return activeConnection;
             }
             catch (Exception)
@@ -77,7 +75,7 @@ namespace DMONET3.Forms
         {
             byte test = Convert.ToByte(numericUpDown1.Value);
             byte[] test2 = BitConverter.GetBytes(test);
-            xbCon.WriteBytes(Levels, test2);
+            Form1.xbCon.WriteBytes(Levels, test2);
         }
 
         private void simpleButton6_Click(object sender, EventArgs e)
@@ -85,8 +83,8 @@ namespace DMONET3.Forms
             simpleButton6.ForeColor = timergodmode ? Color.Red : Color.Green;
             if (!timergodmode)
             {
-                xbCon.WriteBytes(0xC7D398EF, new byte[] { 0x0D });
-                xbCon.WriteBytes(0xC7D398BC, new byte[] { 0x44, 0xBB, 0x80 });
+                Form1.xbCon.WriteBytes(0xC7D398EF, new byte[] { 0x0D });
+                Form1.xbCon.WriteBytes(0xC7D398BC, new byte[] { 0x44, 0xBB, 0x80 });
                 timer1.Start();
             }
             else
@@ -100,7 +98,7 @@ namespace DMONET3.Forms
         {
             simpleButton2.ForeColor = level ? Color.Red : Color.Green;
             byte[] levelData = level ? new byte[] { 0x00, 0x00, 0x00, 0x0A } : new byte[] { 0x0F, 0xFF, 0xFF, 0xFF };
-            xbCon.WriteBytes(0xC7D398B0, levelData);
+            Form1.xbCon.WriteBytes(0xC7D398B0, levelData);
             level = !level;
         }
 
@@ -108,7 +106,7 @@ namespace DMONET3.Forms
         {
             simpleButton3.ForeColor = money ? Color.Red : Color.Green;
             byte[] moneyData = money ? new byte[] { 0x00, 0x00, 0x00, 0x01 } : new byte[] { 0x0F, 0xFF, 0xFF, 0xFF };
-            xbCon.WriteBytes(money2, moneyData);
+            Form1.xbCon.WriteBytes(money2, moneyData);
             money = !money;
         }
 
@@ -116,7 +114,7 @@ namespace DMONET3.Forms
         {
             simpleButton4.ForeColor = health ? Color.Red : Color.Green;
             byte[] healthData = health ? new byte[] { 0x42, 0x67, 0x00 } : new byte[] { 0x44, 0xBB, 0x80 };
-            xbCon.WriteBytes(0xC7D398BC, healthData);
+            Form1.xbCon.WriteBytes(0xC7D398BC, healthData);
             health = !health;
         }
 
@@ -124,7 +122,7 @@ namespace DMONET3.Forms
         {
             simpleButton5.ForeColor = healthbars ? Color.Red : Color.Green;
             byte[] healthBarsData = healthbars ? new byte[] { 0x04 } : new byte[] { 0x0D };
-            xbCon.WriteBytes(0xC7D398EF, healthBarsData);
+            Form1.xbCon.WriteBytes(0xC7D398EF, healthBarsData);
             healthbars = !healthbars;
         }
 
@@ -132,7 +130,7 @@ namespace DMONET3.Forms
         {
             simpleButton7.ForeColor = fastrun ? Color.Red : Color.Green;
             byte[] fastRunData = fastrun ? new byte[] { 0x042 } : new byte[] { 0x52 };
-            xbCon.WriteBytes(0x82B388B0, fastRunData);
+            Form1.xbCon.WriteBytes(0x82B388B0, fastRunData);
             fastrun = !fastrun;
         }
     }

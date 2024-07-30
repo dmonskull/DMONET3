@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestUI;
 using XDevkit;
 using XDRPC;
 
@@ -27,37 +28,34 @@ namespace DMONET3.Forms
         public string userName = null;
         private int screenshotCounter = 0;
         private string screenshotsFolder = Path.Combine(Application.StartupPath, "Screenshots");
+        public Form1 form1;
         public ScreenshotPage()
         {
             InitializeComponent();
         }
         private void ScreenshotPage_Load(object sender, EventArgs e)
         {
-            try
-            {
-                ConnectToConsole2();
-            }
-            catch { }
+
         }
         public bool ConnectToConsole2()
         {
-            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            if (activeConnection && Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
             {
                 return true;
             }
             try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
-                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
-                ConnectionCode = xbCon.OpenConnection(null);
-                xboxConnection = xbCon.OpenConnection(null);
+                Form1.xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
+                ConnectionCode = Form1.xbCon.OpenConnection(null);
+                xboxConnection = Form1.xbCon.OpenConnection(null);
 
-                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+                if (!Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
                 {
-                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                    Form1.xbCon.DebugTarget.ConnectAsDebugger("DMONET", XboxDebugConnectFlags.Force);
                 }
 
-                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                activeConnection = Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
                 return activeConnection;
             }
             catch (Exception)
@@ -71,7 +69,7 @@ namespace DMONET3.Forms
             var screenshotsFolder = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots");
             Directory.CreateDirectory(screenshotsFolder);
             var screenshotPath = Path.Combine(screenshotsFolder, $"Xbox360ScreenShot{screenshotCounter++}.bmp");
-            xbCon.ScreenShot(screenshotPath);
+            Form1.xbCon.ScreenShot(screenshotPath);
             pictureEdit1.Image = Image.FromFile(screenshotPath);
         }
         private void simpleButton1_Click(object sender, EventArgs e)

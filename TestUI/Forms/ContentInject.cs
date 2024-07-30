@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using ContentInjector;
 using XDevkit;
 using XDRPC;
+using TestUI;
 
 namespace DMONET3.Forms
 {
@@ -27,6 +28,7 @@ namespace DMONET3.Forms
         public uint xboxConnection = 0;
         public string debuggerName = null;
         public string userName = null;
+        public Form1 form1;
         public ContentInject()
         {
             InitializeComponent();
@@ -36,6 +38,10 @@ namespace DMONET3.Forms
                 this.WorkingScreen();
                 this.EXEDrop();
             }
+        }
+        private void ContentInject_Load(object sender, EventArgs e)
+        {
+
         }
 
         #region Core Functions
@@ -211,54 +217,29 @@ namespace DMONET3.Forms
         }
         public bool ConnectToConsole2()
         {
-            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            if (activeConnection && Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
             {
                 return true;
             }
             try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
-                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
-                ConnectionCode = xbCon.OpenConnection(null);
-                xboxConnection = xbCon.OpenConnection(null);
+                Form1.xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
+                ConnectionCode = Form1.xbCon.OpenConnection(null);
+                xboxConnection = Form1.xbCon.OpenConnection(null);
 
-                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+                if (!Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
                 {
-                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                    Form1.xbCon.DebugTarget.ConnectAsDebugger("DMONET", XboxDebugConnectFlags.Force);
                 }
 
-                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                activeConnection = Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
                 return activeConnection;
             }
             catch (Exception)
             {
                 XtraMessageBox.Show("Could not connect to console: " + xbManager.DefaultConsole);
                 return false;
-            }
-        }
-        private void Connect()
-        {
-            try
-            {
-                if (!Globals.isConnected)
-                {
-                    Globals.Connecting = true;
-                    new Thread(new ThreadStart(this.Connecting)).Start();
-                    if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
-                    {
-                        ConnectToConsole2();
-                        Globals.Connecting = false;
-                        Globals.isConnected = true;
-                    }
-                    else
-                    {
-                        Globals.Failed = true;
-                        Globals.Connecting = false;
-                    }
-                }
-            }
-            catch
-            {
             }
         }
         public void Processing()
@@ -557,7 +538,7 @@ namespace DMONET3.Forms
                 }));
                 Globals.Pushing = true;
                 new Thread(new ThreadStart(this.Processing)).Start();
-                xbCon.SendFile(Globals.file, Globals.consoleFile);
+                Form1.xbCon.SendFile(Globals.file, Globals.consoleFile);
                 Globals.Pushing = false;
             }
             catch
@@ -587,7 +568,7 @@ namespace DMONET3.Forms
                 int num2 = directoryInfo.GetFiles().Length;
                 Globals.Pushing = true;
                 new Thread(new ThreadStart(this.Processing)).Start();
-                xbCon.SendFile(Globals.file, Globals.consoleFile);
+                Form1.xbCon.SendFile(Globals.file, Globals.consoleFile);
                 int num3 = 1;
                 foreach (FileInfo fileInfo in directoryInfo.GetFiles())
                 {
@@ -611,7 +592,7 @@ namespace DMONET3.Forms
                         fileInfo.Name,
                         ")"
                     });
-                    xbCon.SendFile(fileInfo.FullName, Globals.GODDataConsoleDir + "\\" + fileInfo.Name);
+                    Form1.xbCon.SendFile(fileInfo.FullName, Globals.GODDataConsoleDir + "\\" + fileInfo.Name);
                     num3++;
                 }
                 Globals.Pushing = false;
@@ -656,21 +637,21 @@ namespace DMONET3.Forms
         {
             try
             {
-                xbCon.MakeDirectory("HDD:\\Content\\" + Globals.ProfileId);
+                Form1.xbCon.MakeDirectory("HDD:\\Content\\" + Globals.ProfileId);
             }
             catch
             {
             }
             try
             {
-                xbCon.MakeDirectory("HDD:\\Content\\" + Globals.ProfileId + "\\" + Globals.TitleId);
+                Form1.xbCon.MakeDirectory("HDD:\\Content\\" + Globals.ProfileId + "\\" + Globals.TitleId);
             }
             catch
             {
             }
             try
             {
-                xbCon.MakeDirectory(string.Concat(new string[]
+                Form1.xbCon.MakeDirectory(string.Concat(new string[]
                 {
                     "HDD:\\Content\\",
                     Globals.ProfileId,
@@ -688,7 +669,7 @@ namespace DMONET3.Forms
                 try
                 {
                     Globals.GODDataConsoleDir = Globals.consoleFile + ".data";
-                    xbCon.MakeDirectory(Globals.GODDataConsoleDir);
+                    Form1.xbCon.MakeDirectory(Globals.GODDataConsoleDir);
                 }
                 catch
                 {
@@ -718,7 +699,7 @@ namespace DMONET3.Forms
             if (!Globals.isConnected)
             {
                 Thread.Sleep(500);
-                this.Connect();
+                ConnectToConsole2();
             }
             Thread.Sleep(500);
             if (!Globals.Failed)

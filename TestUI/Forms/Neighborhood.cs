@@ -10,6 +10,7 @@ using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestUI;
 using XDevkit;
 
 namespace DMONET3.Forms
@@ -24,6 +25,7 @@ namespace DMONET3.Forms
         public string debuggerName = null;
         public string userName = null;
         private string res;
+        public Form1 form1;
         public Neighborhood()
         {
             InitializeComponent();
@@ -46,8 +48,8 @@ namespace DMONET3.Forms
         {
             try
             {
-                xbCon = xbManager.OpenConsole(sender.ToString());
-                ConnectionCode = xbCon.OpenConnection(null);
+                Form1.xbCon = xbManager.OpenConsole(sender.ToString());
+                ConnectionCode = Form1.xbCon.OpenConnection(null);
             }
             catch (COMException ex)
             {
@@ -73,32 +75,32 @@ namespace DMONET3.Forms
 
         private void buttonNoSidecar_Click(object sender, EventArgs e)
         {
-            xbCon.SendTextCommand(ConnectionCode, "setcolor name=nosidecar", out res);
+            Form1.xbCon.SendTextCommand(ConnectionCode, "setcolor name=nosidecar", out res);
         }
 
         private void buttonBlack_Click(object sender, EventArgs e)
         {
-            xbCon.SendTextCommand(ConnectionCode, "setcolor name=black", out res);
+            Form1.xbCon.SendTextCommand(ConnectionCode, "setcolor name=black", out res);
         }
 
         private void buttonBlue_Click(object sender, EventArgs e)
         {
-            xbCon.SendTextCommand(ConnectionCode, "setcolor name=blue", out res);
+            Form1.xbCon.SendTextCommand(ConnectionCode, "setcolor name=blue", out res);
         }
 
         private void buttonBlueGray_Click(object sender, EventArgs e)
         {
-            xbCon.SendTextCommand(ConnectionCode, "setcolor name=bluegray", out res);
+            Form1.xbCon.SendTextCommand(ConnectionCode, "setcolor name=bluegray", out res);
         }
 
         private void buttonWhite_Click(object sender, EventArgs e)
         {
-            xbCon.SendTextCommand(ConnectionCode, "setcolor name=white", out res);
+            Form1.xbCon.SendTextCommand(ConnectionCode, "setcolor name=white", out res);
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            xbCon.SendTextCommand(ConnectionCode, "dbgname name=" + textEdit1.Text, out res);
+            Form1.xbCon.SendTextCommand(ConnectionCode, "dbgname name=" + textEdit1.Text, out res);
         }
     }
 }

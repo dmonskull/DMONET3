@@ -31,6 +31,7 @@ namespace TestUI.Forms
         private int ptasState = 0;
         private bool HugeEnemies;
         private bool ShrinkEnemies;
+        public Form1 form1;
         public ResidentEvil4()
         {
             InitializeComponent();
@@ -39,35 +40,27 @@ namespace TestUI.Forms
 
         private void ResidentEvil4_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (ConnectToConsole2())
-                {
-                    barButtonItem1.Caption = "Reconnect";
-                }
-                    InitializeDictionaries();
-            }
-            catch { }
+
         }
         public bool ConnectToConsole2()
         {
-            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            if (activeConnection && Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
             {
                 return true;
             }
             try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
-                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
-                ConnectionCode = xbCon.OpenConnection(null);
-                xboxConnection = xbCon.OpenConnection(null);
+                Form1.xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
+                ConnectionCode = Form1.xbCon.OpenConnection(null);
+                xboxConnection = Form1.xbCon.OpenConnection(null);
 
-                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+                if (!Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
                 {
-                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                    Form1.xbCon.DebugTarget.ConnectAsDebugger("DMONET", XboxDebugConnectFlags.Force);
                 }
 
-                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                activeConnection = Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
                 return activeConnection;
             }
             catch (Exception)
@@ -83,7 +76,7 @@ namespace TestUI.Forms
             foreach (var entry in itemSlotOffsets)
             {
                 byte randomByte = (byte)random.Next(256);
-                xbCon.WriteBytes(entry.Value, new byte[] { randomByte });
+                Form1.xbCon.WriteBytes(entry.Value, new byte[] { randomByte });
             }
         }
         private void CheckHeldWeapons()
@@ -91,7 +84,7 @@ namespace TestUI.Forms
             StringBuilder heldWeapons = new StringBuilder();
             foreach (var entry in itemSlotOffsets)
             {
-                byte[] slotValue = xbCon.ReadBytes(entry.Value, 4);
+                byte[] slotValue = Form1.xbCon.ReadBytes(entry.Value, 4);
 
                 foreach (var weaponEntry in itemDictionary)
                 {
@@ -292,7 +285,7 @@ namespace TestUI.Forms
             {
                 uint selectedSlotOffset = itemSlotOffsets[comboBoxEdit2.Text];
                 byte selectedValue = itemDictionary[comboBoxEdit1.Text];
-                xbCon.WriteBytes(selectedSlotOffset, new byte[] { selectedValue });
+                Form1.xbCon.WriteBytes(selectedSlotOffset, new byte[] { selectedValue });
             }
         }
 
@@ -302,12 +295,12 @@ namespace TestUI.Forms
             {
                 uint selectedSlotOffset = giveItemSlots[comboBoxEdit4.Text];
                 byte selectedValue = itemDictionary[comboBoxEdit3.Text];
-                xbCon.WriteBytes(selectedSlotOffset, new byte[] { selectedValue });
+                Form1.xbCon.WriteBytes(selectedSlotOffset, new byte[] { selectedValue });
             }
             if (enableItemSlots.ContainsKey(comboBoxEdit4.Text))
             {
                 uint selectedSlotOffset = enableItemSlots[comboBoxEdit4.Text];
-                xbCon.WriteBytes(selectedSlotOffset, new byte[] { 0x01 });
+                Form1.xbCon.WriteBytes(selectedSlotOffset, new byte[] { 0x01 });
             }
         }
 
@@ -327,7 +320,7 @@ namespace TestUI.Forms
                     {
                         Array.Reverse(amountBytes);
                     }
-                    xbCon.WriteBytes(selectedAmountOffset, amountBytes);
+                    Form1.xbCon.WriteBytes(selectedAmountOffset, amountBytes);
                 }
             }
             else
@@ -347,7 +340,7 @@ namespace TestUI.Forms
                 foreach (var amountOffset in amountOffsets)
                 {
                     byte[] amountBytes = new byte[] { 0x03, 0xE7 };
-                    xbCon.WriteBytes(amountOffset, amountBytes);
+                    Form1.xbCon.WriteBytes(amountOffset, amountBytes);
                 }
             }
             MessageBox.Show("Max Amount for ALL slots has been set!", ":)");
@@ -378,7 +371,7 @@ namespace TestUI.Forms
         {
             try
             {
-                xbCon.WriteBytes(3261454420U, extrahealthleon ? new byte[] { 0x06 } : new byte[] { 0x7F });
+                Form1.xbCon.WriteBytes(3261454420U, extrahealthleon ? new byte[] { 0x06 } : new byte[] { 0x7F });
                 extrahealthleon = !extrahealthleon;
                 simpleButton8.Text = extrahealthleon ? "Extra Health Leon: ON" : "Extra Health Leon: OFF";
             }
@@ -391,7 +384,7 @@ namespace TestUI.Forms
         {
             try
             {
-                xbCon.WriteBytes(3261454424U, extrahealthashley ? new byte[] { 0x05 } : new byte[] { 0x7F });
+                Form1.xbCon.WriteBytes(3261454424U, extrahealthashley ? new byte[] { 0x05 } : new byte[] { 0x7F });
                 extrahealthashley = !extrahealthashley;
                 simpleButton9.Text = extrahealthashley ? "Extra Health Ashley: ON" : "Extra Health Ashley: OFF";
             }
@@ -404,7 +397,7 @@ namespace TestUI.Forms
         {
             try
             {
-                xbCon.WriteBytes(0x82000A08, ShrinkEnemies ? new byte[] { 0x3F, 0x66, 0x66, 0x66 } : new byte[] { 0x3F, 0x19, 0x99, 0x9A });
+                Form1.xbCon.WriteBytes(0x82000A08, ShrinkEnemies ? new byte[] { 0x3F, 0x66, 0x66, 0x66 } : new byte[] { 0x3F, 0x19, 0x99, 0x9A });
                 ShrinkEnemies = !ShrinkEnemies;
                 simpleButton10.Text = ShrinkEnemies ? "Shrink Enemies: ON" : "Shrink Enemies: OFF";
             }
@@ -417,7 +410,7 @@ namespace TestUI.Forms
         {
             try
             {
-                xbCon.WriteBytes(0x82000A08, HugeEnemies ? new byte[] { 0x3F, 0x66, 0x66, 0x66 } : new byte[] { 0x3F, 0x7D, 0x70, 0xA4 });
+                Form1.xbCon.WriteBytes(0x82000A08, HugeEnemies ? new byte[] { 0x3F, 0x66, 0x66, 0x66 } : new byte[] { 0x3F, 0x7D, 0x70, 0xA4 });
                 HugeEnemies = !HugeEnemies;
                 simpleButton12.Text = HugeEnemies ? "Huge Enemies: ON" : "Huge Enemies: OFF";
             }
@@ -435,17 +428,17 @@ namespace TestUI.Forms
                 {
                     case 0:
                         simpleButton11.Text = "PTAS: 99999999";
-                        xbCon.WriteBytes(3261454408U, new byte[] { 0x0F, 0xFF, 0xFF, 0xFF });
+                        Form1.xbCon.WriteBytes(3261454408U, new byte[] { 0x0F, 0xFF, 0xFF, 0xFF });
                         ptasState = 1;
                         break;
                     case 1:
                         simpleButton11.Text = "PTAS: 1000";
-                        xbCon.WriteBytes(3261454408U, new byte[] { 0x00, 0x00, 0x03, 0xE8 });
+                        Form1.xbCon.WriteBytes(3261454408U, new byte[] { 0x00, 0x00, 0x03, 0xE8 });
                         ptasState = 2;
                         break;
                     case 2:
                         simpleButton11.Text = "PTAS: bugged";
-                        xbCon.WriteBytes(3261454408U, new byte[] { 0xAA, 0xAA, 0xFF, 0xFF });
+                        Form1.xbCon.WriteBytes(3261454408U, new byte[] { 0xAA, 0xAA, 0xFF, 0xFF });
                         ptasState = 0;
                         break;
                 }
@@ -459,7 +452,7 @@ namespace TestUI.Forms
         {
             try
             {
-                xbCon.WriteBytes(3261454526U, camerafollow ? new byte[] { 0x02 } : new byte[] { 0x01 });
+                Form1.xbCon.WriteBytes(3261454526U, camerafollow ? new byte[] { 0x02 } : new byte[] { 0x01 });
                 camerafollow = !camerafollow;
                 simpleButton13.Text = camerafollow ? "Camera Follow: ON" : "Camera Follow: OFF";
             }

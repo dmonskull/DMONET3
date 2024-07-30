@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestUI;
 using XDevkit;
 using XDRPC;
 
@@ -25,6 +26,7 @@ namespace DMONET3.Forms
         public uint xboxConnection = 0;
         public string debuggerName = null;
         public string userName = null;
+        public Form1 form1;
         //Crackdown 2 stuff
         public bool fly;
         public bool godmode;
@@ -38,31 +40,27 @@ namespace DMONET3.Forms
 
         private void Crackdown2_Load(object sender, EventArgs e)
         {
-            try
-            {
-                ConnectToConsole2();
-            }
-            catch { }
+
         }
         public bool ConnectToConsole2()
         {
-            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            if (activeConnection && Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
             {
                 return true;
             }
             try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
-                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
-                ConnectionCode = xbCon.OpenConnection(null);
-                xboxConnection = xbCon.OpenConnection(null);
+                Form1.xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
+                ConnectionCode = Form1.xbCon.OpenConnection(null);
+                xboxConnection = Form1.xbCon.OpenConnection(null);
 
-                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+                if (!Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
                 {
-                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                    Form1.xbCon.DebugTarget.ConnectAsDebugger("DMONET", XboxDebugConnectFlags.Force);
                 }
 
-                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                activeConnection = Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
                 return activeConnection;
             }
             catch (Exception)
@@ -75,7 +73,7 @@ namespace DMONET3.Forms
         {
             try
             {
-                xbCon.CallString(0x82771EB0, "fly");
+                Form1.xbCon.CallString(0x82771EB0, "fly");
                 fly = !fly;
                 simpleButton2.Text = fly ? "Fly: ON" : "Fly: OFF";
             }
@@ -88,7 +86,7 @@ namespace DMONET3.Forms
         {
             try
             {
-                xbCon.CallString(0x82771EB0, "god");
+                Form1.xbCon.CallString(0x82771EB0, "god");
                 godmode = !godmode;
                 simpleButton3.Text = godmode ? "God: ON" : "God: OFF";
             }
@@ -101,7 +99,7 @@ namespace DMONET3.Forms
         {
             try
             {
-                xbCon.CallString(0x82771EB0, "infiniteammo");
+                Form1.xbCon.CallString(0x82771EB0, "infiniteammo");
                 infiniteammo = !infiniteammo;
                 simpleButton4.Text = infiniteammo ? "Infinite Ammo: ON" : "Infinite Ammo: OFF";
             }
@@ -114,7 +112,7 @@ namespace DMONET3.Forms
         {
             try
             {
-                xbCon.CallString(0x82771EB0, "fps");
+                Form1.xbCon.CallString(0x82771EB0, "fps");
                 fps = !fps;
                 simpleButton5.Text = fps ? "FPS: ON" : "FPS: OFF";
             }
@@ -127,7 +125,7 @@ namespace DMONET3.Forms
         {
             try
             {
-                xbCon.CallString(0x82771EB0, "toggleoutlines");
+                Form1.xbCon.CallString(0x82771EB0, "toggleoutlines");
                 toggleoutlines = !toggleoutlines;
                 simpleButton6.Text = toggleoutlines ? "Outlines: OFF" : "Outlines: ON";
             }
@@ -140,7 +138,7 @@ namespace DMONET3.Forms
         {
             try
             {
-                xbCon.CallString(0x82771EB0, textEdit1.Text);
+                Form1.xbCon.CallString(0x82771EB0, textEdit1.Text);
             }
             catch (Exception)
             {

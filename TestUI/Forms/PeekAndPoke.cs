@@ -16,6 +16,7 @@ using Be.Windows.Forms;
 using System.Text.RegularExpressions;
 using PeekPoker.Interface;
 using System.Threading;
+using TestUI;
 
 namespace DMONET3.Forms
 {
@@ -32,6 +33,7 @@ namespace DMONET3.Forms
         private readonly AutoCompleteStringCollection _data = new AutoCompleteStringCollection();
         private byte[] _old;
         private RealTimeMemory _rtm;
+        public Form1 form1;
         public PeekAndPoke()
         {
             InitializeComponent();
@@ -39,32 +41,27 @@ namespace DMONET3.Forms
 
         private void PeekAndPoke_Load(object sender, EventArgs e)
         {
-            try
-            {
-                ConnectToConsole2();
-            }
-            catch { }
-            ipAddressTextBox.Text = ReverseIP(xbCon.GetConsoleIP());
+            ipAddressTextBox.Text = ReverseIP(Form1.xbCon.GetConsoleIP());
         }
         public bool ConnectToConsole2()
         {
-            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            if (activeConnection && Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
             {
                 return true;
             }
             try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
-                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
-                ConnectionCode = xbCon.OpenConnection(null);
-                xboxConnection = xbCon.OpenConnection(null);
+                Form1.xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
+                ConnectionCode = Form1.xbCon.OpenConnection(null);
+                xboxConnection = Form1.xbCon.OpenConnection(null);
 
-                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+                if (!Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
                 {
-                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                    Form1.xbCon.DebugTarget.ConnectAsDebugger("DMONET", XboxDebugConnectFlags.Force);
                 }
 
-                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                activeConnection = Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
                 return activeConnection;
             }
             catch (Exception)
@@ -197,25 +194,12 @@ namespace DMONET3.Forms
 
                 SetHexBoxByteProvider(buffer);
                 SetHexBoxRefresh();
-
-                MessageBox.Show("Peak Success");
             }
             catch (Exception)
             {
 
 
             }
-        }
-        private DynamicByteProvider GetHexBoxByteProvider()
-        {
-            //recursion
-            var returnVal = new DynamicByteProvider(new byte[] { 0, 0, 0, 0 });
-            if (hexBox.InvokeRequired)
-                hexBox.Invoke((MethodInvoker)
-                              delegate { returnVal = GetHexBoxByteProvider(); });
-            else
-                return (DynamicByteProvider)hexBox.ByteProvider;
-            return returnVal;
         }
         private void Poke()
         {
@@ -235,7 +219,6 @@ namespace DMONET3.Forms
                         _rtm.Poke(address, String.Format("{0,0:X2}", Convert.ToByte(fillValueTextBox.Text, 16)));
 
                     }
-                    MessageBox.Show("Poke Success");
                 }
                 else
                 {
@@ -255,6 +238,31 @@ namespace DMONET3.Forms
             {
 
             }
+        }
+        private void NewPeek()
+        {
+            //Clean up
+            peekPokeAddressTextBox2.Text = "C0000000";
+            peekLengthTextBox.Text = "FF";
+            SelAddress.Clear();
+            peekPokeFeedBackTextBox.Clear();
+            NumericInt8.Value = 0;
+            NumericInt16.Value = 0;
+            NumericInt32.Value = 0;
+            NumericFloatTextBox.Text = "0";
+            hexBox.ByteProvider = null;
+            hexBox.Refresh();
+        }
+        private DynamicByteProvider GetHexBoxByteProvider()
+        {
+            //recursion
+            var returnVal = new DynamicByteProvider(new byte[] { 0, 0, 0, 0 });
+            if (hexBox.InvokeRequired)
+                hexBox.Invoke((MethodInvoker)
+                              delegate { returnVal = GetHexBoxByteProvider(); });
+            else
+                return (DynamicByteProvider)hexBox.ByteProvider;
+            return returnVal;
         }
         private void ChangeNumericValue()
         {
@@ -379,20 +387,6 @@ namespace DMONET3.Forms
             {
                 ChangedNumericValue(sender);
             }
-        }
-        private void NewPeek()
-        {
-            //Clean up
-            peekPokeAddressTextBox2.Text = "C0000000";
-            peekLengthTextBox.Text = "FF";
-            SelAddress.Clear();
-            peekPokeFeedBackTextBox.Clear();
-            NumericInt8.Value = 0;
-            NumericInt16.Value = 0;
-            NumericInt32.Value = 0;
-            NumericFloatTextBox.Text = "0";
-            hexBox.ByteProvider = null;
-            hexBox.Refresh();
         }
         private void freezeButton_Click(object sender, EventArgs e)
         {

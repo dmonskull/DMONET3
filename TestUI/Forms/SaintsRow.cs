@@ -14,6 +14,7 @@ using XDevkit;
 using DevExpress.Utils.Gesture;
 using System.Threading;
 using XDRPC;
+using TestUI;
 
 namespace DMONET3.Forms
 {
@@ -27,6 +28,7 @@ namespace DMONET3.Forms
         public uint xboxConnection = 0;
         public string debuggerName = null;
         public string userName = null;
+        public Form1 form1;
         // Saints Row stuff
         private bool god, cash, uammo, jump, weapon, recoil, invis, turret, fps;
         private bool rlevel, rsky, rshadows, ritems, rchar, rfog, gdebug, ldebug, pPOVdebug;
@@ -37,31 +39,27 @@ namespace DMONET3.Forms
         }
         private void SaintsRow_Load(object sender, EventArgs e)
         {
-            try
-            {
-                ConnectToConsole2();
-            }
-            catch { }
+
         }
         public bool ConnectToConsole2()
         {
-            if (activeConnection && xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+            if (activeConnection && Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
             {
                 return true;
             }
             try
             {
                 xbManager = (XboxManager)Activator.CreateInstance(Marshal.GetTypeFromCLSID(new Guid("A5EB45D8-F3B6-49B9-984A-0D313AB60342")));
-                xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
-                ConnectionCode = xbCon.OpenConnection(null);
-                xboxConnection = xbCon.OpenConnection(null);
+                Form1.xbCon = xbManager.OpenConsole(xbManager.DefaultConsole);
+                ConnectionCode = Form1.xbCon.OpenConnection(null);
+                xboxConnection = Form1.xbCon.OpenConnection(null);
 
-                if (!xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
+                if (!Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
                 {
-                    xbCon.DebugTarget.ConnectAsDebugger("Xbox Toolbox", XboxDebugConnectFlags.Force);
+                    Form1.xbCon.DebugTarget.ConnectAsDebugger("DMONET", XboxDebugConnectFlags.Force);
                 }
 
-                activeConnection = xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
+                activeConnection = Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName);
                 return activeConnection;
             }
             catch (Exception)
@@ -102,7 +100,7 @@ namespace DMONET3.Forms
         {
             foreach (string command in commands)
             {
-                xbCon.CallString(0x8263cb10, new object[] { command });
+                Form1.xbCon.CallString(0x8263cb10, new object[] { command });
                 Thread.Sleep(1000);
             }
         }
@@ -131,7 +129,7 @@ namespace DMONET3.Forms
 
             foreach (uint address in PLAYERS_HEALTH_BARX)
             {
-                xbCon.WriteBytes(address, healthValue);
+                Form1.xbCon.WriteBytes(address, healthValue);
             }
 
             god = !god;
@@ -139,57 +137,57 @@ namespace DMONET3.Forms
         private void simpleButton3_Click(object sender, EventArgs e)
         {
             simpleButton3.ForeColor = uammo ? Color.Red : Color.Green;
-            xbCon.WriteBytes(2204058237U, new byte[] { uammo ? (byte)0 : (byte)1 });
+            Form1.xbCon.WriteBytes(2204058237U, new byte[] { uammo ? (byte)0 : (byte)1 });
             uammo = !uammo;
         }
         private void simpleButton9_Click(object sender, EventArgs e)
         {
             simpleButton9.ForeColor = recoil ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { recoil ? "recoil 1" : "recoil 0" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { recoil ? "recoil 1" : "recoil 0" });
             recoil = !recoil;
         }
         private void simpleButton10_Click(object sender, EventArgs e)
         {
             simpleButton10.ForeColor = invis ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "Nathaniel_hack" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "Nathaniel_hack" });
             if (!invis)
             {
-                xbCon.CallString(0x8263cb10, new object[] { "Nathaniel_hack_alpha 0" });
+                Form1.xbCon.CallString(0x8263cb10, new object[] { "Nathaniel_hack_alpha 0" });
             }
             invis = !invis;
         }
         private void simpleButton31_Click(object sender, EventArgs e)
         {
             simpleButton23.ForeColor = freeze ? Color.Red : Color.Green;
-            xbCon.WriteBytes(2204061010U, new byte[] { freeze ? (byte)0 : (byte)1 });
+            Form1.xbCon.WriteBytes(2204061010U, new byte[] { freeze ? (byte)0 : (byte)1 });
             freeze = !freeze;
         }
         private void simpleButton8_Click(object sender, EventArgs e)
         {
-            xbCon.CallString(0x8263cb10, new object[] { "vomit" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "vomit" });
         }
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             simpleButton2.ForeColor = weapon ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { weapon ? "give_player_n_weapons 0" : "give_player_n_weapons 7" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { weapon ? "give_player_n_weapons 0" : "give_player_n_weapons 7" });
             weapon = !weapon;
         }
         private void simpleButton4_Click(object sender, EventArgs e)
         {
             simpleButton4.ForeColor = cash ? Color.Red : Color.Green;
-            xbCon.WriteBytes(3260839472U, cash ? new byte[] { byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue } : new byte[] { 119, 119, 119, 119 });
+            Form1.xbCon.WriteBytes(3260839472U, cash ? new byte[] { byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue } : new byte[] { 119, 119, 119, 119 });
             cash = !cash;
         }
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             simpleButton2.ForeColor = jump ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { jump ? "Jump_height 1" : "Jump_height 21" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { jump ? "Jump_height 1" : "Jump_height 21" });
             jump = !jump;
         }
         private void simpleButton11_Click(object sender, EventArgs e)
         {
             simpleButton11.ForeColor = turret ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "turret" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "turret" });
             turret = !turret;
         }
         private void simpleButton32_Click(object sender, EventArgs e)
@@ -210,129 +208,129 @@ namespace DMONET3.Forms
         private void simpleButton27_Click(object sender, EventArgs e)
         {
             simpleButton27.ForeColor = fperson ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "Nathaniel_hack" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "Nathaniel_hack" });
             if (!fperson)
             {
-                xbCon.CallString(0x8263cb10, new object[] { "Nathaniel_hack_alpha 0", "camera_radius 4" });
+                Form1.xbCon.CallString(0x8263cb10, new object[] { "Nathaniel_hack_alpha 0", "camera_radius 4" });
             }
             else
             {
-                xbCon.CallString(0x8263cb10, new object[] { "camera_radius 1" });
+                Form1.xbCon.CallString(0x8263cb10, new object[] { "camera_radius 1" });
             }
             fperson = !fperson;
         }
         private void simpleButton5_Click(object sender, EventArgs e)
         {
             simpleButton5.ForeColor = glow ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "item_glows" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "item_glows" });
             glow = !glow;
         }
         private void simpleButton13_Click(object sender, EventArgs e)
         {
             simpleButton13.ForeColor = rlevel ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "R_level" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "R_level" });
             rlevel = !rlevel;
         }
         private void simpleButton15_Click(object sender, EventArgs e)
         {
             simpleButton15.ForeColor = rshadows ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "r_shadows" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "r_shadows" });
             rshadows = !rshadows;
         }
         private void simpleButton17_Click(object sender, EventArgs e)
         {
             simpleButton17.ForeColor = rchar ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "R_chars" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "R_chars" });
             rchar = !rchar;
         }
         private void simpleButton18_Click(object sender, EventArgs e)
         {
             simpleButton18.ForeColor = gdebug ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "glare_debug" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "glare_debug" });
             gdebug = !gdebug;
         }
         private void simpleButton19_Click(object sender, EventArgs e)
         {
             simpleButton19.ForeColor = pPOVdebug ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "r_player_pov" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "r_player_pov" });
             pPOVdebug = !pPOVdebug;
         }
         private void simpleButton23_Click(object sender, EventArgs e)
         {
             simpleButton23.ForeColor = occludersdebug2 ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "r_rel_occluders" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "r_rel_occluders" });
             occludersdebug2 = !occludersdebug2;
         }
         private void simpleButton12_Click(object sender, EventArgs e)
         {
             simpleButton12.ForeColor = fps ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "show_fps" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "show_fps" });
             fps = !fps;
         }
         private void simpleButton14_Click(object sender, EventArgs e)
         {
             simpleButton14.ForeColor = rsky ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "R_skybox" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "R_skybox" });
             rsky = !rsky;
         }
         private void simpleButton16_Click(object sender, EventArgs e)
         {
             simpleButton16.ForeColor = ritems ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "R_static" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "R_static" });
             ritems = !ritems;
         }
         private void simpleButton21_Click(object sender, EventArgs e)
         {
             simpleButton21.ForeColor = rfog ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "fog" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "fog" });
             rfog = !rfog;
         }
         private void simpleButton20_Click(object sender, EventArgs e)
         {
             simpleButton20.ForeColor = ldebug ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "R_lights_debug" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "R_lights_debug" });
             ldebug = !ldebug;
         }
         private void simpleButton22_Click(object sender, EventArgs e)
         {
             simpleButton22.ForeColor = occludersdebug ? Color.Red : Color.Green;
-            xbCon.CallString(0x8263cb10, new object[] { "r_occluders" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "r_occluders" });
             occludersdebug = !occludersdebug;
         }
         private void simpleButton35_Click(object sender, EventArgs e)
         {
-            xbCon.CallString(0x8263cb10, new object[] { "flip_car" });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { "flip_car" });
         }
         private void simpleButton24_Click(object sender, EventArgs e)
         {
             string[] cmds = { "set_time_of_day 12", "set_time_of_day 1", "set_time_of_day 20" };
             int idx = simpleButton24.Tag != null ? (int)simpleButton24.Tag : 0;
-            xbCon.CallString(0x8263cb10, new object[] { cmds[idx] });
+            Form1.xbCon.CallString(0x8263cb10, new object[] { cmds[idx] });
             simpleButton24.Tag = (idx + 1) % cmds.Length;
         }
         private void simpleButton6_Click(object sender, EventArgs e)
         {
-            xbCon.CallString(2187578128U, new object[] { textEdit1.Text });
+            Form1.xbCon.CallString(2187578128U, new object[] { textEdit1.Text });
         }
         private void simpleButton36_Click(object sender, EventArgs e)
         {
             if (comboBoxEdit1.Text == "Blunt")
             {
-                xbCon.WriteBytes(0x827CF46F, new byte[]
+                Form1.xbCon.WriteBytes(0x827CF46F, new byte[]
                 {
                     70
                 });
             }
             if (comboBoxEdit1.Text == "Joint")
             {
-                xbCon.WriteBytes(0x827CF46F, new byte[]
+                Form1.xbCon.WriteBytes(0x827CF46F, new byte[]
                 {
                     66
                 });
             }
             if (comboBoxEdit1.Text == "Beer")
             {
-                xbCon.WriteBytes(0x827CF46F, new byte[]
+                Form1.xbCon.WriteBytes(0x827CF46F, new byte[]
                 {
                     65
                 });
@@ -341,7 +339,7 @@ namespace DMONET3.Forms
         private void simpleButton28_Click(object sender, EventArgs e)
         {
             simpleButton28.ForeColor = Color.Green;
-            xbCon.CallString(0x8263cb10, new object[]
+            Form1.xbCon.CallString(0x8263cb10, new object[]
             {
                 "hood_explore_all"
             });
@@ -349,7 +347,7 @@ namespace DMONET3.Forms
         private void simpleButton29_Click(object sender, EventArgs e)
         {
             simpleButton29.ForeColor = Color.Green;
-            xbCon.CallString(0x8263cb10, new object[]
+            Form1.xbCon.CallString(0x8263cb10, new object[]
             {
                 "hood_win_all"
             });
@@ -357,7 +355,7 @@ namespace DMONET3.Forms
         private void simpleButton33_Click(object sender, EventArgs e)
         {
             simpleButton33.ForeColor = Color.Green;
-            xbCon.CallString(0x8263cb10, new object[]
+            Form1.xbCon.CallString(0x8263cb10, new object[]
             {
                 "activity_unlock_levels"
             });
@@ -365,14 +363,14 @@ namespace DMONET3.Forms
         private void simpleButton34_Click(object sender, EventArgs e)
         {
             simpleButton34.ForeColor = Color.Green;
-            xbCon.CallString(0x8263cb10, new object[]
+            Form1.xbCon.CallString(0x8263cb10, new object[]
             {
                 "cheats_unlock_all"
             });
         }
         private void simpleButton30_Click(object sender, EventArgs e)
         {
-            xbCon.CallString(0x8263cb10, new object[]
+            Form1.xbCon.CallString(0x8263cb10, new object[]
             {
                 "player_set_name " + textEdit2.Text
             });

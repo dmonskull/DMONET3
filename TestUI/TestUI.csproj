@@ -141,6 +141,12 @@
     <Compile Include="Classes\RealTimeMemory.cs" />
     <Compile Include="Classes\RWStream.cs" />
     <Compile Include="Classes\Types.cs" />
+    <Compile Include="Forms\AddQuickLaunch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddQuickLaunch.Designer.cs">
+      <DependentUpon>AddQuickLaunch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ConsoleInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,12 @@
     <Compile Include="Forms\DeadRising2OTR.Designer.cs">
       <DependentUpon>DeadRising2OTR.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FileExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FileExplorer.Designer.cs">
+      <DependentUpon>FileExplorer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,11 +225,11 @@
     <Compile Include="Forms\PeekAndPoke.Designer.cs">
       <DependentUpon>PeekAndPoke.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\QuickLaunchEditor.cs">
+    <Compile Include="Forms\QuickLaunch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\QuickLaunchEditor.Designer.cs">
-      <DependentUpon>QuickLaunchEditor.cs</DependentUpon>
+    <Compile Include="Forms\QuickLaunch.Designer.cs">
+      <DependentUpon>QuickLaunch.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ResidentEvil4.cs">
       <SubType>Form</SubType>
@@ -264,6 +276,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Classes\XDRPCPlusPlus.cs" />
+    <EmbeddedResource Include="Forms\AddQuickLaunch.resx">
+      <DependentUpon>AddQuickLaunch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConsoleInfo.resx">
       <DependentUpon>ConsoleInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -285,6 +300,9 @@
     <EmbeddedResource Include="Forms\DeadRising2OTR.resx">
       <DependentUpon>DeadRising2OTR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FileExplorer.resx">
+      <DependentUpon>FileExplorer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -300,8 +318,8 @@
     <EmbeddedResource Include="Forms\PeekAndPoke.resx">
       <DependentUpon>PeekAndPoke.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\QuickLaunchEditor.resx">
-      <DependentUpon>QuickLaunchEditor.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\QuickLaunch.resx">
+      <DependentUpon>QuickLaunch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ResidentEvil4.resx">
       <DependentUpon>ResidentEvil4.cs</DependentUpon>
