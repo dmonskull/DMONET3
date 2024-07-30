@@ -149,28 +149,26 @@ namespace TestUI // Made by DMONSKULL
         }
         public void LaunchGameFromIni(string gameId, string gameFolder)
         {
-            string filePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "INIs/Quicklaunch/quicklaunch.ini");
+            string filePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "quicklaunch.ini");
             var parser = new FileIniDataParser();
             try
             {
                 IniData data = parser.ReadFile(filePath);
                 if (gameId != null && gameFolder != null)
                 {
-                    // Check for game-specific paths
-                    if (data["Games"].ContainsKey(gameId))
+                    if (data.Sections.ContainsSection(gameId))
                     {
-                        string launchPath = data["Games"][gameId];
+                        string launchPath = data[gameId]["LaunchPath"];
                         if (string.IsNullOrWhiteSpace(launchPath))
                         {
                             DialogResult result = XtraMessageBox.Show("The launch path is not set. Would you like to set it up?", "Setup Launch Path", MessageBoxButtons.YesNo);
                             if (result == DialogResult.Yes)
                             {
-                                FileExplorer fileExplorer = new FileExplorer(this, quickLauncher ,gameId);
+                                FileExplorer fileExplorer = new FileExplorer(this, quickLauncher, gameId, true);
                                 fileExplorer.Show();
                             }
                             return;
                         }
-
                         try
                         {
                             string directoryPath = Path.GetDirectoryName(launchPath);
@@ -179,7 +177,7 @@ namespace TestUI // Made by DMONSKULL
                         }
                         catch (Exception)
                         {
-                            XtraMessageBox.Show("Please connect to the console first");
+                            XtraMessageBox.Show("Please connect to the console first.");
                             return;
                         }
                     }
@@ -190,7 +188,7 @@ namespace TestUI // Made by DMONSKULL
                 }
                 else
                 {
-                    XtraMessageBox.Show("Game ID or Game Path is missing.");
+                    XtraMessageBox.Show("Game ID or game folder is missing.");
                 }
             }
             catch (Exception ex)
@@ -370,6 +368,11 @@ namespace TestUI // Made by DMONSKULL
             DashLaunchEditor editor = new DashLaunchEditor();
             editor.Show();
         }
+        private void tileItem13_ItemClick(object sender, TileItemEventArgs e)
+        {
+            FileExplorer fileExplorer = new FileExplorer(this, quickLauncher, null, false);
+            fileExplorer.Show();
+        }
 
         //Launching Games
         private void tileItem3_RightItemClick(object sender, TileItemEventArgs e)
@@ -412,5 +415,6 @@ namespace TestUI // Made by DMONSKULL
             LaunchGameFromIni("Crackdown2", "Games");
         }
         #endregion
+
     }
 }

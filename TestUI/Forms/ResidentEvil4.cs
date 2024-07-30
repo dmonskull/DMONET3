@@ -94,7 +94,7 @@ namespace TestUI.Forms
                     }
                 }
             }
-            MessageBox.Show(heldWeapons.ToString());
+            XtraMessageBox.Show(heldWeapons.ToString());
         }
 
         #region DictionaryStuff
@@ -343,7 +343,7 @@ namespace TestUI.Forms
                     Form1.xbCon.WriteBytes(amountOffset, amountBytes);
                 }
             }
-            MessageBox.Show("Max Amount for ALL slots has been set!", ":)");
+            XtraMessageBox.Show("Max Amount for ALL slots has been set!", ":)");
         }
         private void simpleButton6_Click(object sender, EventArgs e)
         {
@@ -353,7 +353,7 @@ namespace TestUI.Forms
             }
             catch (Exception)
             {
-                MessageBox.Show("An error occurred", "Error");
+                XtraMessageBox.Show("An error occurred", "Error");
             }
         }
         private void simpleButton7_Click(object sender, EventArgs e)
@@ -364,7 +364,7 @@ namespace TestUI.Forms
             }
             catch (Exception)
             {
-                MessageBox.Show("An error occurred", "Error");
+                XtraMessageBox.Show("An error occurred", "Error");
             }
         }
         private void simpleButton8_Click(object sender, EventArgs e)
@@ -377,7 +377,7 @@ namespace TestUI.Forms
             }
             catch (Exception)
             {
-                MessageBox.Show("An error occurred", "Error");
+                XtraMessageBox.Show("An error occurred", "Error");
             }
         }
         private void simpleButton9_Click(object sender, EventArgs e)
@@ -390,7 +390,7 @@ namespace TestUI.Forms
             }
             catch (Exception)
             {
-                MessageBox.Show("An error occurred", "Error");
+                XtraMessageBox.Show("An error occurred", "Error");
             }
         }
         private void simpleButton10_Click(object sender, EventArgs e)
@@ -403,7 +403,7 @@ namespace TestUI.Forms
             }
             catch (Exception)
             {
-                MessageBox.Show("An error occurred", "Error");
+                XtraMessageBox.Show("An error occurred", "Error");
             }
         }
         private void simpleButton12_Click(object sender, EventArgs e)
@@ -416,7 +416,7 @@ namespace TestUI.Forms
             }
             catch (Exception)
             {
-                MessageBox.Show("An error occurred", "Error");
+                XtraMessageBox.Show("An error occurred", "Error");
             }
         }
 
@@ -445,7 +445,7 @@ namespace TestUI.Forms
             }
             catch (Exception)
             {
-                MessageBox.Show("An error occurred", "Error");
+                XtraMessageBox.Show("An error occurred", "Error");
             }
         }
         private void simpleButton13_Click(object sender, EventArgs e)
@@ -458,7 +458,7 @@ namespace TestUI.Forms
             }
             catch (Exception)
             {
-                MessageBox.Show("An error occurred", "Error");
+                XtraMessageBox.Show("An error occurred", "Error");
             }
         }
 

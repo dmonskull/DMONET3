@@ -28,8 +28,9 @@ namespace DMONET3.Forms
         private Dictionary<string, string> fileExtensionToImageKeyMap;
         private Form1 mainForm;
         private QuickLaunch quickLauncher;
+        private bool isQuickLaunchSetup;
         private string gameId;
-        public FileExplorer(Form1 mainForm, QuickLaunch quickLauncher, string gameId)
+        public FileExplorer(Form1 mainForm, QuickLaunch quickLauncher, string gameId, bool isQuickLaunchSetup)
         {
             InitializeComponent();
             InitializeImageList();
@@ -38,6 +39,7 @@ namespace DMONET3.Forms
             this.gameId = gameId;
             this.mainForm = mainForm;
             this.gameId = gameId;
+            this.isQuickLaunchSetup = isQuickLaunchSetup;
         }
 
         private void FileExplorer_Load(object sender, EventArgs e)
@@ -268,13 +270,19 @@ namespace DMONET3.Forms
         }
         private void barButtonItem13_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!isQuickLaunchSetup)
+            {
+                XtraMessageBox.Show("This operation is only allowed when setting up a main quick launch path.");
+                return;
+            }
+
             var selectedItem = listView1.FocusedItem;
             if (selectedItem != null)
             {
                 IXboxFile file = selectedItem.Tag as IXboxFile;
                 if (file != null && file.Name.EndsWith(".xex", StringComparison.OrdinalIgnoreCase))
                 {
-                    string fullPath = Path.Combine(file.Name).Replace("\\\\", "\\");
+                    string fullPath = Path.Combine(currentPath, file.Name).Replace("\\\\", "\\");
 
                     // Save to quicklaunch.ini
                     string filePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "INIs/Quicklaunch/quicklaunch.ini");
@@ -286,11 +294,16 @@ namespace DMONET3.Forms
                         data.Sections.AddSection("Games");
                     }
 
+                    if (data["Games"].ContainsKey(gameId) && !string.IsNullOrWhiteSpace(data["Games"][gameId]))
+                    {
+                        XtraMessageBox.Show($"Launch path for {gameId} is already set. Please clear it before setting a new path.");
+                        return;
+                    }
+
                     data["Games"][gameId] = fullPath;
                     parser.WriteFile(filePath, data);
 
                     XtraMessageBox.Show($"Launch path for {gameId} has been set.");
-
                     this.Close();
                 }
             }

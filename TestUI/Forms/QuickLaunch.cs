@@ -193,6 +193,12 @@ namespace DMONET3.Forms
             IniData data = parser.ReadFile(iniFilePath);
             foreach (var section in data.Sections)
             {
+                // Skip the "Games" section
+                if (section.SectionName == "Games")
+                {
+                    continue;
+                }
+
                 string gameName = section.SectionName;
                 string launchPath = section.Keys["LaunchPath"];
                 string iconPath = section.Keys["IconPath"];
@@ -236,7 +242,7 @@ namespace DMONET3.Forms
         }
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            using (FileExplorer fileExplorer = new FileExplorer(form1, this, gameId))
+            using (FileExplorer fileExplorer = new FileExplorer(form1, this, null, false))
             {
                 fileExplorer.ShowDialog();
             }

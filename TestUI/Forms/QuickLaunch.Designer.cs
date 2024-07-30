@@ -62,7 +62,7 @@
             this.MaximizeBox = false;
             this.Name = "QuickLaunch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "QuickLaunch";
+            this.Text = "Quick Launcher";
             this.Load += new System.EventHandler(this.QuickLaunch_Load);
             this.ResumeLayout(false);
 
