@@ -26,12 +26,10 @@ namespace DMONET3.Forms
             textEditLaunchPath.Text = launchPath;
             iniFilePath = Path.Combine(Application.StartupPath, "INIs/Quicklaunch/quicklaunch.ini");
         }
-
         private void AddQuickLaunch_Load(object sender, EventArgs e)
         {
 
         }
-
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(GameName) || string.IsNullOrWhiteSpace(LaunchPath))
@@ -52,7 +50,6 @@ namespace DMONET3.Forms
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
-
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())

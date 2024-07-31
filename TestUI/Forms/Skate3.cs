@@ -115,7 +115,6 @@ namespace TestUI.Forms
             }
         }
         #endregion
-
         #region CharacterEdits
         private void simpleButton10_Click(object sender, EventArgs e)
         {

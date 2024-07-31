@@ -70,14 +70,12 @@ namespace DMONET3.Forms
                 return false;
             }
         }
-
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             byte test = Convert.ToByte(numericUpDown1.Value);
             byte[] test2 = BitConverter.GetBytes(test);
             Form1.xbCon.WriteBytes(Levels, test2);
         }
-
         private void simpleButton6_Click(object sender, EventArgs e)
         {
             simpleButton6.ForeColor = timergodmode ? Color.Red : Color.Green;
@@ -93,7 +91,6 @@ namespace DMONET3.Forms
             }
             timergodmode = !timergodmode;
         }
-
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             simpleButton2.ForeColor = level ? Color.Red : Color.Green;
@@ -101,7 +98,6 @@ namespace DMONET3.Forms
             Form1.xbCon.WriteBytes(0xC7D398B0, levelData);
             level = !level;
         }
-
         private void simpleButton3_Click(object sender, EventArgs e)
         {
             simpleButton3.ForeColor = money ? Color.Red : Color.Green;
@@ -109,7 +105,6 @@ namespace DMONET3.Forms
             Form1.xbCon.WriteBytes(money2, moneyData);
             money = !money;
         }
-
         private void simpleButton4_Click(object sender, EventArgs e)
         {
             simpleButton4.ForeColor = health ? Color.Red : Color.Green;
@@ -117,7 +112,6 @@ namespace DMONET3.Forms
             Form1.xbCon.WriteBytes(0xC7D398BC, healthData);
             health = !health;
         }
-
         private void simpleButton5_Click(object sender, EventArgs e)
         {
             simpleButton5.ForeColor = healthbars ? Color.Red : Color.Green;
@@ -125,7 +119,6 @@ namespace DMONET3.Forms
             Form1.xbCon.WriteBytes(0xC7D398EF, healthBarsData);
             healthbars = !healthbars;
         }
-
         private void simpleButton7_Click(object sender, EventArgs e)
         {
             simpleButton7.ForeColor = fastrun ? Color.Red : Color.Green;

@@ -44,7 +44,6 @@ namespace DMONET3.Forms
             pictureBox1.ImageLocation = "https://mygamerprofile.net/card/nxe/" + gamertag2 + ".png";
             pictureBox2.ImageLocation = "http://avatar.xboxlive.com/avatar/" + gamertag2 + "/avatar-body.png";
         }
-
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             PullInfo();

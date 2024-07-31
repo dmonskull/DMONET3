@@ -43,6 +43,7 @@ namespace DMONET3.Forms
         {
             ipAddressTextBox.Text = ReverseIP(Form1.xbCon.GetConsoleIP());
         }
+        #region CoreFunctions
         public bool ConnectToConsole2()
         {
             if (activeConnection && Form1.xbCon.DebugTarget.IsDebuggerConnected(out debuggerName, out userName))
@@ -458,5 +459,6 @@ namespace DMONET3.Forms
         {
             ThreadPool.QueueUserWorkItem(Connect);
         }
+        #endregion
     }
 }

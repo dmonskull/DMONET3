@@ -277,7 +277,6 @@ namespace TestUI.Forms
             {"Plaga Sample", 0x0C}
         };
         #endregion
-
         #region ButtonClicks
         private void simpleButton1_Click(object sender, EventArgs e)
         {

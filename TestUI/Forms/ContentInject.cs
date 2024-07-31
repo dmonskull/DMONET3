@@ -677,7 +677,6 @@ namespace DMONET3.Forms
             }
         }
         #endregion
-
         #region Automated Stuff
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {

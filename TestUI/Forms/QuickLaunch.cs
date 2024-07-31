@@ -44,6 +44,7 @@ namespace DMONET3.Forms
             quickLaunchListView.View = View.LargeIcon;
             quickLaunchListView.LargeImageList = imageList;
         }
+        #region CoreFunctions
         private void InitializeImageList()
         {
             imageList = new ImageList();
@@ -65,6 +66,100 @@ namespace DMONET3.Forms
             launchItem.Click += LaunchItem_Click;
             removeItem.Click += RemoveItem_Click;
             changeImageItem.Click += ChangeImageItem_Click;
+        }
+        public void AddQuickLaunchItem(string gameName, string launchPath, string iconPath)
+        {
+            // Ensure the icon is loaded into the image list
+            if (!string.IsNullOrEmpty(iconPath) && File.Exists(iconPath) && !imageList.Images.ContainsKey(iconPath))
+            {
+                imageList.Images.Add(iconPath, Image.FromFile(iconPath));
+            }
+
+            ListViewItem item = new ListViewItem(gameName)
+            {
+                Tag = new QuickLaunchItem { GameName = gameName, LaunchPath = launchPath, IconPath = iconPath },
+                ImageIndex = !string.IsNullOrEmpty(iconPath) && File.Exists(iconPath) ? imageList.Images.IndexOfKey(iconPath) : imageList.Images.IndexOfKey("default")
+            };
+
+            quickLaunchListView.Items.Add(item);
+            SaveQuickLaunchItem(gameName, launchPath, iconPath);
+        }
+        private void SaveQuickLaunchItem(string gameName, string launchPath, string iconPath)
+        {
+            IniData data = File.Exists(iniFilePath) ? parser.ReadFile(iniFilePath) : new IniData();
+
+            if (!data.Sections.ContainsSection(gameName))
+            {
+                data.Sections.AddSection(gameName);
+            }
+
+            data[gameName]["LaunchPath"] = launchPath;
+            data[gameName]["IconPath"] = iconPath;
+
+            parser.WriteFile(iniFilePath, data);
+        }
+        private void LoadQuickLaunchItems()
+        {
+            if (!File.Exists(iniFilePath)) return;
+
+            IniData data = parser.ReadFile(iniFilePath);
+            foreach (var section in data.Sections)
+            {
+                // Skip the "Games" section
+                if (section.SectionName == "Games")
+                {
+                    continue;
+                }
+
+                string gameName = section.SectionName;
+                string launchPath = section.Keys["LaunchPath"];
+                string iconPath = section.Keys["IconPath"];
+
+                // Ensure the icon is loaded into the image list
+                if (!string.IsNullOrEmpty(iconPath) && File.Exists(iconPath) && !imageList.Images.ContainsKey(iconPath))
+                {
+                    imageList.Images.Add(iconPath, Image.FromFile(iconPath));
+                }
+
+                ListViewItem item = new ListViewItem(gameName)
+                {
+                    Tag = new QuickLaunchItem { GameName = gameName, LaunchPath = launchPath, IconPath = iconPath },
+                    ImageIndex = !string.IsNullOrEmpty(iconPath) && File.Exists(iconPath) ? imageList.Images.IndexOfKey(iconPath) : imageList.Images.IndexOfKey("default")
+                };
+
+                quickLaunchListView.Items.Add(item);
+            }
+        }
+        #endregion
+        #region Clicks
+        private void quickLaunchListView_DoubleClick(object sender, EventArgs e)
+        {
+            if (quickLaunchListView.SelectedItems.Count == 1)
+            {
+                ListViewItem item = quickLaunchListView.SelectedItems[0];
+                QuickLaunchItem quickLaunchItem = item.Tag as QuickLaunchItem;
+                if (quickLaunchItem != null)
+                {
+                    string xexPath = quickLaunchItem.LaunchPath;
+                    string directoryPath = Path.GetDirectoryName(xexPath);
+
+                    try
+                    {
+                        Form1.xbCon.Reboot(xexPath, directoryPath, null, XboxRebootFlags.Title);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Failed to launch: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            using (FileExplorer fileExplorer = new FileExplorer(form1, this, null, false))
+            {
+                fileExplorer.ShowDialog();
+            }
         }
         private void LaunchItem_Click(object sender, EventArgs e)
         {
@@ -153,98 +248,7 @@ namespace DMONET3.Forms
                 }
             }
         }
-        public void AddQuickLaunchItem(string gameName, string launchPath, string iconPath)
-        {
-            // Ensure the icon is loaded into the image list
-            if (!string.IsNullOrEmpty(iconPath) && File.Exists(iconPath) && !imageList.Images.ContainsKey(iconPath))
-            {
-                imageList.Images.Add(iconPath, Image.FromFile(iconPath));
-            }
-
-            ListViewItem item = new ListViewItem(gameName)
-            {
-                Tag = new QuickLaunchItem { GameName = gameName, LaunchPath = launchPath, IconPath = iconPath },
-                ImageIndex = !string.IsNullOrEmpty(iconPath) && File.Exists(iconPath) ? imageList.Images.IndexOfKey(iconPath) : imageList.Images.IndexOfKey("default")
-            };
-
-            quickLaunchListView.Items.Add(item);
-            SaveQuickLaunchItem(gameName, launchPath, iconPath);
-        }
-        private void SaveQuickLaunchItem(string gameName, string launchPath, string iconPath)
-        {
-            IniData data = File.Exists(iniFilePath) ? parser.ReadFile(iniFilePath) : new IniData();
-
-            if (!data.Sections.ContainsSection(gameName))
-            {
-                data.Sections.AddSection(gameName);
-            }
-
-            data[gameName]["LaunchPath"] = launchPath;
-            data[gameName]["IconPath"] = iconPath;
-
-            parser.WriteFile(iniFilePath, data);
-        }
-        private void LoadQuickLaunchItems()
-        {
-            if (!File.Exists(iniFilePath)) return;
-
-            IniData data = parser.ReadFile(iniFilePath);
-            foreach (var section in data.Sections)
-            {
-                // Skip the "Games" section
-                if (section.SectionName == "Games")
-                {
-                    continue;
-                }
-
-                string gameName = section.SectionName;
-                string launchPath = section.Keys["LaunchPath"];
-                string iconPath = section.Keys["IconPath"];
-
-                // Ensure the icon is loaded into the image list
-                if (!string.IsNullOrEmpty(iconPath) && File.Exists(iconPath) && !imageList.Images.ContainsKey(iconPath))
-                {
-                    imageList.Images.Add(iconPath, Image.FromFile(iconPath));
-                }
-
-                ListViewItem item = new ListViewItem(gameName)
-                {
-                    Tag = new QuickLaunchItem { GameName = gameName, LaunchPath = launchPath, IconPath = iconPath },
-                    ImageIndex = !string.IsNullOrEmpty(iconPath) && File.Exists(iconPath) ? imageList.Images.IndexOfKey(iconPath) : imageList.Images.IndexOfKey("default")
-                };
-
-                quickLaunchListView.Items.Add(item);
-            }
-        }
-        private void quickLaunchListView_DoubleClick(object sender, EventArgs e)
-        {
-            if (quickLaunchListView.SelectedItems.Count == 1)
-            {
-                ListViewItem item = quickLaunchListView.SelectedItems[0];
-                QuickLaunchItem quickLaunchItem = item.Tag as QuickLaunchItem;
-                if (quickLaunchItem != null)
-                {
-                    string xexPath = quickLaunchItem.LaunchPath;
-                    string directoryPath = Path.GetDirectoryName(xexPath);
-
-                    try
-                    {
-                        Form1.xbCon.Reboot(xexPath, directoryPath, null, XboxRebootFlags.Title);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Failed to launch: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-        }
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            using (FileExplorer fileExplorer = new FileExplorer(form1, this, null, false))
-            {
-                fileExplorer.ShowDialog();
-            }
-        }
+        #endregion
     }
     public class QuickLaunchItem
     {
