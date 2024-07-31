@@ -6,6 +6,7 @@ using IniParser.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -24,7 +25,6 @@ namespace TestUI // Made by DMONSKULL
         public static IXboxManager xbManager = null;
         public static IXboxConsole xbCon = null;
         public static bool activeConnection = false;
-        private uint ConnectionCode;
         public uint xboxConnection = 0;
         public string debuggerName = null;
         public string userName = null;
@@ -32,19 +32,21 @@ namespace TestUI // Made by DMONSKULL
         private readonly string iniFilePath = AppDomain.CurrentDomain.BaseDirectory + "INIs/Settings/settings.ini";
         private IniData data;
         private QuickLaunch quickLauncher;
+        private static Dictionary<uint, string> gameDictionary = new Dictionary<uint, string>();
+        private string gameListPath;
 
         public Form1()
         {
             InitializeComponent();
             LoadUserSettings();
+            LoadGameList();
         }
 
         #region FormStuff
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Initialization code if needed
+            PullXboxUserInfo();
         }
-
         public void InfoUpdater()
         {
             timer = new Timer();
@@ -52,16 +54,14 @@ namespace TestUI // Made by DMONSKULL
             timer.Tick += Timer_Tick;
             timer.Start();
         }
-
         private void Timer_Tick(object sender, EventArgs e)
         {
             string gameName = GetCurrentTitleName();
             string gameId = GetCurrentTitleId();
-            barStaticItem3.Caption = "Playing: " + gameName + "\tTitle ID: " + gameId + "\tRunning Path: " + xbCon.RunningProcessInfo.ProgramName;
+            barStaticItem3.Caption = $"Playing: {gameName}\tTitle ID: {gameId}\tRunning Path: {xbCon.RunningProcessInfo.ProgramName}";
             ribbonControl1.ApplicationButtonText = Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U))
                 .All(b => b == 0) ? "unknown" : Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).Trim().Trim(new char[1]);
         }
-
         private void LoadUserSettings()
         {
             var parser = new FileIniDataParser();
@@ -77,11 +77,10 @@ namespace TestUI // Made by DMONSKULL
             {
                 if (ConnectToConsole())
                 {
-                    PullXboxUserInfo();
+
                 }
             }
         }
-
         private void SaveSettings()
         {
             new FileIniDataParser().WriteFile(iniFilePath, data);
@@ -117,6 +116,37 @@ namespace TestUI // Made by DMONSKULL
                 return false;
             }
         }
+        private void LoadGameList()
+        {
+            gameListPath = Path.Combine(Application.StartupPath, "INIs/GameList/GameList.ini");
+
+            if (File.Exists(gameListPath))
+            {
+                var parser = new FileIniDataParser();
+                IniData data = parser.ReadFile(gameListPath);
+                foreach (var kvp in data["Games"])
+                {
+                    uint titleId = Convert.ToUInt32(kvp.KeyName, 16);
+                    if (!gameDictionary.ContainsKey(titleId))
+                    {
+                        gameDictionary[titleId] = kvp.Value;
+                    }
+                }
+            }
+        }
+        private void SaveGameList()
+        {
+            var parser = new FileIniDataParser();
+            IniData data = File.Exists(gameListPath) ? parser.ReadFile(gameListPath) : new IniData();
+
+            foreach (var kvp in gameDictionary)
+            {
+                string titleId = "0x" + kvp.Key.ToString("X8");
+                data["Games"][titleId] = kvp.Value;
+            }
+
+            parser.WriteFile(gameListPath, data);
+        }
         public string GetCurrentTitleId()
         {
             uint currentTitleId = xbCon.GetCurrentTitleId();
@@ -125,65 +155,61 @@ namespace TestUI // Made by DMONSKULL
         }
         public string GetCurrentTitleName()
         {
-            Dictionary<uint, string> gameDictionary = new Dictionary<uint, string>()
-            {
-                {0xFFFE07D1, "Xbox 360 Dashboard"},
-                {0x4D5307DC, "Crackdown"},
-                {0x4D5308BC, "Crackdown 2"},
-                {0x4343081C, "Resident Evil 4"},
-                {0x454108E6, "Skate 3"},
-                {0x4343081F, "Dead Rising 2: OTR"},
-                {0x465307E4, "Dark Souls 2"},
-                {0x4D5307E6, "Halo 3"},
-                {0x545107D1, "Saints Row"}
-            };
             uint currentTitleIdNumeric = xbCon.GetCurrentTitleId();
-            if (gameDictionary.ContainsKey(currentTitleIdNumeric))
+            if (gameDictionary.TryGetValue(currentTitleIdNumeric, out string gameName))
             {
-                return gameDictionary[currentTitleIdNumeric];
+                return gameName;
             }
             else
             {
-                return "Unknown Game";
+                string currentGamePath = xbCon.DebugTarget.RunningProcessInfo.ProgramName;
+                string currentGameName = Path.GetFileName(Path.GetDirectoryName(currentGamePath));
+                gameDictionary[currentTitleIdNumeric] = currentGameName;
+                SaveGameList();
+                return currentGameName;
             }
         }
         public void LaunchGameFromIni(string gameId, string gameFolder)
         {
-            string filePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "quicklaunch.ini");
+            string filePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "INIs/Quicklaunch/quicklaunch.ini");
             var parser = new FileIniDataParser();
+
             try
             {
                 IniData data = parser.ReadFile(filePath);
+                string launchPath = null;
+
                 if (gameId != null && gameFolder != null)
                 {
                     if (data.Sections.ContainsSection(gameId))
                     {
-                        string launchPath = data[gameId]["LaunchPath"];
-                        if (string.IsNullOrWhiteSpace(launchPath))
-                        {
-                            DialogResult result = XtraMessageBox.Show("The launch path is not set. Would you like to set it up?", "Setup Launch Path", MessageBoxButtons.YesNo);
-                            if (result == DialogResult.Yes)
-                            {
-                                FileExplorer fileExplorer = new FileExplorer(this, quickLauncher, gameId, true);
-                                fileExplorer.Show();
-                            }
-                            return;
-                        }
+                        launchPath = data[gameId]["LaunchPath"];
+                    }
+                    else if (data.Sections.ContainsSection("Games") && data["Games"].ContainsKey(gameId))
+                    {
+                        launchPath = data["Games"][gameId];
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(launchPath))
+                    {
                         try
                         {
                             string directoryPath = Path.GetDirectoryName(launchPath);
                             xbCon.Reboot(launchPath, directoryPath, null, XboxRebootFlags.Title);
-                            return;
                         }
                         catch (Exception)
                         {
                             XtraMessageBox.Show("Please connect to the console first.");
-                            return;
                         }
                     }
                     else
                     {
-                        XtraMessageBox.Show($"Game ID '{gameId}' not found in the INI file.");
+                        DialogResult result = XtraMessageBox.Show("The launch path is not set. Would you like to set it up?", "Setup Launch Path", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            FileExplorer fileExplorer = new FileExplorer(this, quickLauncher, gameId, true);
+                            fileExplorer.Show();
+                        }
                     }
                 }
                 else
@@ -208,6 +234,56 @@ namespace TestUI // Made by DMONSKULL
             catch (Exception)
             {
 
+            }
+        }
+        public void RestartCurrentGame()
+        {
+            try
+            {
+                var parser = new FileIniDataParser();
+                var quicklaunchData = parser.ReadFile("INIs/Quicklaunch/quicklaunch.ini");
+
+                string currentGamePath = xbCon.DebugTarget.RunningProcessInfo.ProgramName;
+                string currentGameName = Path.GetFileName(Path.GetDirectoryName(currentGamePath));
+
+                var gameEntry = quicklaunchData["Games"].FirstOrDefault(kvp => IsExactGameMatch(kvp.Value, currentGameName));
+                if (gameEntry != null)
+                {
+                    TryLaunchGame(gameEntry.Value);
+                    return;
+                }
+
+                foreach (var section in quicklaunchData.Sections.Where(s => s.SectionName != "Games"))
+                {
+                    string launchPath = section.Keys["LaunchPath"];
+                    if (IsExactGameMatch(launchPath, currentGameName))
+                    {
+                        TryLaunchGame(launchPath);
+                        return;
+                    }
+                }
+
+                MessageBox.Show("Current game not found in the quicklaunch.ini file.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+        private bool IsExactGameMatch(string launchPath, string currentGameName)
+        {
+            if (string.IsNullOrWhiteSpace(launchPath))
+                return false;
+
+            string gameFolderName = Path.GetFileName(Path.GetDirectoryName(launchPath));
+            return gameFolderName.Equals(currentGameName, StringComparison.OrdinalIgnoreCase);
+        }
+        private void TryLaunchGame(string launchPath)
+        {
+            if (!string.IsNullOrWhiteSpace(launchPath))
+            {
+                string directoryPath = Path.GetDirectoryName(launchPath);
+                xbCon.Reboot(launchPath, directoryPath, null, XboxRebootFlags.Title);
             }
         }
         #endregion
@@ -261,25 +337,7 @@ namespace TestUI // Made by DMONSKULL
 
         private void barButtonItem7_ItemClick(object sender, ItemClickEventArgs e)
         {
-            try
-            {
-                string gamesFolderName = new FileIniDataParser().ReadFile("INIs/Settings/settings.ini")["game folder"]["Games"];
-                string Dir = xbCon.DebugTarget.RunningProcessInfo.ProgramName;
-                int index = Dir.IndexOf(@"\" + gamesFolderName, StringComparison.OrdinalIgnoreCase);
-                if (index >= 0)
-                {
-                    string xexPath = @"Hdd:\" + Dir.Substring(index + 1);
-                    xbCon.Reboot(xexPath, xexPath.Substring(0, xexPath.LastIndexOf(@"\", StringComparison.Ordinal)), null, XboxRebootFlags.Title);
-                }
-                else
-                {
-                    MessageBox.Show($"Directory does not contain '{gamesFolderName}'.");
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("please connect to console first");
-            }
+            RestartCurrentGame();
         }
         #endregion
         #region TileStuffandGameLaunching

@@ -562,7 +562,7 @@ namespace TestUI
             // 
             // tileItem13
             // 
-            this.tileItem13.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tileItem13.BackgroundImage")));
+            this.tileItem13.BackgroundImage = global::DMONET3.Properties.Resources._2;
             this.tileItem13.BackgroundImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.Stretch;
             this.tileItem13.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
             this.tileItem13.Checked = true;

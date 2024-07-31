@@ -35,12 +35,13 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit3 = new DevExpress.XtraEditors.PictureEdit();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem7 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
@@ -56,7 +57,6 @@
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.navBarItem7 = new DevExpress.XtraNavBar.NavBarItem();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.AutoConnectCheckBox = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -144,25 +144,6 @@
             this.navBarControl1.Size = new System.Drawing.Size(150, 252);
             this.navBarControl1.TabIndex = 1;
             // 
-            // navBarGroup1
-            // 
-            this.navBarGroup1.Caption = "";
-            this.navBarGroup1.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsList;
-            this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3)});
-            this.navBarGroup1.Name = "navBarGroup1";
-            // 
-            // navBarItem1
-            // 
-            this.navBarItem1.Caption = "Your Theme";
-            this.navBarItem1.Name = "navBarItem1";
-            // 
-            // navBarItem3
-            // 
-            this.navBarItem3.Caption = "About";
-            this.navBarItem3.Name = "navBarItem3";
-            // 
             // navBarGroup2
             // 
             this.navBarGroup2.AllowHtmlString = DevExpress.Utils.DefaultBoolean.False;
@@ -177,6 +158,17 @@
             this.navBarGroup2.Name = "navBarGroup2";
             this.navBarGroup2.NavigationPaneVisible = false;
             this.navBarGroup2.ShowIcons = DevExpress.Utils.DefaultBoolean.True;
+            // 
+            // navBarItem7
+            // 
+            this.navBarItem7.Caption = "Settings";
+            this.navBarItem7.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItem7.ImageOptions.LargeImage")));
+            this.navBarItem7.ImageOptions.LargeImageIndex = 1000;
+            this.navBarItem7.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem7.ImageOptions.SmallImage")));
+            this.navBarItem7.ImageOptions.SmallImageIndex = 100000;
+            this.navBarItem7.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.None;
+            this.navBarItem7.Name = "navBarItem7";
+            this.navBarItem7.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem7_LinkClicked);
             // 
             // navBarItem2
             // 
@@ -196,6 +188,25 @@
             this.navBarItem4.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem4.ImageOptions.SmallImage")));
             this.navBarItem4.Name = "navBarItem4";
             this.navBarItem4.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem4_LinkClicked);
+            // 
+            // navBarItem1
+            // 
+            this.navBarItem1.Caption = "Your Theme";
+            this.navBarItem1.Name = "navBarItem1";
+            // 
+            // navBarItem3
+            // 
+            this.navBarItem3.Caption = "About";
+            this.navBarItem3.Name = "navBarItem3";
+            // 
+            // navBarGroup1
+            // 
+            this.navBarGroup1.Caption = "";
+            this.navBarGroup1.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsList;
+            this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3)});
+            this.navBarGroup1.Name = "navBarGroup1";
             // 
             // panelControl1
             // 
@@ -335,17 +346,6 @@
             this.labelControl2.Size = new System.Drawing.Size(134, 16);
             this.labelControl2.TabIndex = 0;
             this.labelControl2.Text = "Made by DMONSKULL";
-            // 
-            // navBarItem7
-            // 
-            this.navBarItem7.Caption = "Settings";
-            this.navBarItem7.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItem7.ImageOptions.LargeImage")));
-            this.navBarItem7.ImageOptions.LargeImageIndex = 1000;
-            this.navBarItem7.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem7.ImageOptions.SmallImage")));
-            this.navBarItem7.ImageOptions.SmallImageIndex = 100000;
-            this.navBarItem7.ImageOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.None;
-            this.navBarItem7.Name = "navBarItem7";
-            this.navBarItem7.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem7_LinkClicked);
             // 
             // panelControl3
             // 

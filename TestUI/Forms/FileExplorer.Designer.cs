@@ -47,6 +47,7 @@
             this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem12 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -55,7 +56,6 @@
             this.setAsQuickLaunchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.popupMenu2 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.listView1 = new System.Windows.Forms.ListView();
-            this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -206,6 +206,13 @@
             this.barButtonItem6.Name = "barButtonItem6";
             this.barButtonItem6.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem6_ItemClick);
             // 
+            // barButtonItem13
+            // 
+            this.barButtonItem13.Caption = "Add to Main Quicklaunch";
+            this.barButtonItem13.Id = 16;
+            this.barButtonItem13.Name = "barButtonItem13";
+            this.barButtonItem13.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem13_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -271,13 +278,6 @@
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
             // 
-            // barButtonItem13
-            // 
-            this.barButtonItem13.Caption = "Add to Main Quicklaunch";
-            this.barButtonItem13.Id = 16;
-            this.barButtonItem13.Name = "barButtonItem13";
-            this.barButtonItem13.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem13_ItemClick);
-            // 
             // FileExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -291,7 +291,7 @@
             this.Ribbon = this.ribbonControl1;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FileExplorer";
+            this.Text = "File Explorer";
             this.Load += new System.EventHandler(this.FileExplorer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();

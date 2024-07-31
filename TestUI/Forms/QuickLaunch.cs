@@ -23,7 +23,6 @@ namespace DMONET3.Forms
         public IXboxManager xbManager = null;
         public IXboxConsole xbCon = null;
         public bool activeConnection = false;
-        private uint ConnectionCode;
         public uint xboxConnection = 0;
         public string debuggerName = null;
         public string userName = null;
@@ -31,7 +30,6 @@ namespace DMONET3.Forms
         private FileIniDataParser parser;
         private ImageList imageList;
         public Form1 form1;
-        private string gameId;
         public QuickLaunch()
         {
             InitializeComponent();

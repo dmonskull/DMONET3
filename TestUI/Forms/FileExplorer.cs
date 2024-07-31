@@ -282,7 +282,7 @@ namespace DMONET3.Forms
                 IXboxFile file = selectedItem.Tag as IXboxFile;
                 if (file != null && file.Name.EndsWith(".xex", StringComparison.OrdinalIgnoreCase))
                 {
-                    string fullPath = Path.Combine(currentPath, file.Name).Replace("\\\\", "\\");
+                    string fullPath = Path.Combine(file.Name).Replace("\\\\", "\\");
 
                     // Save to quicklaunch.ini
                     string filePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "INIs/Quicklaunch/quicklaunch.ini");
