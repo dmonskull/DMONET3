@@ -1,16 +1,9 @@
-﻿using DevExpress.ClipboardSource.SpreadsheetML;
-using DevExpress.Skins;
+﻿using DevExpress.Skins;
 using DevExpress.XtraEditors;
 using IniParser;
 using IniParser.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace DMONET3.Forms
@@ -82,6 +75,39 @@ namespace DMONET3.Forms
             data["DMONSETTINGS"]["AutoConnect"] = autoConnect.ToString();
             var parser = new FileIniDataParser();
             parser.WriteFile(iniFilePath, data);
+        }
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo("https://www.se7ensins.com/members/f11.569934/") { UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while opening the website: " + ex.Message, "Error");
+            }
+        }
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo("https://github.com/dmonskull?tab=repositories") { UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while opening the website: " + ex.Message, "Error");
+            }
+        }
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo("https://www.youtube.com/@DMONSKULL2") { UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while opening the website: " + ex.Message, "Error");
+            }
         }
     }
 }
