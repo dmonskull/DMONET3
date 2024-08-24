@@ -51,6 +51,8 @@
             this.navBarItem6 = new DevExpress.XtraNavBar.NavBarItem();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
@@ -280,6 +282,8 @@
             // panelControl2
             // 
             this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl2.Controls.Add(this.labelControl6);
+            this.panelControl2.Controls.Add(this.labelControl5);
             this.panelControl2.Controls.Add(this.groupControl2);
             this.panelControl2.Controls.Add(this.pictureEdit2);
             this.panelControl2.Controls.Add(this.labelControl2);
@@ -288,12 +292,30 @@
             this.panelControl2.Size = new System.Drawing.Size(447, 253);
             this.panelControl2.TabIndex = 3;
             // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(268, 167);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(68, 13);
+            this.labelControl6.TabIndex = 4;
+            this.labelControl6.Text = "WebHam: $15";
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl5.Appearance.Options.UseFont = true;
+            this.labelControl5.Location = new System.Drawing.Point(279, 145);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(46, 16);
+            this.labelControl5.TabIndex = 3;
+            this.labelControl5.Text = "Donors";
+            // 
             // groupControl2
             // 
             this.groupControl2.Controls.Add(this.simpleButton4);
             this.groupControl2.Controls.Add(this.simpleButton3);
             this.groupControl2.Controls.Add(this.simpleButton2);
-            this.groupControl2.Location = new System.Drawing.Point(173, 15);
+            this.groupControl2.Location = new System.Drawing.Point(170, 6);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(265, 133);
             this.groupControl2.TabIndex = 2;
@@ -441,5 +463,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem7;
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private DevExpress.XtraEditors.CheckEdit AutoConnectCheckBox;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
     }
 }
