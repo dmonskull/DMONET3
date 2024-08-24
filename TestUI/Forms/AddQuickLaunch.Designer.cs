@@ -109,6 +109,7 @@
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.simpleButton1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.IconOptions.Image = global::DMONET3.Properties.Resources.logo3;
             this.MaximizeBox = false;
             this.Name = "AddQuickLaunch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

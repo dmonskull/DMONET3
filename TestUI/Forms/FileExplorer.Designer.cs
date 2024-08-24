@@ -286,6 +286,7 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.ribbonControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.IconOptions.Image = global::DMONET3.Properties.Resources.logo3;
             this.MaximizeBox = false;
             this.Name = "FileExplorer";
             this.Ribbon = this.ribbonControl1;

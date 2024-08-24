@@ -68,6 +68,7 @@
             this.Controls.Add(this.checkEdit1);
             this.Controls.Add(this.richTextBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.IconOptions.Image = global::DMONET3.Properties.Resources.logo3;
             this.MaximizeBox = false;
             this.Name = "ContentInject";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

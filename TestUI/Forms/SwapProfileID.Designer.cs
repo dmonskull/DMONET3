@@ -67,6 +67,7 @@
             this.Controls.Add(this.textEdit1);
             this.Controls.Add(this.labelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.IconOptions.Image = global::DMONET3.Properties.Resources.logo3;
             this.MaximizeBox = false;
             this.Name = "SwapProfileID";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;

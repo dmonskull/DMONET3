@@ -471,6 +471,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.peekPokeAddressTextBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.IconOptions.Image = global::DMONET3.Properties.Resources.logo3;
             this.MaximizeBox = false;
             this.Name = "PeekAndPoke";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

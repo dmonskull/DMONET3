@@ -353,6 +353,7 @@
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.ribbonControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.IconOptions.Image = global::DMONET3.Properties.Resources.logo3;
             this.MaximizeBox = false;
             this.Name = "ResidentEvil4";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

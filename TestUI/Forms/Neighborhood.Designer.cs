@@ -166,6 +166,7 @@
             this.Controls.Add(this.buttonBlack);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.IconOptions.Image = global::DMONET3.Properties.Resources.logo3;
             this.MaximizeBox = false;
             this.Name = "Neighborhood";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
