@@ -49,7 +49,7 @@ namespace TestUI // Made by DMONSKULL
         public void InfoUpdater()
         {
             timer = new Timer();
-            timer.Interval = 5 * 60 * 1000;
+            timer.Interval = 15 * 60 * 1000;
             timer.Tick += Timer_Tick;
             timer.Start();
         }
