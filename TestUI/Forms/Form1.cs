@@ -5,6 +5,7 @@ using IniParser;
 using IniParser.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -56,7 +57,7 @@ namespace TestUI // Made by DMONSKULL
         {
             string gameName = GetCurrentTitleName();
             string gameId = GetCurrentTitleId();
-            barStaticItem3.Caption = $"Playing: {gameName}\tTitle ID: {gameId}\tRunning Path: {xbCon.RunningProcessInfo.ProgramName}";
+            barStaticItem6.Caption = $"Playing: {gameName}\tTitle ID: {gameId}\tRunning Path: {xbCon.RunningProcessInfo.ProgramName}";
             ribbonControl1.ApplicationButtonText = Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U))
                 .All(b => b == 0) ? "unknown" : Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).Trim().Trim(new char[1]);
         }
@@ -225,7 +226,7 @@ namespace TestUI // Made by DMONSKULL
             try
             {
                 barButtonItem1.Caption = "Reconnect";
-                barStaticItem3.Caption = "Playing: " + GetCurrentTitleName() + "\tTitle ID: " + GetCurrentTitleId() + "\tRunning Path: " + xbCon.RunningProcessInfo.ProgramName.ToString();
+                barStaticItem6.Caption = "Playing: " + GetCurrentTitleName() + "\tTitle ID: " + GetCurrentTitleId() + "\tRunning Path: " + xbCon.RunningProcessInfo.ProgramName.ToString();
                 ribbonControl1.ApplicationButtonText = Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).All(b => b == 0) || Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).Any(c => c > 127) ? "unknown" : Encoding.BigEndianUnicode.GetString(xbCon.ReadBytes(2175412476U, 30U)).Trim().Trim(new char[1]);
                 InfoUpdater();
             }
@@ -305,8 +306,7 @@ namespace TestUI // Made by DMONSKULL
                 XtraMessageBox.Show("Unable to reach console");
             }
         }
-
-        private async void barStaticItem4_ItemClick(object sender, ItemClickEventArgs e)
+        private async void barStaticItem7_ItemClick(object sender, ItemClickEventArgs e)
         {
             Clipboard.SetText(barStaticItem3.Caption.Replace("\t", "\n"));
             string originalText = barStaticItem4.Caption;

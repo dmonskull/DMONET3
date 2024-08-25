@@ -476,6 +476,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo3.ico" />
+    <None Include="Resources\discord3.png" />
+    <None Include="Resources\discord2.png" />
     <None Include="Resources\logo3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

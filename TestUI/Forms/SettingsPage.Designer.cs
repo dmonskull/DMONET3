@@ -61,6 +61,9 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.AutoConnectCheckBox = new DevExpress.XtraEditors.CheckEdit();
+            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit3.Properties)).BeginInit();
@@ -294,7 +297,7 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(268, 167);
+            this.labelControl6.Location = new System.Drawing.Point(44, 212);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(68, 13);
             this.labelControl6.TabIndex = 4;
@@ -304,7 +307,7 @@
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(279, 145);
+            this.labelControl5.Location = new System.Drawing.Point(55, 190);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(46, 16);
             this.labelControl5.TabIndex = 3;
@@ -312,12 +315,15 @@
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.simpleButton7);
+            this.groupControl2.Controls.Add(this.simpleButton6);
+            this.groupControl2.Controls.Add(this.simpleButton5);
             this.groupControl2.Controls.Add(this.simpleButton4);
             this.groupControl2.Controls.Add(this.simpleButton3);
             this.groupControl2.Controls.Add(this.simpleButton2);
             this.groupControl2.Location = new System.Drawing.Point(170, 6);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(265, 133);
+            this.groupControl2.Size = new System.Drawing.Size(265, 203);
             this.groupControl2.TabIndex = 2;
             this.groupControl2.Text = "Socials";
             // 
@@ -351,7 +357,7 @@
             // pictureEdit2
             // 
             this.pictureEdit2.EditValue = global::DMONET3.Properties.Resources._67849229;
-            this.pictureEdit2.Location = new System.Drawing.Point(8, 6);
+            this.pictureEdit2.Location = new System.Drawing.Point(3, 3);
             this.pictureEdit2.Name = "pictureEdit2";
             this.pictureEdit2.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.pictureEdit2.Properties.Appearance.Options.UseBackColor = true;
@@ -366,7 +372,7 @@
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(16, 159);
+            this.labelControl2.Location = new System.Drawing.Point(11, 156);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(134, 16);
             this.labelControl2.TabIndex = 0;
@@ -389,6 +395,33 @@
             this.AutoConnectCheckBox.Size = new System.Drawing.Size(151, 19);
             this.AutoConnectCheckBox.TabIndex = 0;
             this.AutoConnectCheckBox.CheckedChanged += new System.EventHandler(this.AutoConnectCheckBox_CheckedChanged);
+            // 
+            // simpleButton5
+            // 
+            this.simpleButton5.Location = new System.Drawing.Point(5, 129);
+            this.simpleButton5.Name = "simpleButton5";
+            this.simpleButton5.Size = new System.Drawing.Size(255, 29);
+            this.simpleButton5.TabIndex = 3;
+            this.simpleButton5.Text = "DMONET Website";
+            this.simpleButton5.Click += new System.EventHandler(this.simpleButton5_Click);
+            // 
+            // simpleButton6
+            // 
+            this.simpleButton6.Location = new System.Drawing.Point(6, 164);
+            this.simpleButton6.Name = "simpleButton6";
+            this.simpleButton6.Size = new System.Drawing.Size(123, 29);
+            this.simpleButton6.TabIndex = 4;
+            this.simpleButton6.Text = "DMONET Discord";
+            this.simpleButton6.Click += new System.EventHandler(this.simpleButton6_Click);
+            // 
+            // simpleButton7
+            // 
+            this.simpleButton7.Location = new System.Drawing.Point(135, 164);
+            this.simpleButton7.Name = "simpleButton7";
+            this.simpleButton7.Size = new System.Drawing.Size(123, 29);
+            this.simpleButton7.TabIndex = 5;
+            this.simpleButton7.Text = "Crackdown Discord";
+            this.simpleButton7.Click += new System.EventHandler(this.simpleButton7_Click);
             // 
             // SettingsPage
             // 
@@ -465,5 +498,8 @@
         private DevExpress.XtraEditors.CheckEdit AutoConnectCheckBox;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.SimpleButton simpleButton7;
+        private DevExpress.XtraEditors.SimpleButton simpleButton6;
+        private DevExpress.XtraEditors.SimpleButton simpleButton5;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -92,8 +93,8 @@ namespace ContentInjector
 			RTB.SelectedText = text;
 		}
 
-		// Token: 0x0400000E RID: 14
-		public static string settings = "";
+        // Token: 0x0400000E RID: 14
+        public static string settings = "";
 
 		// Token: 0x0400000F RID: 15
 		public static bool AtMS = false;

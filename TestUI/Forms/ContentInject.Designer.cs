@@ -75,8 +75,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Content Inject";
             this.Load += new System.EventHandler(this.ContentInject_Load);
-            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ContentInject_DragDrop);
-            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ContentInject_DragEnter);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ContentInject_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             this.ResumeLayout(false);

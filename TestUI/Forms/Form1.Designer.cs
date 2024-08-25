@@ -47,6 +47,9 @@ namespace TestUI
             DevExpress.XtraEditors.TileItemElement tileItemElement13 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement14 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement15 = new DevExpress.XtraEditors.TileItemElement();
+            this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.barStaticItem6 = new DevExpress.XtraBars.BarStaticItem();
+            this.barStaticItem7 = new DevExpress.XtraBars.BarStaticItem();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
@@ -64,11 +67,15 @@ namespace TestUI
             this.repositoryItemRichTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit();
             this.skinPaletteRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinPaletteRibbonGalleryBarItem();
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
+            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
+            this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.tileControl2 = new DevExpress.XtraEditors.TileControl();
@@ -97,6 +104,28 @@ namespace TestUI
             this.xtraScrollableControl1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // ribbonStatusBar1
+            // 
+            this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem6);
+            this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem7);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 666);
+            this.ribbonStatusBar1.Name = "ribbonStatusBar1";
+            this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(849, 23);
+            // 
+            // barStaticItem6
+            // 
+            this.barStaticItem6.Id = 22;
+            this.barStaticItem6.Name = "barStaticItem6";
+            // 
+            // barStaticItem7
+            // 
+            this.barStaticItem7.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.barStaticItem7.Caption = "Copy Info";
+            this.barStaticItem7.Id = 23;
+            this.barStaticItem7.Name = "barStaticItem7";
+            this.barStaticItem7.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barStaticItem7_ItemClick);
+            // 
             // ribbonControl1
             // 
             this.ribbonControl1.ApplicationButtonText = "DMONET";
@@ -118,16 +147,22 @@ namespace TestUI
             this.barStaticItem5,
             this.barEditItem1,
             this.skinPaletteRibbonGalleryBarItem1,
-            this.barButtonItem8});
+            this.barButtonItem8,
+            this.barButtonItem9,
+            this.barSubItem1,
+            this.barButtonItem10,
+            this.barButtonItem11,
+            this.barStaticItem6,
+            this.barStaticItem7});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 17;
+            this.ribbonControl1.MaxItemId = 26;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemRichTextEdit1});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.OfficeUniversal;
-            this.ribbonControl1.Size = new System.Drawing.Size(806, 84);
+            this.ribbonControl1.Size = new System.Drawing.Size(849, 84);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // barButtonItem1
@@ -172,7 +207,6 @@ namespace TestUI
             this.barStaticItem4.Caption = "Copy Info";
             this.barStaticItem4.Id = 6;
             this.barStaticItem4.Name = "barStaticItem4";
-            this.barStaticItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barStaticItem4_ItemClick);
             // 
             // barButtonItem3
             // 
@@ -246,12 +280,39 @@ namespace TestUI
             this.barButtonItem8.Id = 16;
             this.barButtonItem8.Name = "barButtonItem8";
             // 
+            // barButtonItem9
+            // 
+            this.barButtonItem9.Caption = "barButtonItem9";
+            this.barButtonItem9.Id = 17;
+            this.barButtonItem9.Name = "barButtonItem9";
+            // 
+            // barSubItem1
+            // 
+            this.barSubItem1.Caption = "Discord";
+            this.barSubItem1.Id = 18;
+            this.barSubItem1.ImageOptions.Image = global::DMONET3.Properties.Resources.discord3;
+            this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem10),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem11)});
+            this.barSubItem1.Name = "barSubItem1";
+            // 
+            // barButtonItem10
+            // 
+            this.barButtonItem10.Id = 24;
+            this.barButtonItem10.Name = "barButtonItem10";
+            // 
+            // barButtonItem11
+            // 
+            this.barButtonItem11.Id = 25;
+            this.barButtonItem11.Name = "barButtonItem11";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
             this.ribbonPageGroup2,
-            this.ribbonPageGroup3});
+            this.ribbonPageGroup3,
+            this.ribbonPageGroup4});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Console Tools";
             // 
@@ -277,14 +338,10 @@ namespace TestUI
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "ribbonPageGroup3";
             // 
-            // ribbonStatusBar1
+            // ribbonPageGroup4
             // 
-            this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem3);
-            this.ribbonStatusBar1.ItemLinks.Add(this.barStaticItem4);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 666);
-            this.ribbonStatusBar1.Name = "ribbonStatusBar1";
-            this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(806, 23);
+            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            this.ribbonPageGroup4.Text = "ribbonPageGroup4";
             // 
             // panelControl1
             // 
@@ -292,7 +349,7 @@ namespace TestUI
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 84);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(806, 605);
+            this.panelControl1.Size = new System.Drawing.Size(849, 605);
             this.panelControl1.TabIndex = 3;
             // 
             // xtraScrollableControl1
@@ -302,7 +359,7 @@ namespace TestUI
             this.xtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraScrollableControl1.Location = new System.Drawing.Point(2, 2);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(802, 601);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(845, 601);
             this.xtraScrollableControl1.TabIndex = 0;
             // 
             // tileControl2
@@ -325,7 +382,7 @@ namespace TestUI
             this.tileControl2.OptionsAdaptiveLayout.ScrollMode = DevExpress.XtraEditors.TileControlAdaptiveLayoutScrollMode.ItemScrolling;
             this.tileControl2.RowCount = 2;
             this.tileControl2.ShowText = true;
-            this.tileControl2.Size = new System.Drawing.Size(796, 200);
+            this.tileControl2.Size = new System.Drawing.Size(839, 200);
             this.tileControl2.TabIndex = 1;
             this.tileControl2.Text = "DMONET Tools";
             // 
@@ -453,7 +510,7 @@ namespace TestUI
             this.tileControl1.OptionsAdaptiveLayout.ScrollMode = DevExpress.XtraEditors.TileControlAdaptiveLayoutScrollMode.ItemScrolling;
             this.tileControl1.RowCount = 2;
             this.tileControl1.ShowText = true;
-            this.tileControl1.Size = new System.Drawing.Size(796, 330);
+            this.tileControl1.Size = new System.Drawing.Size(839, 330);
             this.tileControl1.TabIndex = 0;
             this.tileControl1.Text = "Game Tools";
             // 
@@ -580,7 +637,7 @@ namespace TestUI
             this.Appearance.Options.UseBorderColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(806, 689);
+            this.ClientSize = new System.Drawing.Size(849, 689);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.ribbonControl1);
@@ -605,14 +662,8 @@ namespace TestUI
         }
 
         #endregion
-
-        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraEditors.TileControl tileControl1;
         private DevExpress.XtraEditors.TileGroup tileGroup2;
         private DevExpress.XtraEditors.TileItem tileItem2;
@@ -629,26 +680,38 @@ namespace TestUI
         private DevExpress.XtraEditors.TileItem tileItem10;
         private DevExpress.XtraEditors.TileItem tileItem14;
         private DevExpress.XtraEditors.TileItem tileItem16;
+        private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
+        private DevExpress.XtraEditors.TileItem tileItem11;
+        private DevExpress.XtraEditors.TileItem tileItem12;
+        private DevExpress.XtraEditors.TileItem tileItem13;
+        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
         private DevExpress.XtraBars.BarStaticItem barStaticItem2;
         private DevExpress.XtraBars.BarStaticItem barStaticItem3;
-        private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
         private DevExpress.XtraBars.BarStaticItem barStaticItem4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private DevExpress.XtraBars.BarButtonItem barButtonItem6;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
-        private DevExpress.XtraEditors.TileItem tileItem11;
         private DevExpress.XtraBars.BarButtonItem barButtonItem7;
         private DevExpress.XtraBars.BarStaticItem barStaticItem5;
         private DevExpress.XtraBars.BarEditItem barEditItem1;
         private DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit repositoryItemRichTextEdit1;
         private DevExpress.XtraBars.SkinPaletteRibbonGalleryBarItem skinPaletteRibbonGalleryBarItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem8;
-        private DevExpress.XtraEditors.TileItem tileItem12;
-        private DevExpress.XtraEditors.TileItem tileItem13;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem9;
+        private DevExpress.XtraBars.BarSubItem barSubItem1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem10;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem6;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem7;
     }
 }
 

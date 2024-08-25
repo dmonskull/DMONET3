@@ -51,6 +51,7 @@ namespace DMONET3.Forms
                     break;
             }
         }
+        public void OpenUrl(string url) => Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
         private void navBarItem2_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             panelControl1.Visible = true;
@@ -78,36 +79,27 @@ namespace DMONET3.Forms
         }
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Process.Start(new ProcessStartInfo("https://www.se7ensins.com/members/f11.569934/") { UseShellExecute = true });
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred while opening the website: " + ex.Message, "Error");
-            }
+            OpenUrl("https://www.se7ensins.com/members/f11.569934/");
         }
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Process.Start(new ProcessStartInfo("https://github.com/dmonskull?tab=repositories") { UseShellExecute = true });
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred while opening the website: " + ex.Message, "Error");
-            }
+            OpenUrl("https://github.com/dmonskull?tab=repositories");
         }
         private void simpleButton4_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Process.Start(new ProcessStartInfo("https://www.youtube.com/@DMONSKULL2") { UseShellExecute = true });
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred while opening the website: " + ex.Message, "Error");
-            }
+            OpenUrl("https://www.youtube.com/@DMONSKULL2");
+        }
+        private void simpleButton5_Click(object sender, EventArgs e)
+        {
+            OpenUrl("https://dmonskull.github.io/DMONET/");
+        }
+        private void simpleButton6_Click(object sender, EventArgs e)
+        {
+            OpenUrl("https://discord.gg/gDJEYKUa8f");
+        }
+        private void simpleButton7_Click(object sender, EventArgs e)
+        {
+            OpenUrl("https://discord.gg/5rSkWCEpVf");
         }
     }
 }
