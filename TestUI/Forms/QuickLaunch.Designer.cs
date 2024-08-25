@@ -34,6 +34,9 @@
             // 
             // quickLaunchListView
             // 
+            this.quickLaunchListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.quickLaunchListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.quickLaunchListView.ForeColor = System.Drawing.Color.White;
             this.quickLaunchListView.HideSelection = false;
             this.quickLaunchListView.Location = new System.Drawing.Point(12, 12);
             this.quickLaunchListView.Name = "quickLaunchListView";
@@ -48,7 +51,7 @@
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(652, 34);
             this.simpleButton1.TabIndex = 3;
-            this.simpleButton1.Text = "Open Xbox File Explorer";
+            this.simpleButton1.Text = "Open Xbox 360 File Explorer";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // QuickLaunch
