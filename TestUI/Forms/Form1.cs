@@ -294,7 +294,6 @@ namespace TestUI // Made by DMONSKULL
                 PullXboxUserInfo();
             }
         }
-
         private void barButtonItem2_ItemClick_1(object sender, ItemClickEventArgs e)
         {
             try
@@ -314,25 +313,21 @@ namespace TestUI // Made by DMONSKULL
             await Task.Delay(1000);
             barStaticItem7.Caption = originalText;
         }
-
         private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
         {
             QuickLaunch quickLaunch = new QuickLaunch();
             quickLaunch.Show();
         }
-
         private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
         {
             SettingsPage settingsPage = new SettingsPage();
             settingsPage.Show();
         }
-
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
             ScreenshotPage screenshotPage = new ScreenshotPage();
             screenshotPage.Show();
         }
-
         private void barButtonItem7_ItemClick(object sender, ItemClickEventArgs e)
         {
             RestartCurrentGame();

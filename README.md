@@ -10,3 +10,5 @@ DMONET3\TestUI\bin\Debug
 These folders are essential for proper functionality if you plan on compiling your own executable.
 
 For those not compiling the source code, the downloaded .rar/.zip file is already fully set up and ready to use. Simply extract and run!
+
+![External Image](https://dmonskull.github.io/DMONET/assets/img/logo4.png)
