@@ -308,11 +308,11 @@ namespace TestUI // Made by DMONSKULL
         }
         private async void barStaticItem7_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Clipboard.SetText(barStaticItem3.Caption.Replace("\t", "\n"));
-            string originalText = barStaticItem4.Caption;
-            barStaticItem4.Caption = "Copied";
+            Clipboard.SetText(barStaticItem7.Caption.Replace("\t", "\n"));
+            string originalText = barStaticItem7.Caption;
+            barStaticItem7.Caption = "Copied";
             await Task.Delay(1000);
-            barStaticItem4.Caption = originalText;
+            barStaticItem7.Caption = originalText;
         }
 
         private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
