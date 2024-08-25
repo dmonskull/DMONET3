@@ -3,7 +3,7 @@
 
 ---
 
-If you're planning to compile the source code to create your own executable, please note that a DevExpress License is required. Additionally, make sure to copy the "Screenshots", "INIs", and "Images" folders from the provided "Tools" folder into the following directory:
+If you're planning to compile the source code to create your own executable, please note that a DevExpress License is required. Additionally, make sure to copy the "Screenshots", "INIs", and "Images" folders from the DMONET folder in the downloaded .rar/.zip file to the following directory:
 
 DMONET3\TestUI\bin\Debug
 
